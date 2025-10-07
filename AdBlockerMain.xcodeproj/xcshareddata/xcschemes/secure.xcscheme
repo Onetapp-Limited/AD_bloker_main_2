@@ -18,7 +18,7 @@
                BlueprintIdentifier = "8EC58DC52E67E8A3008D48EF"
                BuildableName = "secure.appex"
                BlueprintName = "secure"
-               ReferencedContainer = "container:SurfShield.xcodeproj">
+               ReferencedContainer = "container:AdBlockerMain.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -32,7 +32,7 @@
                BlueprintIdentifier = "8ECF28062E59BAFE000A5748"
                BuildableName = "SurfShield.app"
                BlueprintName = "SurfShield"
-               ReferencedContainer = "container:SurfShield.xcodeproj">
+               ReferencedContainer = "container:AdBlockerMain.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -63,7 +63,7 @@
             BlueprintIdentifier = "8ECF28062E59BAFE000A5748"
             BuildableName = "SurfShield.app"
             BlueprintName = "SurfShield"
-            ReferencedContainer = "container:SurfShield.xcodeproj">
+            ReferencedContainer = "container:AdBlockerMain.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -82,7 +82,7 @@
             BlueprintIdentifier = "8ECF28062E59BAFE000A5748"
             BuildableName = "SurfShield.app"
             BlueprintName = "SurfShield"
-            ReferencedContainer = "container:SurfShield.xcodeproj">
+            ReferencedContainer = "container:AdBlockerMain.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

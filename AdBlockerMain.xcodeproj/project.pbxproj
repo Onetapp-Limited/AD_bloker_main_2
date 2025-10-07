@@ -1216,7 +1216,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8ECF28022E59BAFE000A5748 /* Build configuration list for PBXProject "SurfShield" */;
+			buildConfigurationList = 8ECF28022E59BAFE000A5748 /* Build configuration list for PBXProject "AdBlockerMain" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -2418,7 +2418,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8ECF28022E59BAFE000A5748 /* Build configuration list for PBXProject "SurfShield" */ = {
+		8ECF28022E59BAFE000A5748 /* Build configuration list for PBXProject "AdBlockerMain" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8ECF28132E59BB03000A5748 /* Debug */,

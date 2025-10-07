@@ -15,10 +15,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8EC856ED2E65966B00936348"
-               BuildableName = "advanced.appex"
-               BlueprintName = "advanced"
-               ReferencedContainer = "container:SurfShield.xcodeproj">
+               BlueprintIdentifier = "8EBA83F92E5BB15600206493"
+               BuildableName = "adblocker.appex"
+               BlueprintName = "adblocker"
+               ReferencedContainer = "container:AdBlockerMain.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -32,7 +32,7 @@
                BlueprintIdentifier = "8ECF28062E59BAFE000A5748"
                BuildableName = "SurfShield.app"
                BlueprintName = "SurfShield"
-               ReferencedContainer = "container:SurfShield.xcodeproj">
+               ReferencedContainer = "container:AdBlockerMain.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -63,7 +63,7 @@
             BlueprintIdentifier = "8ECF28062E59BAFE000A5748"
             BuildableName = "SurfShield.app"
             BlueprintName = "SurfShield"
-            ReferencedContainer = "container:SurfShield.xcodeproj">
+            ReferencedContainer = "container:AdBlockerMain.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -82,7 +82,7 @@
             BlueprintIdentifier = "8ECF28062E59BAFE000A5748"
             BuildableName = "SurfShield.app"
             BlueprintName = "SurfShield"
-            ReferencedContainer = "container:SurfShield.xcodeproj">
+            ReferencedContainer = "container:AdBlockerMain.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
