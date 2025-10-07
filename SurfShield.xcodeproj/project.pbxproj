@@ -1776,7 +1776,7 @@
 				CODE_SIGN_ENTITLEMENTS = banners/banners.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6TVC5Q5R78;
+				DEVELOPMENT_TEAM = UVV92HTRTD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = banners/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Banners;
@@ -1788,7 +1788,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.surfshield.app.banners;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adBloker.main.app.banners;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1804,7 +1804,7 @@
 				CODE_SIGN_ENTITLEMENTS = banners/banners.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6TVC5Q5R78;
+				DEVELOPMENT_TEAM = UVV92HTRTD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = banners/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Banners;
@@ -1816,7 +1816,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.surfshield.app.banners;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adBloker.main.app.banners;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1832,7 +1832,7 @@
 				CODE_SIGN_ENTITLEMENTS = adblocker/adblocker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6TVC5Q5R78;
+				DEVELOPMENT_TEAM = UVV92HTRTD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = adblocker/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = AdBlock;
@@ -1844,7 +1844,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.surfshield.app.adblocker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adBloker.main.app.adblocker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1860,7 +1860,7 @@
 				CODE_SIGN_ENTITLEMENTS = adblocker/adblocker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6TVC5Q5R78;
+				DEVELOPMENT_TEAM = UVV92HTRTD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = adblocker/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = AdBlock;
@@ -1872,7 +1872,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.surfshield.app.adblocker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adBloker.main.app.adblocker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1888,7 +1888,7 @@
 				CODE_SIGN_ENTITLEMENTS = trackers/trackers.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6TVC5Q5R78;
+				DEVELOPMENT_TEAM = UVV92HTRTD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = trackers/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Trackers;
@@ -1900,7 +1900,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.surfshield.app.trackers;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adBloker.main.app.trackers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1916,7 +1916,7 @@
 				CODE_SIGN_ENTITLEMENTS = trackers/trackers.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6TVC5Q5R78;
+				DEVELOPMENT_TEAM = UVV92HTRTD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = trackers/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Trackers;
@@ -1928,7 +1928,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.surfshield.app.trackers;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adBloker.main.app.trackers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1944,7 +1944,7 @@
 				CODE_SIGN_ENTITLEMENTS = secure/secure.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6TVC5Q5R78;
+				DEVELOPMENT_TEAM = UVV92HTRTD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = secure/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Security;
@@ -1956,7 +1956,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.surfshield.app.secure;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adBloker.main.app.secure;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1972,7 +1972,7 @@
 				CODE_SIGN_ENTITLEMENTS = secure/secure.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6TVC5Q5R78;
+				DEVELOPMENT_TEAM = UVV92HTRTD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = secure/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Security;
@@ -1984,7 +1984,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.surfshield.app.secure;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adBloker.main.app.secure;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2000,7 +2000,7 @@
 				CODE_SIGN_ENTITLEMENTS = basic/basic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6TVC5Q5R78;
+				DEVELOPMENT_TEAM = UVV92HTRTD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = basic/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Basic;
@@ -2012,7 +2012,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.surfshield.app.basic;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adBloker.main.app.basic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2028,7 +2028,7 @@
 				CODE_SIGN_ENTITLEMENTS = basic/basic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6TVC5Q5R78;
+				DEVELOPMENT_TEAM = UVV92HTRTD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = basic/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Basic;
@@ -2040,7 +2040,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.surfshield.app.basic;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adBloker.main.app.basic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2056,7 +2056,7 @@
 				CODE_SIGN_ENTITLEMENTS = privacy/privacy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6TVC5Q5R78;
+				DEVELOPMENT_TEAM = UVV92HTRTD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = privacy/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Privacy;
@@ -2068,7 +2068,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.surfshield.app.privacy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adBloker.main.app.privacy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2084,7 +2084,7 @@
 				CODE_SIGN_ENTITLEMENTS = privacy/privacy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6TVC5Q5R78;
+				DEVELOPMENT_TEAM = UVV92HTRTD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = privacy/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Privacy;
@@ -2096,7 +2096,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.surfshield.app.privacy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adBloker.main.app.privacy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2112,7 +2112,7 @@
 				CODE_SIGN_ENTITLEMENTS = advanced/advanced.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6TVC5Q5R78;
+				DEVELOPMENT_TEAM = UVV92HTRTD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = advanced/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Advanced;
@@ -2124,7 +2124,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.surfshield.app.advanced;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adBloker.main.app.advanced;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2140,7 +2140,7 @@
 				CODE_SIGN_ENTITLEMENTS = advanced/advanced.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6TVC5Q5R78;
+				DEVELOPMENT_TEAM = UVV92HTRTD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = advanced/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Advanced;
@@ -2152,7 +2152,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.surfshield.app.advanced;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adBloker.main.app.advanced;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -2290,7 +2290,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SurfShield/Preview Content\"";
-				DEVELOPMENT_TEAM = 6TVC5Q5R78;
+				DEVELOPMENT_TEAM = UVV92HTRTD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -2304,11 +2304,15 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.surfshield.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adBloker.main.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -2322,7 +2326,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SurfShield/Preview Content\"";
-				DEVELOPMENT_TEAM = 6TVC5Q5R78;
+				DEVELOPMENT_TEAM = UVV92HTRTD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -2336,11 +2340,15 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.surfshield.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.adBloker.main.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

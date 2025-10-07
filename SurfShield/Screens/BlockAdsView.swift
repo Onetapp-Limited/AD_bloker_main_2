@@ -172,23 +172,23 @@ class BlockAdsViewModel: ObservableObject {
     }
     
     func reloadAdBlocker() {
-        reloadExtension(bundleId: "com.surfshield.app.adblocker")
+        reloadExtension(bundleId: "com.adBloker.main.app.adblocker")
     }
     
     func reloadPrivacy() {
-        reloadExtension(bundleId: "com.surfshield.app.privacy")
+        reloadExtension(bundleId: "com.adBloker.main.app.privacy")
     }
     
     func reloadBanners() {
-        reloadExtension(bundleId: "com.surfshield.app.banners")
+        reloadExtension(bundleId: "com.adBloker.main.app.banners")
     }
     
     func reloadTrackers() {
-        reloadExtension(bundleId: "com.surfshield.app.trackers")
+        reloadExtension(bundleId: "com.adBloker.main.app.trackers")
     }
     
     func reloadAdvanced() {
-        reloadExtension(bundleId: "com.surfshield.app.advanced")
+        reloadExtension(bundleId: "com.adBloker.main.app.advanced")
     }
 }
 

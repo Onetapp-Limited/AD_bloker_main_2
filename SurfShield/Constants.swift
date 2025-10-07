@@ -9,16 +9,16 @@ import Foundation
 
 
 enum Constants {
-    static var adblockGroupId = "group.surfshield.app.adblocker"
+    static var adblockGroupId = "group.adBloker.main.app.adblocker"
     
     enum BlockExtenesionBundleIds: String, CaseIterable {
-        case adblocker = "com.surfshield.app.adblocker"
-        case privacy = "com.surfshield.app.privacy"
-        case banners = "com.surfshield.app.banners"
-        case trackers = "com.surfshield.app.trackers"
-        case advanced = "com.surfshield.app.advanced"
-        case secure = "com.surfshield.app.secure"
-        case basic = "com.surfshield.app.basic"
+        case adblocker = "com.adBloker.main.app.adblocker"
+        case privacy = "com.adBloker.main.app.privacy"
+        case banners = "com.adBloker.main.app.banners"
+        case trackers = "com.adBloker.main.app.trackers"
+        case advanced = "com.adBloker.main.app.advanced"
+        case secure = "com.adBloker.main.app.secure"
+        case basic = "com.adBloker.main.app.basic"
         
         static var all: [String] {
             BlockExtenesionBundleIds.allCases.map { $0.rawValue }
