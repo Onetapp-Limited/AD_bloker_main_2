@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>method</key>
+    <string>app-store</string>
+    <key>teamID</key>
+    <string>YOUR_TEAM_ID</string>
+    <key>uploadBitcode</key>
+    <false/>
+    <key>uploadSymbols</key>
+    <true/>
+    <key>compileBitcode</key>
+    <false/>
+    <key>stripSwiftSymbols</key>
+    <true/>
+    <key>thinning</key>
+    <string>&lt;none&gt;</string>
+    <key>provisioningProfiles</key>
+    <dict>
+        <key>com.surfshield.app.banners</key>
+        <string>YOUR_BANNERS_PROVISIONING_PROFILE</string>
+        <key>com.surfshield.app.adblocker</key>
+        <string>YOUR_ADBLOCKER_PROVISIONING_PROFILE</string>
+        <key>com.surfshield.app.trackers</key>
+        <string>YOUR_TRACKERS_PROVISIONING_PROFILE</string>
+        <key>com.surfshield.app.secure</key>
+        <string>YOUR_SECURE_PROVISIONING_PROFILE</string>
+        <key>com.surfshield.app.basic</key>
+        <string>YOUR_BASIC_PROVISIONING_PROFILE</string>
+        <key>com.surfshield.app.privacy</key>
+        <string>YOUR_PRIVACY_PROVISIONING_PROFILE</string>
+        <key>com.surfshield.app.advanced</key>
+        <string>YOUR_ADVANCED_PROVISIONING_PROFILE</string>
+    </dict>
+</dict>
+</plist>

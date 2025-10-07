@@ -1,0 +1,324 @@
+workflows:
+  # Основной workflow для сборки приложения SurfShield
+  surfshield-app:
+    name: SurfShield App
+    max_build_duration: 60
+    environment:
+      vars:
+        XCODE_WORKSPACE: "SurfShield.xcodeproj"
+        XCODE_SCHEME: "SurfShield"
+        BUNDLE_ID: "com.surfshield.app"
+        APP_STORE_CONNECT_ISSUER_ID: Encrypted(...) # Замените на ваш Issuer ID
+        APP_STORE_CONNECT_KEY_IDENTIFIER: Encrypted(...) # Замените на ваш Key ID
+        APP_STORE_CONNECT_PRIVATE_KEY: Encrypted(...) # Замените на ваш Private Key
+        CERTIFICATE_PRIVATE_KEY: Encrypted(...) # Замените на ваш Certificate Private Key
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Set up keychain to be used for codesigning
+        script: |
+          keychain initialize
+      - name: Fetch signing files
+        script: |
+          # Получаем сертификат и provisioning profile
+          app-store-connect fetch-signing-files $BUNDLE_ID --type IOS_APP_STORE --create
+      - name: Set up signing certificate
+        script: |
+          keychain add-certificates
+      - name: Set up code signing settings on Xcode project
+        script: |
+          xcode-project use-profiles
+      - name: Install CocoaPods dependencies
+        script: |
+          pod install
+      - name: Build app for release
+        script: |
+          xcode-project build-ipa \
+            --workspace "$XCODE_WORKSPACE" \
+            --scheme "$XCODE_SCHEME" \
+            --archive-flags "-destination 'generic/platform=iOS'" \
+            --export-options-plist export_options.plist
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - build/ios/xcarchive/*.xcarchive
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
+        submit_to_app_store: false
+      email:
+        recipients:
+          - your-email@example.com
+        notify:
+          success: true
+          failure: true
+
+  # Workflow для сборки всех Content Blocker расширений
+  content-blockers:
+    name: Content Blockers
+    max_build_duration: 45
+    environment:
+      vars:
+        XCODE_WORKSPACE: "SurfShield.xcodeproj"
+        BUNDLE_IDS:
+          - "com.surfshield.app.banners"
+          - "com.surfshield.app.adblocker"
+          - "com.surfshield.app.trackers"
+          - "com.surfshield.app.secure"
+          - "com.surfshield.app.basic"
+          - "com.surfshield.app.privacy"
+          - "com.surfshield.app.advanced"
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Set up keychain to be used for codesigning
+        script: |
+          keychain initialize
+      - name: Fetch signing files for all extensions
+        script: |
+          # Получаем сертификаты и provisioning profiles для всех расширений
+          for bundle_id in $BUNDLE_IDS; do
+            app-store-connect fetch-signing-files $bundle_id --type IOS_APP_EXTENSION --create
+          done
+      - name: Set up signing certificate
+        script: |
+          keychain add-certificates
+      - name: Set up code signing settings on Xcode project
+        script: |
+          xcode-project use-profiles
+      - name: Install CocoaPods dependencies
+        script: |
+          pod install
+      - name: Build all Content Blocker extensions
+        script: |
+          # Собираем все расширения
+          xcode-project build-ipa \
+            --workspace "$XCODE_WORKSPACE" \
+            --scheme "banners" \
+            --archive-flags "-destination 'generic/platform=iOS'" \
+            --export-options-plist export_options_extension.plist
+          
+          xcode-project build-ipa \
+            --workspace "$XCODE_WORKSPACE" \
+            --scheme "adblocker" \
+            --archive-flags "-destination 'generic/platform=iOS'" \
+            --export-options-plist export_options_extension.plist
+            
+          xcode-project build-ipa \
+            --workspace "$XCODE_WORKSPACE" \
+            --scheme "trackers" \
+            --archive-flags "-destination 'generic/platform=iOS'" \
+            --export-options-plist export_options_extension.plist
+            
+          xcode-project build-ipa \
+            --workspace "$XCODE_WORKSPACE" \
+            --scheme "secure" \
+            --archive-flags "-destination 'generic/platform=iOS'" \
+            --export-options-plist export_options_extension.plist
+            
+          xcode-project build-ipa \
+            --workspace "$XCODE_WORKSPACE" \
+            --scheme "basic" \
+            --archive-flags "-destination 'generic/platform=iOS'" \
+            --export-options-plist export_options_extension.plist
+            
+          xcode-project build-ipa \
+            --workspace "$XCODE_WORKSPACE" \
+            --scheme "privacy" \
+            --archive-flags "-destination 'generic/platform=iOS'" \
+            --export-options-plist export_options_extension.plist
+            
+          xcode-project build-ipa \
+            --workspace "$XCODE_WORKSPACE" \
+            --scheme "advanced" \
+            --archive-flags "-destination 'generic/platform=iOS'" \
+            --export-options-plist export_options_extension.plist
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - build/ios/xcarchive/*.xcarchive
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com
+        notify:
+          success: true
+          failure: true
+
+  # Workflow для тестирования
+  test:
+    name: Run Tests
+    max_build_duration: 30
+    environment:
+      vars:
+        XCODE_WORKSPACE: "SurfShield.xcodeproj"
+        XCODE_SCHEME: "SurfShield"
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Install CocoaPods dependencies
+        script: |
+          pod install
+      - name: Run tests
+        script: |
+          xcode-project test \
+            --workspace "$XCODE_WORKSPACE" \
+            --scheme "$XCODE_SCHEME" \
+            --destination "platform=iOS Simulator,name=iPhone 15,OS=latest"
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com
+        notify:
+          success: true
+          failure: true
+
+  # Workflow для полной сборки (приложение + все расширения)
+  full-build:
+    name: Full Build
+    max_build_duration: 90
+    environment:
+      vars:
+        XCODE_WORKSPACE: "SurfShield.xcodeproj"
+        BUNDLE_ID: "com.surfshield.app"
+        BUNDLE_IDS:
+          - "com.surfshield.app.banners"
+          - "com.surfshield.app.adblocker"
+          - "com.surfshield.app.trackers"
+          - "com.surfshield.app.secure"
+          - "com.surfshield.app.basic"
+          - "com.surfshield.app.privacy"
+          - "com.surfshield.app.advanced"
+        APP_STORE_CONNECT_ISSUER_ID: Encrypted(...)
+        APP_STORE_CONNECT_KEY_IDENTIFIER: Encrypted(...)
+        APP_STORE_CONNECT_PRIVATE_KEY: Encrypted(...)
+        CERTIFICATE_PRIVATE_KEY: Encrypted(...)
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Set up keychain to be used for codesigning
+        script: |
+          keychain initialize
+      - name: Fetch signing files for main app
+        script: |
+          app-store-connect fetch-signing-files $BUNDLE_ID --type IOS_APP_STORE --create
+      - name: Fetch signing files for all extensions
+        script: |
+          for bundle_id in $BUNDLE_IDS; do
+            app-store-connect fetch-signing-files $bundle_id --type IOS_APP_EXTENSION --create
+          done
+      - name: Set up signing certificate
+        script: |
+          keychain add-certificates
+      - name: Set up code signing settings on Xcode project
+        script: |
+          xcode-project use-profiles
+      - name: Install CocoaPods dependencies
+        script: |
+          pod install
+      - name: Run tests
+        script: |
+          xcode-project test \
+            --workspace "$XCODE_WORKSPACE" \
+            --scheme "SurfShield" \
+            --destination "platform=iOS Simulator,name=iPhone 15,OS=latest"
+      - name: Build main app
+        script: |
+          xcode-project build-ipa \
+            --workspace "$XCODE_WORKSPACE" \
+            --scheme "SurfShield" \
+            --archive-flags "-destination 'generic/platform=iOS'" \
+            --export-options-plist export_options.plist
+      - name: Build all Content Blocker extensions
+        script: |
+          # Собираем все расширения параллельно для ускорения
+          xcode-project build-ipa \
+            --workspace "$XCODE_WORKSPACE" \
+            --scheme "banners" \
+            --archive-flags "-destination 'generic/platform=iOS'" \
+            --export-options-plist export_options_extension.plist &
+            
+          xcode-project build-ipa \
+            --workspace "$XCODE_WORKSPACE" \
+            --scheme "adblocker" \
+            --archive-flags "-destination 'generic/platform=iOS'" \
+            --export-options-plist export_options_extension.plist &
+            
+          xcode-project build-ipa \
+            --workspace "$XCODE_WORKSPACE" \
+            --scheme "trackers" \
+            --archive-flags "-destination 'generic/platform=iOS'" \
+            --export-options-plist export_options_extension.plist &
+            
+          xcode-project build-ipa \
+            --workspace "$XCODE_WORKSPACE" \
+            --scheme "secure" \
+            --archive-flags "-destination 'generic/platform=iOS'" \
+            --export-options-plist export_options_extension.plist &
+            
+          xcode-project build-ipa \
+            --workspace "$XCODE_WORKSPACE" \
+            --scheme "basic" \
+            --archive-flags "-destination 'generic/platform=iOS'" \
+            --export-options-plist export_options_extension.plist &
+            
+          xcode-project build-ipa \
+            --workspace "$XCODE_WORKSPACE" \
+            --scheme "privacy" \
+            --archive-flags "-destination 'generic/platform=iOS'" \
+            --export-options-plist export_options_extension.plist &
+            
+          xcode-project build-ipa \
+            --workspace "$XCODE_WORKSPACE" \
+            --scheme "advanced" \
+            --archive-flags "-destination 'generic/platform=iOS'" \
+            --export-options-plist export_options_extension.plist &
+            
+          wait # Ждем завершения всех фоновых процессов
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - build/ios/xcarchive/*.xcarchive
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
+        submit_to_app_store: false
+      email:
+        recipients:
+          - your-email@example.com
+        notify:
+          success: true
+          failure: true
+
+# Триггеры для автоматического запуска
+triggering:
+  events:
+    - push
+      branch_patterns:
+        - pattern: 'main'
+          include: true
+          source: true
+        - pattern: 'develop'
+          include: true
+          source: true
+        - pattern: 'release/*'
+          include: true
+          source: true
+    - tag
+      tag_patterns:
+        - pattern: 'v*'
+          include: true
+          source: true
+  branch_patterns:
+    - pattern: 'main'
+      include: true
+      source: true
+    - pattern: 'develop'
+      include: true
+      source: true
+    - pattern: 'release/*'
+      include: true
+      source: true
+  tag_patterns:
+    - pattern: 'v*'
+      include: true
+      source: true

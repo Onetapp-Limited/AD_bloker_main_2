@@ -1,0 +1,90 @@
+[
+    {
+        "action": {
+            "type": "block"
+        },
+        "trigger": {
+            "url-filter": ".*ads.*",
+            "resource-type": ["script", "image"]
+        }
+    },
+    {
+        "action": {
+            "type": "block"
+        },
+        "trigger": {
+            "url-filter": ".*banner.*",
+            "resource-type": ["image"]
+        }
+    },
+    {
+        "action": {
+            "type": "block"
+        },
+        "trigger": {
+            "url-filter": ".*analytics.*",
+            "resource-type": ["script"]
+        }
+    },
+    {
+        "action": {
+            "type": "block"
+        },
+        "trigger": {
+            "url-filter": ".*tracker.*",
+            "resource-type": ["script"]
+        }
+    },
+    {
+        "action": {
+            "type": "block"
+        },
+        "trigger": {
+            "url-filter": ".*popup.*",
+            "resource-type": ["document"]
+        }
+    },
+    {
+        "action": {
+            "type": "block"
+        },
+        "trigger": {
+            "url-filter": "google-analytics.com",
+            "resource-type": ["script"]
+        }
+    },
+    {
+        "action": {
+            "type": "block"
+        },
+        "trigger": {
+            "url-filter": "doubleclick.net",
+            "resource-type": ["script", "image"]
+        }
+    },
+    {
+         "action": {
+             "type": "block"
+         },
+         "trigger": {
+         "url-filter": ".*google.*"
+         }
+     },
+    {
+        "action": {
+            "type": "block"
+        },
+        "trigger": {
+            "url-filter": "googlesyndication.com",
+            "resource-type": ["script", "image"]
+        }
+    },
+    {
+        "action": {
+            "type": "block"
+        },
+        "trigger": {
+            "url-filter": "ads.yahoo.com"
+        }
+    }
+]
