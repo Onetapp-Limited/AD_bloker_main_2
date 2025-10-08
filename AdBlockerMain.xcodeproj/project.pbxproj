@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10138AC52E96BD8600507C44 /* MainAdBlockerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10138AC42E96BD8100507C44 /* MainAdBlockerViewModel.swift */; };
 		8E0384CF2E5E4939001D5E9D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0384CE2E5E4939001D5E9D /* SettingsView.swift */; };
 		8E0384D22E5E4B3F001D5E9D /* BackgroundGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0384D12E5E4B3F001D5E9D /* BackgroundGradient.swift */; };
 		8E32FE502E6CE17500E71DD2 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E32FE4F2E6CE17500E71DD2 /* AppState.swift */; };
@@ -375,7 +376,7 @@
 		8ECD7C7C2E5F3EA700584DC3 /* AdBlockerStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBA84102E5BBA1000206493 /* AdBlockerStateManager.swift */; };
 		8ECD7C7E2E5F3EA700584DC3 /* AdBlockerStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBA84102E5BBA1000206493 /* AdBlockerStateManager.swift */; };
 		8ECF280B2E59BAFE000A5748 /* SurfShieldApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECF280A2E59BAFE000A5748 /* SurfShieldApp.swift */; };
-		8ECF280D2E59BAFE000A5748 /* BlockAdsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECF280C2E59BAFE000A5748 /* BlockAdsView.swift */; };
+		8ECF280D2E59BAFE000A5748 /* MainAdBlockerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECF280C2E59BAFE000A5748 /* MainAdBlockerView.swift */; };
 		8ECF28122E59BB03000A5748 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ECF28112E59BB03000A5748 /* Preview Assets.xcassets */; };
 		8ECF281A2E59BC3F000A5748 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECF28192E59BC3F000A5748 /* MainView.swift */; };
 		8ECF281C2E59BC45000A5748 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECF281B2E59BC45000A5748 /* TabBarView.swift */; };
@@ -465,6 +466,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		10138AC42E96BD8100507C44 /* MainAdBlockerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAdBlockerViewModel.swift; sourceTree = "<group>"; };
 		8E0384CE2E5E4939001D5E9D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		8E0384D12E5E4B3F001D5E9D /* BackgroundGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundGradient.swift; sourceTree = "<group>"; };
 		8E32FE4F2E6CE17500E71DD2 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -562,7 +564,7 @@
 		8EC856FD2E65976E00936348 /* advanced.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = advanced.entitlements; sourceTree = "<group>"; };
 		8ECF28072E59BAFE000A5748 /* SurfShield.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurfShield.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ECF280A2E59BAFE000A5748 /* SurfShieldApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfShieldApp.swift; sourceTree = "<group>"; };
-		8ECF280C2E59BAFE000A5748 /* BlockAdsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockAdsView.swift; sourceTree = "<group>"; };
+		8ECF280C2E59BAFE000A5748 /* MainAdBlockerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAdBlockerView.swift; sourceTree = "<group>"; };
 		8ECF280E2E59BB03000A5748 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8ECF28112E59BB03000A5748 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8ECF28192E59BC3F000A5748 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -992,7 +994,8 @@
 			isa = PBXGroup;
 			children = (
 				8EBEC6612E6CCEF3005E5AF4 /* Onboarding */,
-				8ECF280C2E59BAFE000A5748 /* BlockAdsView.swift */,
+				8ECF280C2E59BAFE000A5748 /* MainAdBlockerView.swift */,
+				10138AC42E96BD8100507C44 /* MainAdBlockerViewModel.swift */,
 				8EE69D052E6F0F0000BA1BF1 /* Settings */,
 				8E8FFB412E68162B00F20BF0 /* InternetBrowser */,
 				8EE294702E6E120F0060471B /* PaywallView.swift */,
@@ -1666,7 +1669,7 @@
 			files = (
 				8EC73F9C2E69AD4300EAA93F /* WebViewPanel.swift in Sources */,
 				8E7B5E532E61D70700D5E817 /* BlockerEntryEncoder.swift in Sources */,
-				8ECF280D2E59BAFE000A5748 /* BlockAdsView.swift in Sources */,
+				8ECF280D2E59BAFE000A5748 /* MainAdBlockerView.swift in Sources */,
 				8EBB25E42E61C7E200E29966 /* ArrayExtension.swift in Sources */,
 				8E7B5E572E61D70700D5E817 /* BlockerEntryFactory.swift in Sources */,
 				8E7B5E3E2E61D6C700D5E817 /* SafariCbBuilder.swift in Sources */,
@@ -1701,6 +1704,7 @@
 				8EBB25AE2E61C7C700E29966 /* NetworkRuleParser.swift in Sources */,
 				8EE69D072E6F0F0F00BA1BF1 /* SettingsViewModel.swift in Sources */,
 				8EBB25912E61C79500E29966 /* WebExtensionHelpers.swift in Sources */,
+				10138AC52E96BD8600507C44 /* MainAdBlockerViewModel.swift in Sources */,
 				8EC73F9E2E69D90900EAA93F /* BrowserNavigationButton.swift in Sources */,
 				8E7B5E482E61D6EE00D5E817 /* CompilationResult.swift in Sources */,
 				8E7B5DF32E61D0C200D5E817 /* PublicSuffixList.swift in Sources */,

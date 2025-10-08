@@ -25,7 +25,7 @@ struct TabBarView: View {
     var tabView: some View {
         TabView(selection: $selection,
                 content:  {
-            BlockAdsView()
+            MainAdBlockerView()
                 .tabItem { Label("Block Ads", systemImage: "shield.fill") }
                 .tag(0)
             

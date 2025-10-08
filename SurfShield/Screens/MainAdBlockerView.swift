@@ -1,202 +1,9 @@
-//
-//  BlockAdsView.swift
-//  SufrShield
-//
-//  Created by Артур Кулик on 23.08.2025.
-//
-
 import SwiftUI
 import Combine
 import SafariServices
-// MARK: - ViewModel
-@MainActor
-class BlockAdsViewModel: ObservableObject {
-    
-    @Published var waveProgress: Double = 0
-    @Published var circleRotation: Double = 0
-    @Published var isEnabled: Bool = false
-    @Published var isProcess: Bool = false
-    @Published var waveHeight: CGFloat = 0
-    let rulesConverter = RulesConverter()
-    let userDefaultsInteractor = UserDefaultsService.shared
-    
-    private var blockingTask: Task<Void, Never>?
-    private var continuousAnimationTask: Task<Void, Never>?
-    var animationID = UUID() // Для отслеживания текущей анимации
-    
-    init() {
-        // Инициализируем блокировщик с сохраненным состоянием
-        let isEnabled = userDefaultsInteractor.load(Bool.self, forKey: .adBlockerEnabled)
-        self.isEnabled = isEnabled ?? false
-    }
-    
-    func toggleBlocking() {
-        if !isProcess {
-            toggleAllBlocking()
-        } else {
-            cancelBlockingTask()
-        }
-    }
-    
-    private func toggleAllBlocking() {
-        animate()
-        
-        // Сразу определяем новое состояние
-        let newState = !isEnabled
-        
-        blockingTask = Task {
-            if !newState {
-                try? await Task.sleep(nanoseconds: 1_000_000_000)
-            }
-            
-            if !Task.isCancelled {
-                // Применяем новое состояние через RulesConverter
-                await rulesConverter.applyBlockingState(newState)
-                userDefaultsInteractor.save(newState, forKey: .adBlockerEnabled)
-                await MainActor.run {
-                    // Обновляем состояние с анимацией
-                    withAnimation(.bouncy(duration: 0.2)) {
-                        isProcess = false
-                        isEnabled = newState
-                    }
-                    
-                    // Запускаем или останавливаем постоянную анимацию
-                    if newState {
-                        startContinuousAnimation()
-                    } else {
-                        stopContinuousAnimation()
-                    }
-                }
-            }
-        }
-    }
 
-    
-    func animate() {
-        animationID = UUID()
-
-        // Disable previous animation
-        var transaction = Transaction()
-        transaction.disablesAnimations = true
-        withTransaction(transaction) {
-            circleRotation = 0
-            waveHeight = 0
-            waveProgress = 0
-        }
-
-        withAnimation(.bouncy(duration: 0.2, extraBounce: 0.1)) {
-            isProcess = true
-        }
-        
-        withAnimation(.easeInOut(duration: 1.0).repeatForever()) {
-            self.waveProgress = 1.0
-        }
-        
-//        withAnimation(.linear(duration: 2.0).repeatForever(autoreverses: false)) {
-            self.circleRotation = 360
-//        }
-    }
-    
-    func cancelBlockingTask() {
-        blockingTask?.cancel()
-        blockingTask = nil
-        
-        // Обновляем состояние
-        withAnimation(.easeInOut(duration: 0.2)) {
-            isProcess = false
-        }
-        
-        // Если блокировка не включена, останавливаем анимацию
-        if !isEnabled {
-            stopContinuousAnimation()
-        }
-    }
-    
-    private func resetAnimations() {
-        // Отменяем текущую анимацию
-        animationID = UUID()
-        
-        // Отключаем анимацию для сброса
-        var transaction = Transaction()
-        transaction.disablesAnimations = true
-        
-        withTransaction(transaction) {
-            circleRotation = 0
-            waveHeight = 0
-            waveProgress = 0
-        }
-    }
-    
-    func startContinuousAnimation() {
-        stopContinuousAnimation() // Останавливаем предыдущую анимацию если есть
-        
-        animationID = UUID()
-        
-        // Сбрасываем состояние
-        var transaction = Transaction()
-        transaction.disablesAnimations = true
-        withTransaction(transaction) {
-            circleRotation = 0
-            waveProgress = 0
-        }
-        
-        // Запускаем постоянную анимацию
-        withAnimation(.easeInOut(duration: 1.0).repeatForever()) {
-            self.waveProgress = 1.0
-        }
-        
-        withAnimation(.linear(duration: 8.0).repeatForever(autoreverses: false)) {
-            self.circleRotation = 360
-        }
-    }
-    
-    private func stopContinuousAnimation() {
-        continuousAnimationTask?.cancel()
-        continuousAnimationTask = nil
-        
-        // Сбрасываем анимации
-        resetAnimations()
-    }
-    
-    // MARK: - Extension Reload Methods
-    func reloadExtension(bundleId: String) {
-        Task {
-            print("🔄 Перезагружаем расширение: \(bundleId)")
-            do {
-                try await SFContentBlockerManager.reloadContentBlocker(withIdentifier: bundleId)
-                print("✅ Расширение \(bundleId) успешно перезагружено")
-            } catch {
-                print("❌ Ошибка перезагрузки расширения \(bundleId): \(error.localizedDescription)")
-            }
-        }
-    }
-    
-    func reloadAdBlocker() {
-        reloadExtension(bundleId: "com.adBloker.main.app.adblocker")
-    }
-    
-    func reloadPrivacy() {
-        reloadExtension(bundleId: "com.adBloker.main.app.privacy")
-    }
-    
-    func reloadBanners() {
-        reloadExtension(bundleId: "com.adBloker.main.app.banners")
-    }
-    
-    func reloadTrackers() {
-        reloadExtension(bundleId: "com.adBloker.main.app.trackers")
-    }
-    
-    func reloadAdvanced() {
-        reloadExtension(bundleId: "com.adBloker.main.app.advanced")
-    }
-}
-
-
-
-// MARK: - View
-struct BlockAdsView: View {
-    @StateObject private var viewModel = BlockAdsViewModel()
+struct MainAdBlockerView: View {
+    @StateObject private var viewModel = MainAdBlockerViewModel()
     
     var body: some View {
         content
@@ -206,11 +13,9 @@ struct BlockAdsView: View {
     let id = UUID()
     var content: some View {
         ZStack {
-            // Анимированный фон с градиентом
             BackgroundGradient(isHighlight: viewModel.isEnabled)
                 .ignoresSafeArea()
             
-            // Анимированные частицы на фоне
             ParticlesView()
                 .opacity(0.3)
             
@@ -220,7 +25,6 @@ struct BlockAdsView: View {
                 VStack(spacing: 32) {
                     blockAdsButton
 //                    testButton
-                    // Статус кнопки с лоадером
                     VStack(spacing: 12) {
                         Text(buttonStatusTitle)
                             .font(.system(size: 18, weight: .semibold))
@@ -228,7 +32,6 @@ struct BlockAdsView: View {
                             .opacity(viewModel.isProcess ? 0.7 : 1.0)
                             .shadow(color: .tm.accentSecondary.opacity(viewModel.isEnabled ? 0.3 : 0), radius: 8)
                         
-                        // Красивый лоадер для процесса
                         ProcessLoader()
                             .transition(.scale.combined(with: .opacity))
                             .opacity(viewModel.isProcess ? 1 : 0)
@@ -238,7 +41,6 @@ struct BlockAdsView: View {
                 
                 Spacer()
                 
-                // Описание приложения
                 VStack(spacing: 16) {
                     Text("Blocking advertising")
                         .font(.title3)
@@ -288,7 +90,6 @@ struct BlockAdsView: View {
     }
 }
 
-// MARK: - Animated Block Button
 struct AnimatedBlockButton: View {
     let isEnabled: Bool
     let isProcess: Bool
@@ -303,14 +104,12 @@ struct AnimatedBlockButton: View {
     
     var body: some View {
         ZStack {
-            // Основная кнопка с дугой загрузки
             if isEnabled {
                 makeEnabledStateButton()
             } else {
                 makeDisabledStateButton()
             }
             
-            // Overlay с иконкой и состоянием
             buttonContentOverlay
         }
         .onTapGesture {
@@ -330,7 +129,6 @@ struct AnimatedBlockButton: View {
     @ViewBuilder
     private var buttonContentOverlay: some View {
         ZStack {
-            // Дополнительное свечение для включенного состояния
             if isEnabled && !isProcess {
                 Image(systemName: iconName)
                     .font(.system(size: 32, weight: .medium))
@@ -354,17 +152,14 @@ struct AnimatedBlockButton: View {
     
     private var iconColor: Color {
         if isEnabled {
-            // Для включенного состояния - белый с легким свечением
             return .white
         } else {
-            // Для выключенного состояния - приглушенный белый
             return .white.opacity(0.7)
         }
     }
     
     private var iconShadow: Color {
         if isEnabled {
-            // Красивое свечение для включенного состояния
             return .tm.accent
         } else {
             return .clear
@@ -414,7 +209,7 @@ struct AnimatedBlockButton: View {
                 )
             )
             .frame(width: waveSize, height: waveSize)
-            .rotationEffect(.degrees(opacity * 140)) // Сдвиг по часовой стрелке чтобы анимация начиналась не с нулевого положения
+            .rotationEffect(.degrees(opacity * 140))
             .rotationEffect(.degrees(rotationVector ? -circleRotation : circleRotation))
             .opacity(opacity)
             .animation(.linear(duration: duration).repeatForever(autoreverses: false), value: circleRotation)
@@ -422,8 +217,6 @@ struct AnimatedBlockButton: View {
     }
 }
 
-// MARK: - Custom Shape
-// Кастомная волнистая форма
 struct WaveShape: Shape {
     let waveCount: Int
     let waveHeight: CGFloat
@@ -436,7 +229,6 @@ struct WaveShape: Shape {
         let radius = min(rect.width, rect.height) / 2
         let adjustedRadius = radius - waveHeight
         
-        // Если progress == 0, рисуем обычный круг
         if progress == 0 {
             path.addArc(
                 center: center,
@@ -449,10 +241,8 @@ struct WaveShape: Shape {
             return path
         }
         
-        // Начинаем с верхней точки
         let startAngle = -CGFloat.pi / 2
         
-        // Рисуем волнистую окружность
         for i in stride(from: 0, through: 360, by: 1) {
             let angle = startAngle + CGFloat(i) * .pi / 180
             let waveOffset = sin(CGFloat(i) * CGFloat(waveCount) * .pi / 180) * waveHeight * CGFloat(progress)
@@ -470,17 +260,12 @@ struct WaveShape: Shape {
             }
         }
         
-        // Замыкаем путь
         path.closeSubpath()
         
         return path
     }
 }
 
-
-// MARK: - Custom Loaders
-
-// Лоадер с вращающимися точками
 struct RotatingDotsLoader: View {
     @State private var rotation: Double = 0
     
@@ -517,7 +302,6 @@ struct RotatingDotsLoader: View {
     }
 }
 
-// Лоадер с пульсирующими кольцами
 struct PulsingRingsLoader: View {
     @State private var scale1: CGFloat = 0.5
     @State private var scale2: CGFloat = 0.5
@@ -569,7 +353,6 @@ struct PulsingRingsLoader: View {
     }
 }
 
-// Лоадер со спиральной анимацией
 struct SpiralLoader: View {
     @State private var rotation: Double = 0
     @State private var scale: CGFloat = 1.0
@@ -611,19 +394,16 @@ struct SpiralLoader: View {
     }
 }
 
-// Современный минималистичный лоадер
 struct ModernLoader: View {
     @State private var rotation: Double = 0
     @State private var trimEnd: CGFloat = 0.8
     
     var body: some View {
         ZStack {
-            // Фоновый круг
             Circle()
                 .stroke(.white.opacity(0.2), lineWidth: 2)
                 .frame(width: 24, height: 24)
             
-            // Анимированная дуга
             Circle()
                 .trim(from: 0, to: trimEnd)
                 .stroke(.white, style: StrokeStyle(lineWidth: 2, lineCap: .round))
@@ -639,7 +419,6 @@ struct ModernLoader: View {
     }
 }
 
-// MARK: - Process Loader
 struct ProcessLoader: View {
     @State private var isAnimating = false
     
@@ -669,10 +448,6 @@ struct ProcessLoader: View {
 }
 
 
-#Preview {
-    BlockAdsView()
-}
-
 struct ParticlesView: View {
     @State private var animation = false
     
@@ -699,7 +474,6 @@ struct ParticlesView: View {
     }
 }
 
-// MARK: - Individual Particle
 struct ParticleView: View {
     let index: Int
     let isActive: Bool
