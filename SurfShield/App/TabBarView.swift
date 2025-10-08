@@ -21,7 +21,6 @@ struct TabBarView: View {
         tabView
     }
     
-    
     var tabView: some View {
         TabView(selection: $selection,
                 content:  {
@@ -32,10 +31,6 @@ struct TabBarView: View {
             InternetBrowserView()
                 .tabItem { Label("Browser", systemImage: "network") }
                 .tag(1)
-            
-            SettingsView()
-                .tabItem { Label("Settings", systemImage: "gear") }
-                .tag(2)
         }
         )
         .tint(.tm.accentSecondary)

@@ -4,11 +4,14 @@ import SafariServices
 
 struct MainAdBlockerView: View {
     @StateObject private var viewModel = MainAdBlockerViewModel()
+    @State private var showingSettings: Bool = false
     
     var body: some View {
         content
+            .sheet(isPresented: $showingSettings) {
+                SettingsView()
+            }
     }
-    
 
     let id = UUID()
     var content: some View {
@@ -20,6 +23,13 @@ struct MainAdBlockerView: View {
                 .opacity(0.3)
             
             VStack {
+                HStack {
+                    Spacer()
+                    settingsButton // Кнопка настроек
+                        .padding(.top, 10) // Отступ от верхнего края безопасной зоны
+                        .padding(.trailing, 20) // Отступ от правого края
+                }
+                
                 Spacer()
                 
                 VStack(spacing: 32) {
@@ -79,6 +89,21 @@ struct MainAdBlockerView: View {
                 viewModel.toggleBlocking()
             }
         )
+    }
+    
+    @ViewBuilder
+    var settingsButton: some View {
+        Button(action: {
+            // Haptic feedback
+            let impactFeedback = UIImpactFeedbackGenerator(style: .light)
+            impactFeedback.impactOccurred()
+            showingSettings = true // Открываем SettingsView
+        }) {
+            Image(systemName: "gearshape.fill")
+                .font(.title2)
+                .foregroundStyle(viewModel.isEnabled ? .tm.accentSecondary : .tm.subTitle)
+                .contentShape(Rectangle())
+        }
     }
     
     private var buttonStatusTitle: String {
