@@ -401,7 +401,3 @@ struct SecondaryButtonStyle: ButtonStyle {
             .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
     }
 }
-
-#Preview {
-    OnboardingView()
-}
