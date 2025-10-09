@@ -1,10 +1,3 @@
-//
-//  UserDefaultsService.swift
-//  SufrShield
-//
-//  Created by Артур Кулик on 04.09.2025.
-//
-
 import Foundation
 
 /// Сервис для работы с UserDefaults с поддержкой generic типов и enum ключей

@@ -1,10 +1,3 @@
-//
-//  Screen.swift
-//  Lumio
-//
-//  Created by Артур Кулик on 22.08.2025.
-//
-
 import Foundation
 
 enum Screen: Hashable, Identifiable {

@@ -1,10 +1,3 @@
-//
-//  SettingsViewModel.swift
-//  SurfShield
-//
-//  Created by Артур Кулик on 08.09.2025.
-//
-
 import Foundation
 import Combine
 

@@ -1,10 +1,3 @@
-//
-//  SurfShieldApp.swift
-//  SurfShield
-//
-//  Created by Артур Кулик on 23.08.2025.
-//
-
 import SwiftUI
 
 @main

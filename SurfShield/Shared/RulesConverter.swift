@@ -1,9 +1,3 @@
-//
-//  RulesConverter.swift
-//  SufrShield
-//
-//  Created by Артур Кулик on 25.08.2025.
-//
 import Foundation
 import SafariServices
 
@@ -95,7 +89,7 @@ public class RulesConverter {
         
         print("📊 Конвертируем \(lines.count) правил...")
         
-        for (index, chunkedRule) in chunkedRules.enumerated() {
+        for chunkedRule in chunkedRules {
             let result: ConversionResult = ContentBlockerConverter().convertArray(
                    rules: chunkedRule,
                    safariVersion: SafariVersion.autodetect(),

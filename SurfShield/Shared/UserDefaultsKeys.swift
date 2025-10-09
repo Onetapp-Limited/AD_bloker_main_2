@@ -1,10 +1,3 @@
-//
-//  UserDefaultsKeys.swift
-//  SufrShield
-//
-//  Created by Артур Кулик on 04.09.2025.
-//
-
 import Foundation
 
 /// Enum для ключей UserDefaults

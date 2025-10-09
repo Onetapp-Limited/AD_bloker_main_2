@@ -1,10 +1,3 @@
-//
-//  AddressBarView.swift
-//  SufrShield
-//
-//  Created by Артур Кулик on 03.09.2025.
-//
-
 import SwiftUI
 
 struct AddressBarView: View {
@@ -161,8 +154,4 @@ struct AddressBarView: View {
             }
         }
     }
-}
-
-#Preview {
-    AddressBarView(urlText: "https://google.com", onGoAction: { url in })
 }

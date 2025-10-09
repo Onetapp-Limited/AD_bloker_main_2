@@ -1,12 +1,5 @@
-//
-//  WebView.swift
-//  SufrShield
-//
-//  Created by Артур Кулик on 03.09.2025.
-//
-
 import SwiftUI
-import WebKit
+@preconcurrency import WebKit
 
 struct WebView: UIViewRepresentable {
     @ObservedObject var interactor: WebViewInteractor
@@ -204,7 +197,6 @@ struct WebView: UIViewRepresentable {
             contentRuleListStore!.compileContentRuleList(forIdentifier: identifier, encodedContentRuleList: rules) { ruleList, error in
                 if let ruleList = ruleList {
                     self.webView?.configuration.userContentController.add(ruleList)
-                } else if let error = error {
                 }
             }
         }

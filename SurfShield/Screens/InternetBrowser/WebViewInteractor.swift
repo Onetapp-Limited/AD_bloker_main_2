@@ -1,10 +1,3 @@
-//
-//  WebViewInteractor.swift
-//  SufrShield
-//
-//  Created by Артур Кулик on 04.09.2025.
-//
-
 import Foundation
 
 protocol WebViewObservables {
@@ -32,18 +25,18 @@ protocol WebViewNavigationDelegate: AnyObject {
 
 class WebViewInteractor: WebViewObservables, WebViewActions, ObservableObject {
     
-    @Published private (set) var goBack: Bool = false
-    @Published private (set) var goForward: Bool = false
-    @Published private (set) var url: URL = URL(string: "https://google.com")!
-    @Published private (set) var canGoBack: Bool = false
-    @Published private (set) var canGoForward: Bool = false
-    @Published private (set) var refresh: Bool = false
-    @Published private (set) var progress: Double = 0
+    @Published private(set) var goBack: Bool = false
+    @Published private(set) var goForward: Bool = false
+    @Published private(set) var url: URL = URL(string: "https://google.com")!
+    @Published private(set) var canGoBack: Bool = false
+    @Published private(set) var canGoForward: Bool = false
+    @Published private(set) var refresh: Bool = false
+    @Published private(set) var progress: Double = 0
     
     weak var navigationDelegate: WebViewNavigationDelegate?
     
     // MARK: - Resource Analysis
-    @Published private (set) var resourceAnalysis: ResourceAnalysisData?
+    @Published private(set) var resourceAnalysis: ResourceAnalysisData?
     
     
     private let rulesConverter = RulesConverter()

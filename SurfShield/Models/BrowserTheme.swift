@@ -1,10 +1,3 @@
-//
-//  BrowserTheme.swift
-//  SurfShield
-//
-//  Created by AI Assistant on 09.09.2025.
-//
-
 import Foundation
 
 /// Типы тем для браузера

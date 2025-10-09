@@ -1,10 +1,3 @@
-//
-//  Paddings.swift
-//  Lumion
-//
-//  Created by Артур Кулик on 23.08.2025.
-//
-
 import SwiftUI
 
 enum Layout {

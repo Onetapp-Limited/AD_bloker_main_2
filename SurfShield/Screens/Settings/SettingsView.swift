@@ -1,10 +1,3 @@
-//
-//  SettingsView.swift
-//  SufrShield
-//
-//  Created by Артур Кулик on 26.08.2025.
-//
-
 import SwiftUI
 
 struct SettingsView: View {
@@ -780,8 +773,4 @@ struct ActionRow: View {
         }
         .buttonStyle(PlainButtonStyle())
     }
-}
-
-#Preview {
-    SettingsView()
 }

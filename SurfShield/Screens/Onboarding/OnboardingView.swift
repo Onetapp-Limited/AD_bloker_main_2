@@ -1,10 +1,3 @@
-//
-//  OnboardingView.swift
-//  SufrShield
-//
-//  Created by Артур Кулик on 06.09.2025.
-//
-
 import SwiftUI
 
 // MARK: - Onboarding Data Model
@@ -70,7 +63,7 @@ struct OnboardingView: View {
                 .ignoresSafeArea()
             
             // Частицы на фоне
-            ParticlesView()
+            FloatingElementsView()
                 .opacity(0.3)
             
             VStack(spacing: 0) {

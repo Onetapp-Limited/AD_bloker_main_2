@@ -1,10 +1,3 @@
-//
-//  ContentBlockerRequestHandler.swift
-//  sequrity
-//
-//  Created by Артур Кулик on 25.08.2025.
-//
-
 import UIKit
 import MobileCoreServices
 

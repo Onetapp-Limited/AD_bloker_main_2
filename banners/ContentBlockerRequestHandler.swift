@@ -1,10 +1,3 @@
-//
-//  ContentBlockerRequestHandler.swift
-//  banners
-//
-//  Created by Артур Кулик on 30.08.2025.
-//
-
 import UIKit
 import MobileCoreServices
 

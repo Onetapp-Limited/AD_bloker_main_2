@@ -1,10 +1,3 @@
-//
-//  PaywallView.swift
-//  SufrShield
-//
-//  Created by Артур Кулик on 07.09.2025.
-//
-
 import SwiftUI
 
 // MARK: - Models
@@ -284,11 +277,6 @@ struct PaywallView: View {
     }
     
     private func subscribeAction() {
-        // Handle subscription logic
         print("Subscription to plan: \(selectedPlan)")
     }
-}
-
-#Preview {
-    PaywallView()
 }

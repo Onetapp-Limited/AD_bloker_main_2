@@ -1,10 +1,3 @@
-//
-//  UserDefaultsObserver.swift
-//  SufrShield
-//
-//  Created by Артур Кулик on 06.09.2025.
-//
-
 import Foundation
 import Combine
 

@@ -1,10 +1,3 @@
-//
-//  BackgroundGradient.swift
-//  SufrShield
-//
-//  Created by Артур Кулик on 26.08.2025.
-//
-
 import SwiftUI
 
 struct BackgroundGradient: View {
@@ -21,8 +14,4 @@ struct BackgroundGradient: View {
         )
         .background(Color.tm.background)
     }
-}
-
-#Preview {
-    BackgroundGradient()
 }

@@ -1,10 +1,3 @@
-//
-//  AppState.swift
-//  SufrShield
-//
-//  Created by Артур Кулик on 07.09.2025.
-//
-
 import SwiftUI
 
 final class AppState: ObservableObject {

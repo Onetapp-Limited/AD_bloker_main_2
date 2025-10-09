@@ -1,10 +1,3 @@
-//
-//  ContentBlockerRequestHandler.swift
-//  adblocker
-//
-//  Created by Артур Кулик on 24.08.2025.
-//
-
 import UIKit
 import MobileCoreServices
 import Foundation

@@ -99,14 +99,6 @@ public enum SafariVersion: CustomStringConvertible, CustomDebugStringConvertible
         #elseif os(iOS)
         if #available(iOS 16.4, *) {
             return .safari16_4
-        } else if #available(iOS 16.0, *) {
-            return .safari16
-        } else if #available(iOS 15.0, *) {
-            return .safari15
-        } else if #available(iOS 14.0, *) {
-            return .safari14
-        } else if #available(iOS 13.0, *) {
-            return .safari13
         } else {
             return DEFAULT_SAFARI_VERSION
         }

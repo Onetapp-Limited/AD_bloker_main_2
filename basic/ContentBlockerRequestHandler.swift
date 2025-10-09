@@ -1,10 +1,3 @@
-//
-//  ContentBlockerRequestHandler.swift
-//  basic
-//
-//  Created by Артур Кулик on 03.09.2025.
-//
-
 import UIKit
 import MobileCoreServices
 
