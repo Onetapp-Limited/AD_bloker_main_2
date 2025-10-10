@@ -21,7 +21,7 @@ struct TabBarView: View {
                 .tabItem { Label("Block Ads", systemImage: "shield.fill") }
                 .tag(0)
             
-            InternetBrowserView()
+            BrowserInternetView()
                 .tabItem { Label("Browser", systemImage: "network") }
                 .tag(1)
         }

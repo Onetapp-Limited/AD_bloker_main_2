@@ -2,7 +2,7 @@ import SwiftUI
 @preconcurrency import WebKit
 
 struct WebView: UIViewRepresentable {
-    @ObservedObject var interactor: WebViewInteractor
+    @ObservedObject var interactor: BrowserInternetInteractor
     
     func makeUIView(context: Context) -> WKWebView {
         // Создаем конфигурацию с предустановленным скриптом
@@ -31,6 +31,8 @@ struct WebView: UIViewRepresentable {
         webView.scrollView.clipsToBounds = false
         webView.scrollView.layer.masksToBounds = false
         
+        webView.scrollView.contentInsetAdjustmentBehavior = .never
+
         // Настройки для лучшей производительности и взаимодействия
         webView.configuration.allowsInlineMediaPlayback = true
         webView.configuration.mediaTypesRequiringUserActionForPlayback = [.video]
@@ -51,7 +53,7 @@ struct WebView: UIViewRepresentable {
         webView.isOpaque = true
         webView.scrollView.backgroundColor = UIColor(named: "Container")
         
-        webView.load(URLRequest(url: interactor.url))
+        webView.load(URLRequest(url: interactor.googleUrl))
         // Добавляем наблюдатели для отслеживания состояния навигации
         webView.addObserver(context.coordinator, forKeyPath: #keyPath(WKWebView.url), options: [.new], context: nil)
         webView.addObserver(context.coordinator, forKeyPath: #keyPath(WKWebView.canGoBack), options: [.new], context: nil)
@@ -78,7 +80,7 @@ struct WebView: UIViewRepresentable {
         uiView.removeObserver(coordinator, forKeyPath: #keyPath(WKWebView.estimatedProgress))
     }
     
-    class Coordinator: NSObject, WKNavigationDelegate, WebViewNavigationDelegate, WKUIDelegate {
+    class Coordinator: NSObject, WKNavigationDelegate, BrowserInternetNavigationDelegate, WKUIDelegate {
         var parent: WebView?
         weak var webView: WKWebView?
         

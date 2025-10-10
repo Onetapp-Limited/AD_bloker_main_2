@@ -4,7 +4,7 @@ struct WebViewPanel: View {
     @State private var currentURL = "https://google.com"
     @State private var showProgress = false
     
-    var observables: WebViewObservables
+    var observables: BrowserInternetObservables
     // Closures для внешних действий
     let onGoBack: () -> Void
     let onGoForward: () -> Void
@@ -13,7 +13,7 @@ struct WebViewPanel: View {
     let onShare: (String) -> Void
     
     init(
-        observables: WebViewObservables,
+        observables: BrowserInternetObservables,
         onGoBack: @escaping () -> Void = {},
         onGoForward: @escaping () -> Void = {},
         onRefresh: @escaping () -> Void = {},
@@ -37,8 +37,8 @@ struct WebViewPanel: View {
                 // Кнопки навигации (убираются из layout при фокусе адресной строки)
                 if !isFocused {
                     HStack(spacing: 8) {
-                        BrowserNavigationButton(.back, isEnabled: observables.canGoBack, action: onGoBack)
-                        BrowserNavigationButton(.forward, isEnabled: observables.canGoForward, action: onGoForward)
+                        BrowserNavigationButton(.back, isEnabled: observables.needBackGo, action: onGoBack)
+                        BrowserNavigationButton(.forward, isEnabled: observables.needForwardGo, action: onGoForward)
                         BrowserNavigationButton(.refresh, action: onRefresh)
                     }
                     .transition(.asymmetric(
@@ -49,7 +49,7 @@ struct WebViewPanel: View {
                 
                 // Адресная строка (расширяется при скрытии кнопок)
                 AddressBarView(
-                    urlText: observables.url.absoluteString,
+                    urlText: observables.googleUrl.absoluteString,
                     onGoAction: { currentURL in
                         onGoToURL(currentURL)
                     }
@@ -91,16 +91,16 @@ struct WebViewPanel: View {
         .overlay(alignment: .bottom) {
             // Индикатор загрузки
             if showProgress {
-                ProgressView(value: observables.progress)
+                ProgressView(value: observables.currentProgress)
                     .progressViewStyle(LinearProgressViewStyle(tint: .tm.success))
                     .frame(height: 3)
                     .background(Color.blue.opacity(0.2))
                     .clipShape(RoundedRectangle(cornerRadius: 2))
-                    .animation(.easeInOut(duration: 0.3), value: observables.progress)
+                    .animation(.easeInOut(duration: 0.3), value: observables.currentProgress)
             }
 
         }
-        .onChange(of: observables.progress) { newProgress in
+        .onChange(of: observables.currentProgress) { newProgress in
             if newProgress > 0 {
                 showProgress = true
             }

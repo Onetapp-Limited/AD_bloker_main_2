@@ -1,42 +1,19 @@
 import Foundation
 
-protocol WebViewObservables {
-    var url: URL { get }
-    var canGoBack: Bool { get }
-    var goBack: Bool { get }
-    var canGoForward: Bool { get }
-    var goForward: Bool { get }
-    var refresh: Bool { get }
-    var progress: Double { get }
-}
-
-protocol WebViewActions {
-    func setCanGoBack(_ isAvailable: Bool)
-    func setCanGoForward(_ isAvailable: Bool)
-    func updateLoadingProgress(_ progress: Double)
-}
-
-protocol WebViewNavigationDelegate: AnyObject {
-    func goBack()
-    func goForward()
-    func reload()
-    func loadURL(_ url: URL)
-}
-
-class WebViewInteractor: WebViewObservables, WebViewActions, ObservableObject {
+class BrowserInternetInteractor: BrowserInternetObservables, ObservableObject {
     
     @Published private(set) var goBack: Bool = false
     @Published private(set) var goForward: Bool = false
-    @Published private(set) var url: URL = URL(string: "https://google.com")!
-    @Published private(set) var canGoBack: Bool = false
-    @Published private(set) var canGoForward: Bool = false
-    @Published private(set) var refresh: Bool = false
-    @Published private(set) var progress: Double = 0
+    @Published private(set) var googleUrl: URL = URL(string: "https://google.com")!
+    @Published private(set) var needBackGo: Bool = false
+    @Published private(set) var needForwardGo: Bool = false
+    @Published private(set) var needRefresh: Bool = false
+    @Published private(set) var currentProgress: Double = 0
     
-    weak var navigationDelegate: WebViewNavigationDelegate?
+    weak var navigationDelegate: BrowserInternetNavigationDelegate?
     
     // MARK: - Resource Analysis
-    @Published private(set) var resourceAnalysis: ResourceAnalysisData?
+    @Published var resourceAnalysis: ResourceAnalysisData?
     
     
     private let rulesConverter = RulesConverter()
@@ -55,14 +32,13 @@ class WebViewInteractor: WebViewObservables, WebViewActions, ObservableObject {
     
     func updateAddress(_ url: URL?) {
         guard let url = url else { return }
-        self.url = url
+        self.googleUrl = url
     }
     
     func goToUrl(string: String) {
         let processedURLString = processURLString(string)
         
         guard let url = URL(string: processedURLString) else {
-            print("DEBUG: WRONG URL: \(processedURLString)")
             return
         }
         
@@ -72,27 +48,22 @@ class WebViewInteractor: WebViewObservables, WebViewActions, ObservableObject {
     private func processURLString(_ input: String) -> String {
         let trimmed = input.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        // Если строка пустая, возвращаем поисковую страницу
         if trimmed.isEmpty {
             return "https://google.com"
         }
         
-        // Если уже есть протокол, возвращаем как есть
         if trimmed.hasPrefix("http://") || trimmed.hasPrefix("https://") {
             return trimmed
         }
         
-        // Если это IP адрес (содержит только цифры, точки и двоеточия)
         if trimmed.range(of: #"^\d+\.\d+\.\d+\.\d+(:\d+)?$"#, options: .regularExpression) != nil {
             return "http://\(trimmed)"
         }
         
-        // Если содержит точку (вероятно домен), добавляем https://
         if trimmed.contains(".") {
             return "https://\(trimmed)"
         }
         
-        // Если не содержит точку, считаем поисковым запросом
         let encodedQuery = trimmed.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? trimmed
         return "https://google.com/search?q=\(encodedQuery)"
     }
@@ -110,21 +81,21 @@ class WebViewInteractor: WebViewObservables, WebViewActions, ObservableObject {
     }
     
     func setCanGoBack(_ isAvailable: Bool) {
-        self.canGoBack = isAvailable
+        self.needBackGo = isAvailable
     }
     
     func setCanGoForward(_ isAvailable: Bool) {
-        self.canGoForward = isAvailable
+        self.needForwardGo = isAvailable
     }
     
     func updateLoadingProgress(_ progress: Double) {
-        self.progress = progress
+        self.currentProgress = progress
     }
     
     func resetCommands() {
-        canGoBack = false
-        canGoForward = false
-        refresh = false
+        needBackGo = false
+        needForwardGo = false
+        needRefresh = false
     }
     
     // MARK: - Rules Loading
@@ -310,35 +281,5 @@ class WebViewInteractor: WebViewObservables, WebViewActions, ObservableObject {
         })();
 
         """
-    }
-}
-
-// MARK: - ResourceMonitorDelegate
-extension WebViewInteractor: ResourceMonitorDelegate {
-    
-    /// Calls when Script are executed in ResourceMonitor
-    func resourceAnalysisCompleted(_ data: ResourceAnalysisData) {
-        DispatchQueue.main.async {
-            self.resourceAnalysis = data
-        }
-        
-        print("📊 ResourceMonitor: Анализ ресурсов завершен")
-        print("   - Всего ресурсов на странице: \(data.totalPageResources)")
-        print("   - Загружено ресурсов: \(data.totalLoadedResources)")
-        print("   - Заблокировано ресурсов: \(data.blockedCount)")
-        print("   - Эффективность блокировки: \(String(format: "%.1f", data.blockedPercentage))%")
-        
-        // Детальная информация о заблокированных ресурсах
-        if data.blockedCount > 0 {
-            userDefaultsObserver.updateWebViewBlockedStatistics(data)
-            let blockedResources = Set(data.pageResources).subtracting(Set(data.loadedResources))
-            print("🚫 Заблокированные ресурсы:")
-            for resource in Array(blockedResources).prefix(10) { // Показываем первые 10
-                print("   - \(resource)")
-            }
-            if blockedResources.count > 10 {
-                print("   ... и еще \(blockedResources.count - 10) ресурсов")
-            }
-        }
     }
 }
