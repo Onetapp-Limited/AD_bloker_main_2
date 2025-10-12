@@ -3,7 +3,7 @@ import Foundation
 extension BrowserInternetInteractor: ResourceMonitorDelegate {
     func resourceAnalysisCompleted(_ data: ResourceAnalysisData) {
         DispatchQueue.main.async {
-            self.resourceAnalysis = data
+            self.resourceAnalys = data
         }
         
         print("📊 ResourceMonitor: Анализ ресурсов завершен")

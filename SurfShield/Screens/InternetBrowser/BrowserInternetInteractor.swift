@@ -1,23 +1,18 @@
 import Foundation
 
 class BrowserInternetInteractor: BrowserInternetObservables, ObservableObject {
-    
-    @Published private(set) var goBack: Bool = false
-    @Published private(set) var goForward: Bool = false
-    @Published private(set) var googleUrl: URL = URL(string: "https://google.com")!
-    @Published private(set) var needBackGo: Bool = false
+    weak var delegate: BrowserInternetNavigationDelegate?
+
     @Published private(set) var needForwardGo: Bool = false
     @Published private(set) var needRefresh: Bool = false
+    @Published private(set) var googleUrl: URL = URL(string: "https://google.com")!
     @Published private(set) var currentProgress: Double = 0
-    
-    weak var navigationDelegate: BrowserInternetNavigationDelegate?
-    
-    // MARK: - Resource Analysis
-    @Published var resourceAnalysis: ResourceAnalysisData?
-    
+    @Published private(set) var goForward: Bool = false
+    @Published private(set) var goBack: Bool = false
+    @Published private(set) var needBackGo: Bool = false
+    @Published var resourceAnalys: ResourceAnalysisData?
     
     private let rulesConverter = RulesConverter()
-    // MARK: - Resource Monitor
     private var resourceMonitor: ResourceMonitor?
     let userDefaultsObserver = UserDefaultsObserver.shared
     
@@ -42,7 +37,7 @@ class BrowserInternetInteractor: BrowserInternetObservables, ObservableObject {
             return
         }
         
-        navigationDelegate?.loadURL(url)
+        delegate?.loadURL(url)
     }
     
     private func processURLString(_ input: String) -> String {
@@ -69,15 +64,15 @@ class BrowserInternetInteractor: BrowserInternetObservables, ObservableObject {
     }
     
     func refreshPage() {
-        navigationDelegate?.reload()
+        delegate?.reload()
     }
     
     func goBack(_ isGo: Bool) {
-        navigationDelegate?.goBack()
+        delegate?.goBack()
     }
     
     func goForward(_ isGo: Bool) {
-        navigationDelegate?.goForward()
+        delegate?.goForward()
     }
     
     func setCanGoBack(_ isAvailable: Bool) {
@@ -117,36 +112,19 @@ class BrowserInternetInteractor: BrowserInternetObservables, ObservableObject {
             return nil
         }
     }
-    
-    // MARK: - Traffic Statistics Methods
-    
-//    /// Получает текущую статистику трафика
-//    func getTrafficStatistics() -> TrafficStatistics {
-//        return trafficStatistics
-//    }
-//    
-//    /// Сбрасывает статистику трафика
-//    func resetTrafficStatistics() {
-//        trafficStatistics = TrafficStatistics()
-//    }
-    
-    /// Получает ResourceMonitor для настройки WebView
+
     func getResourceMonitor() -> ResourceMonitor? {
         return resourceMonitor
     }
 
-    /// Получает данные анализа ресурсов
     func getResourceAnalysis() -> ResourceAnalysisData? {
-        return resourceAnalysis
+        return resourceAnalys
     }
     
-    /// Сбрасывает данные анализа ресурсов
     func resetResourceAnalysis() {
-        resourceAnalysis = nil
+        resourceAnalys = nil
     }
-    
-    // MARK: - Dark Theme Override
-    
+        
     /// Возвращает JavaScript код для белого текста и черных фонов
     func getDarkThemeScript() -> String {
         return """
