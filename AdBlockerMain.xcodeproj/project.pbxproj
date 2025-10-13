@@ -24,6 +24,14 @@
 		100EA3A82E9D278E004B1EFB /* RulesType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3A22E9D2769004B1EFB /* RulesType.swift */; };
 		100EA3A92E9D278E004B1EFB /* RulesType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3A22E9D2769004B1EFB /* RulesType.swift */; };
 		100EA3AA2E9D278E004B1EFB /* RulesType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3A22E9D2769004B1EFB /* RulesType.swift */; };
+		100EA3B52E9D29E8004B1EFB /* SafariRegexError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3B42E9D29E8004B1EFB /* SafariRegexError.swift */; };
+		100EA3B62E9D29E8004B1EFB /* SafariRegexError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3B42E9D29E8004B1EFB /* SafariRegexError.swift */; };
+		100EA3B72E9D29E8004B1EFB /* SafariRegexError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3B42E9D29E8004B1EFB /* SafariRegexError.swift */; };
+		100EA3B82E9D29E8004B1EFB /* SafariRegexError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3B42E9D29E8004B1EFB /* SafariRegexError.swift */; };
+		100EA3B92E9D29E8004B1EFB /* SafariRegexError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3B42E9D29E8004B1EFB /* SafariRegexError.swift */; };
+		100EA3BA2E9D29E8004B1EFB /* SafariRegexError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3B42E9D29E8004B1EFB /* SafariRegexError.swift */; };
+		100EA3BB2E9D29E8004B1EFB /* SafariRegexError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3B42E9D29E8004B1EFB /* SafariRegexError.swift */; };
+		100EA3BC2E9D29E8004B1EFB /* SafariRegexError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3B42E9D29E8004B1EFB /* SafariRegexError.swift */; };
 		10138AC52E96BD8600507C44 /* MainAdBlockerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10138AC42E96BD8100507C44 /* MainAdBlockerViewModel.swift */; };
 		10138C262E97DF6F00507C44 /* FloatingElementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10138C252E97DF6F00507C44 /* FloatingElementsView.swift */; };
 		10138C282E97DF9500507C44 /* FlareParticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10138C272E97DF9400507C44 /* FlareParticleView.swift */; };
@@ -55,7 +63,6 @@
 		8E3933B62E625FFF003FDE0A /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBB25D32E61C7E100E29966 /* Logger.swift */; };
 		8E3933B72E626003003FDE0A /* ConversionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBB25812E61C79500E29966 /* ConversionResult.swift */; };
 		8E3933B82E626003003FDE0A /* ContentBlockerConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBB25832E61C79500E29966 /* ContentBlockerConverter.swift */; };
-		8E3933B92E626003003FDE0A /* WebExtensionHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBB25842E61C79500E29966 /* WebExtensionHelpers.swift */; };
 		8E3933BA2E626003003FDE0A /* ContentBlockerConverterVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBB25822E61C79500E29966 /* ContentBlockerConverterVersion.swift */; };
 		8E3933BB2E626014003FDE0A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7B5DFF2E61D1E600D5E817 /* main.swift */; };
 		8E3933BC2E626014003FDE0A /* ByteArraySuffixTrie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7B5DF12E61D0C200D5E817 /* ByteArraySuffixTrie.swift */; };
@@ -150,9 +157,6 @@
 		8EBB258D2E61C79500E29966 /* ContentBlockerConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBB25832E61C79500E29966 /* ContentBlockerConverter.swift */; };
 		8EBB258E2E61C79500E29966 /* ContentBlockerConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBB25832E61C79500E29966 /* ContentBlockerConverter.swift */; };
 		8EBB25902E61C79500E29966 /* ContentBlockerConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBB25832E61C79500E29966 /* ContentBlockerConverter.swift */; };
-		8EBB25912E61C79500E29966 /* WebExtensionHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBB25842E61C79500E29966 /* WebExtensionHelpers.swift */; };
-		8EBB25922E61C79500E29966 /* WebExtensionHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBB25842E61C79500E29966 /* WebExtensionHelpers.swift */; };
-		8EBB25942E61C79500E29966 /* WebExtensionHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBB25842E61C79500E29966 /* WebExtensionHelpers.swift */; };
 		8EBB25A22E61C7C700E29966 /* RuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBB25962E61C7C600E29966 /* RuleFactory.swift */; };
 		8EBB25A32E61C7C700E29966 /* RuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBB25962E61C7C600E29966 /* RuleFactory.swift */; };
 		8EBB25A52E61C7C700E29966 /* RuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBB25962E61C7C600E29966 /* RuleFactory.swift */; };
@@ -287,13 +291,9 @@
 		8EC58E212E67E966008D48EF /* ContentBlockerConverterVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBB25822E61C79500E29966 /* ContentBlockerConverterVersion.swift */; };
 		8EC58E222E67E969008D48EF /* ContentBlockerConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBB25832E61C79500E29966 /* ContentBlockerConverter.swift */; };
 		8EC58E232E67E969008D48EF /* ContentBlockerConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBB25832E61C79500E29966 /* ContentBlockerConverter.swift */; };
-		8EC58E252E67E971008D48EF /* WebExtensionHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBB25842E61C79500E29966 /* WebExtensionHelpers.swift */; };
 		8EC58E262E67E971008D48EF /* ConversionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBB25812E61C79500E29966 /* ConversionResult.swift */; };
-		8EC58E282E67E972008D48EF /* WebExtensionHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBB25842E61C79500E29966 /* WebExtensionHelpers.swift */; };
 		8EC58E292E67E972008D48EF /* ConversionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBB25812E61C79500E29966 /* ConversionResult.swift */; };
-		8EC58E2A2E67E972008D48EF /* WebExtensionHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBB25842E61C79500E29966 /* WebExtensionHelpers.swift */; };
 		8EC58E2B2E67E972008D48EF /* ConversionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBB25812E61C79500E29966 /* ConversionResult.swift */; };
-		8EC58E2C2E67E972008D48EF /* WebExtensionHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBB25842E61C79500E29966 /* WebExtensionHelpers.swift */; };
 		8EC58E2D2E67E972008D48EF /* ConversionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBB25812E61C79500E29966 /* ConversionResult.swift */; };
 		8EC58E2E2E67E981008D48EF /* common.bin in Resources */ = {isa = PBXBuildFile; fileRef = 8E7B5E122E61D39B00D5E817 /* common.bin */; };
 		8EC58E2F2E67E981008D48EF /* asterisk.bin in Resources */ = {isa = PBXBuildFile; fileRef = 8E7B5E132E61D39B00D5E817 /* asterisk.bin */; };
@@ -486,6 +486,7 @@
 		100EA3962E9D2681004B1EFB /* Array+chunked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+chunked.swift"; sourceTree = "<group>"; };
 		100EA3992E9D26A2004B1EFB /* RulesConverterError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesConverterError.swift; sourceTree = "<group>"; };
 		100EA3A22E9D2769004B1EFB /* RulesType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesType.swift; sourceTree = "<group>"; };
+		100EA3B42E9D29E8004B1EFB /* SafariRegexError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariRegexError.swift; sourceTree = "<group>"; };
 		10138AC42E96BD8100507C44 /* MainAdBlockerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAdBlockerViewModel.swift; sourceTree = "<group>"; };
 		10138C252E97DF6F00507C44 /* FloatingElementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingElementsView.swift; sourceTree = "<group>"; };
 		10138C272E97DF9400507C44 /* FlareParticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlareParticleView.swift; sourceTree = "<group>"; };
@@ -534,7 +535,6 @@
 		8EBB25812E61C79500E29966 /* ConversionResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConversionResult.swift; path = SurfShield/Shared/ContentBlockerConverter/ConversionResult.swift; sourceTree = SOURCE_ROOT; };
 		8EBB25822E61C79500E29966 /* ContentBlockerConverterVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentBlockerConverterVersion.swift; path = SurfShield/Shared/ContentBlockerConverter/ContentBlockerConverterVersion.swift; sourceTree = SOURCE_ROOT; };
 		8EBB25832E61C79500E29966 /* ContentBlockerConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentBlockerConverter.swift; path = SurfShield/Shared/ContentBlockerConverter/ContentBlockerConverter.swift; sourceTree = SOURCE_ROOT; };
-		8EBB25842E61C79500E29966 /* WebExtensionHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebExtensionHelpers.swift; path = SurfShield/Shared/ContentBlockerConverter/WebExtensionHelpers.swift; sourceTree = SOURCE_ROOT; };
 		8EBB25962E61C7C600E29966 /* RuleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RuleFactory.swift; path = SurfShield/Shared/ContentBlockerConverter/Rules/RuleFactory.swift; sourceTree = SOURCE_ROOT; };
 		8EBB25972E61C7C600E29966 /* NetworkRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkRule.swift; path = SurfShield/Shared/ContentBlockerConverter/Rules/NetworkRule.swift; sourceTree = SOURCE_ROOT; };
 		8EBB25982E61C7C600E29966 /* Chars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Chars.swift; path = SurfShield/Shared/ContentBlockerConverter/Rules/Chars.swift; sourceTree = SOURCE_ROOT; };
@@ -691,6 +691,7 @@
 			children = (
 				100EA3A22E9D2769004B1EFB /* RulesType.swift */,
 				100EA3992E9D26A2004B1EFB /* RulesConverterError.swift */,
+				100EA3B42E9D29E8004B1EFB /* SafariRegexError.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -810,7 +811,6 @@
 				8EBB25832E61C79500E29966 /* ContentBlockerConverter.swift */,
 				8EBB25822E61C79500E29966 /* ContentBlockerConverterVersion.swift */,
 				8EBB25812E61C79500E29966 /* ConversionResult.swift */,
-				8EBB25842E61C79500E29966 /* WebExtensionHelpers.swift */,
 			);
 			path = ContentConverter;
 			sourceTree = "<group>";
@@ -1446,6 +1446,7 @@
 				8E3933C52E62601E003FDE0A /* NetworkRuleParser.swift in Sources */,
 				8E3933C72E62601E003FDE0A /* CosmeticRuleMarker.swift in Sources */,
 				8E3933B12E625FFF003FDE0A /* SafariRegex.swift in Sources */,
+				100EA3B82E9D29E8004B1EFB /* SafariRegexError.swift in Sources */,
 				8E3933A92E625FE9003FDE0A /* RulesConverterService.swift in Sources */,
 				8E3933C62E62601E003FDE0A /* SyntaxError.swift in Sources */,
 				8E3933AF2E625FFF003FDE0A /* SafariCbBuilder.swift in Sources */,
@@ -1464,7 +1465,6 @@
 				8E3933AC2E625FFF003FDE0A /* BlockerEntry.swift in Sources */,
 				8E3933C22E62601E003FDE0A /* SafariVersion.swift in Sources */,
 				8E3933BC2E626014003FDE0A /* ByteArraySuffixTrie.swift in Sources */,
-				8E3933B92E626003003FDE0A /* WebExtensionHelpers.swift in Sources */,
 				8E3933C32E62601E003FDE0A /* CosmeticRule.swift in Sources */,
 				8E3933B62E625FFF003FDE0A /* Logger.swift in Sources */,
 				8E3933AA2E625FFF003FDE0A /* PrefixMatcher.swift in Sources */,
@@ -1491,12 +1491,12 @@
 				8EBB25AB2E61C7C700E29966 /* Chars.swift in Sources */,
 				8EBB25E12E61C7E200E29966 /* ErrorsCounter.swift in Sources */,
 				8EBB25CF2E61C7C700E29966 /* ScriptletParser.swift in Sources */,
+				100EA3BC2E9D29E8004B1EFB /* SafariRegexError.swift in Sources */,
 				8EBB25C72E61C7C700E29966 /* Rule.swift in Sources */,
 				8EBB25A32E61C7C700E29966 /* RuleFactory.swift in Sources */,
 				8EBB25BB2E61C7C700E29966 /* CosmeticRuleMarker.swift in Sources */,
 				8E7B5E582E61D70700D5E817 /* BlockerEntryFactory.swift in Sources */,
 				8EBB25ED2E61C7E200E29966 /* PrefixMatcher.swift in Sources */,
-				8EBB25922E61C79500E29966 /* WebExtensionHelpers.swift in Sources */,
 				8E7B5E5D2E61D7B100D5E817 /* SafariRegex.swift in Sources */,
 				8EBB25D92E61C7E200E29966 /* StringExtension.swift in Sources */,
 				8EBB25B32E61C7C700E29966 /* RuleConverter.swift in Sources */,
@@ -1536,6 +1536,7 @@
 				8EC857272E65980E00936348 /* RuleFactory.swift in Sources */,
 				8EC857432E65981100936348 /* ErrorsCounter.swift in Sources */,
 				8EC857232E65980E00936348 /* NetworkRuleParser.swift in Sources */,
+				100EA3BB2E9D29E8004B1EFB /* SafariRegexError.swift in Sources */,
 				8EC857412E65981100936348 /* DomainUtils.swift in Sources */,
 				8EC857292E65980E00936348 /* ScriptletParser.swift in Sources */,
 				8EC8573C2E65981100936348 /* PrefixMatcher.swift in Sources */,
@@ -1558,7 +1559,6 @@
 				8EC8573E2E65981100936348 /* BlockerEntryFactory.swift in Sources */,
 				8EC857392E65981100936348 /* Logger.swift in Sources */,
 				8EC8573F2E65981100936348 /* SafariCbBuilder.swift in Sources */,
-				8EC58E252E67E971008D48EF /* WebExtensionHelpers.swift in Sources */,
 				8EC857262E65980E00936348 /* Rule.swift in Sources */,
 				8EC857062E6597DB00936348 /* ContentBlockerConverter.swift in Sources */,
 				8EC8573A2E65981100936348 /* ArrayExtension.swift in Sources */,
@@ -1581,6 +1581,7 @@
 				8EC58E442E67EA2C008D48EF /* RulesConverterService.swift in Sources */,
 				8EC58DCB2E67E8A3008D48EF /* ContentBlockerRequestHandler.swift in Sources */,
 				8EC58E192E67E949008D48EF /* PublicSuffixList.swift in Sources */,
+				100EA3B62E9D29E8004B1EFB /* SafariRegexError.swift in Sources */,
 				8EC58DFC2E67E945008D48EF /* Compiler.swift in Sources */,
 				8EC58E182E67E949008D48EF /* main.swift in Sources */,
 				8EC58DEF2E67E940008D48EF /* NetworkRule.swift in Sources */,
@@ -1600,7 +1601,6 @@
 				8EC58DE82E67E940008D48EF /* NetworkRuleParser.swift in Sources */,
 				8EC58DE52E67E940008D48EF /* SafariVersion.swift in Sources */,
 				8EC58E422E67EA07008D48EF /* Constants.swift in Sources */,
-				8EC58E2A2E67E972008D48EF /* WebExtensionHelpers.swift in Sources */,
 				8EC58DEA2E67E940008D48EF /* SyntaxError.swift in Sources */,
 				8EC58DE92E67E940008D48EF /* SimpleRegex.swift in Sources */,
 				8EC58E072E67E945008D48EF /* Logger.swift in Sources */,
@@ -1626,6 +1626,7 @@
 				8EC58E452E67EA2C008D48EF /* RulesConverterService.swift in Sources */,
 				8EC58DDC2E67E916008D48EF /* ContentBlockerRequestHandler.swift in Sources */,
 				8EC58E1D2E67E94A008D48EF /* PublicSuffixList.swift in Sources */,
+				100EA3B72E9D29E8004B1EFB /* SafariRegexError.swift in Sources */,
 				8EC58E092E67E946008D48EF /* Compiler.swift in Sources */,
 				8EC58E1C2E67E94A008D48EF /* main.swift in Sources */,
 				8EC58DFB2E67E941008D48EF /* NetworkRule.swift in Sources */,
@@ -1645,7 +1646,6 @@
 				8EC58DF42E67E941008D48EF /* NetworkRuleParser.swift in Sources */,
 				8EC58DF12E67E941008D48EF /* SafariVersion.swift in Sources */,
 				8EC58E432E67EA07008D48EF /* Constants.swift in Sources */,
-				8EC58E2C2E67E972008D48EF /* WebExtensionHelpers.swift in Sources */,
 				8EC58DF62E67E941008D48EF /* SyntaxError.swift in Sources */,
 				8EC58DF52E67E941008D48EF /* SimpleRegex.swift in Sources */,
 				8EC58E142E67E946008D48EF /* Logger.swift in Sources */,
@@ -1671,12 +1671,12 @@
 				8EBB25AD2E61C7C700E29966 /* Chars.swift in Sources */,
 				8EBB25E32E61C7E200E29966 /* ErrorsCounter.swift in Sources */,
 				8EBB25D12E61C7C700E29966 /* ScriptletParser.swift in Sources */,
+				100EA3BA2E9D29E8004B1EFB /* SafariRegexError.swift in Sources */,
 				8EBB25C92E61C7C700E29966 /* Rule.swift in Sources */,
 				8EBB25A52E61C7C700E29966 /* RuleFactory.swift in Sources */,
 				8EBB25BD2E61C7C700E29966 /* CosmeticRuleMarker.swift in Sources */,
 				8E7B5E5A2E61D70700D5E817 /* BlockerEntryFactory.swift in Sources */,
 				8EBB25EF2E61C7E200E29966 /* PrefixMatcher.swift in Sources */,
-				8EBB25942E61C79500E29966 /* WebExtensionHelpers.swift in Sources */,
 				8E7B5E5F2E61D7B100D5E817 /* SafariRegex.swift in Sources */,
 				8EBB25DB2E61C7E200E29966 /* StringExtension.swift in Sources */,
 				8EBB25B52E61C7C700E29966 /* RuleConverter.swift in Sources */,
@@ -1716,6 +1716,7 @@
 				8EC857332E65980E00936348 /* RuleFactory.swift in Sources */,
 				8EC857502E65981100936348 /* ErrorsCounter.swift in Sources */,
 				8EC8572F2E65980E00936348 /* NetworkRuleParser.swift in Sources */,
+				100EA3B92E9D29E8004B1EFB /* SafariRegexError.swift in Sources */,
 				8EC8574E2E65981100936348 /* DomainUtils.swift in Sources */,
 				8EC857352E65980E00936348 /* ScriptletParser.swift in Sources */,
 				8EC857492E65981100936348 /* PrefixMatcher.swift in Sources */,
@@ -1738,7 +1739,6 @@
 				8EC8574B2E65981100936348 /* BlockerEntryFactory.swift in Sources */,
 				8EC857462E65981100936348 /* Logger.swift in Sources */,
 				8EC8574C2E65981100936348 /* SafariCbBuilder.swift in Sources */,
-				8EC58E282E67E972008D48EF /* WebExtensionHelpers.swift in Sources */,
 				8EC857322E65980E00936348 /* Rule.swift in Sources */,
 				8EC857072E6597DB00936348 /* ContentBlockerConverter.swift in Sources */,
 				8EC857472E65981100936348 /* ArrayExtension.swift in Sources */,
@@ -1760,6 +1760,7 @@
 				8E7B5E3E2E61D6C700D5E817 /* SafariCbBuilder.swift in Sources */,
 				8EBB25D82E61C7E200E29966 /* StringExtension.swift in Sources */,
 				8ECF281A2E59BC3F000A5748 /* MainView.swift in Sources */,
+				100EA3B52E9D29E8004B1EFB /* SafariRegexError.swift in Sources */,
 				8EBB25CE2E61C7C700E29966 /* ScriptletParser.swift in Sources */,
 				8EBA84082E5BBA0900206493 /* RulesConverterService.swift in Sources */,
 				8EBB25DC2E61C7E200E29966 /* Logger.swift in Sources */,
@@ -1788,7 +1789,6 @@
 				8EBB25892E61C79500E29966 /* ContentBlockerConverterVersion.swift in Sources */,
 				8EBB25AE2E61C7C700E29966 /* NetworkRuleParser.swift in Sources */,
 				8EE69D072E6F0F0F00BA1BF1 /* SettingsViewModel.swift in Sources */,
-				8EBB25912E61C79500E29966 /* WebExtensionHelpers.swift in Sources */,
 				10138AC52E96BD8600507C44 /* MainAdBlockerViewModel.swift in Sources */,
 				8EC73F9E2E69D90900EAA93F /* BrowserNavigationButton.swift in Sources */,
 				8E7B5E482E61D6EE00D5E817 /* CompilationResult.swift in Sources */,
