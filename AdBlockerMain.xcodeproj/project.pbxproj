@@ -32,6 +32,8 @@
 		100EA3BA2E9D29E8004B1EFB /* SafariRegexError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3B42E9D29E8004B1EFB /* SafariRegexError.swift */; };
 		100EA3BB2E9D29E8004B1EFB /* SafariRegexError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3B42E9D29E8004B1EFB /* SafariRegexError.swift */; };
 		100EA3BC2E9D29E8004B1EFB /* SafariRegexError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3B42E9D29E8004B1EFB /* SafariRegexError.swift */; };
+		100EA3BE2E9D2BBF004B1EFB /* ShapeStyle+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3BD2E9D2BBE004B1EFB /* ShapeStyle+Colors.swift */; };
+		100EA3C02E9D2BDF004B1EFB /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3BF2E9D2BDE004B1EFB /* ThemeColors.swift */; };
 		10138AC52E96BD8600507C44 /* MainAdBlockerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10138AC42E96BD8100507C44 /* MainAdBlockerViewModel.swift */; };
 		10138C262E97DF6F00507C44 /* FloatingElementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10138C252E97DF6F00507C44 /* FloatingElementsView.swift */; };
 		10138C282E97DF9500507C44 /* FlareParticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10138C272E97DF9400507C44 /* FlareParticleView.swift */; };
@@ -394,7 +396,6 @@
 		8EC857592E65981500936348 /* PublicSuffixList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7B5DF02E61D0C200D5E817 /* PublicSuffixList.swift */; };
 		8ECF280B2E59BAFE000A5748 /* SurfShieldApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECF280A2E59BAFE000A5748 /* SurfShieldApp.swift */; };
 		8ECF280D2E59BAFE000A5748 /* MainAdBlockerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECF280C2E59BAFE000A5748 /* MainAdBlockerView.swift */; };
-		8ECF28122E59BB03000A5748 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ECF28112E59BB03000A5748 /* Preview Assets.xcassets */; };
 		8ECF281A2E59BC3F000A5748 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECF28192E59BC3F000A5748 /* MainView.swift */; };
 		8ECF281C2E59BC45000A5748 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECF281B2E59BC45000A5748 /* TabBarView.swift */; };
 		8ECF281E2E59BC4E000A5748 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ECF281D2E59BC4E000A5748 /* Coordinator.swift */; };
@@ -487,6 +488,8 @@
 		100EA3992E9D26A2004B1EFB /* RulesConverterError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesConverterError.swift; sourceTree = "<group>"; };
 		100EA3A22E9D2769004B1EFB /* RulesType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesType.swift; sourceTree = "<group>"; };
 		100EA3B42E9D29E8004B1EFB /* SafariRegexError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariRegexError.swift; sourceTree = "<group>"; };
+		100EA3BD2E9D2BBE004B1EFB /* ShapeStyle+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShapeStyle+Colors.swift"; sourceTree = "<group>"; };
+		100EA3BF2E9D2BDE004B1EFB /* ThemeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
 		10138AC42E96BD8100507C44 /* MainAdBlockerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAdBlockerViewModel.swift; sourceTree = "<group>"; };
 		10138C252E97DF6F00507C44 /* FloatingElementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingElementsView.swift; sourceTree = "<group>"; };
 		10138C272E97DF9400507C44 /* FlareParticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlareParticleView.swift; sourceTree = "<group>"; };
@@ -593,7 +596,6 @@
 		8ECF280A2E59BAFE000A5748 /* SurfShieldApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfShieldApp.swift; sourceTree = "<group>"; };
 		8ECF280C2E59BAFE000A5748 /* MainAdBlockerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAdBlockerView.swift; sourceTree = "<group>"; };
 		8ECF280E2E59BB03000A5748 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8ECF28112E59BB03000A5748 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8ECF28192E59BC3F000A5748 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		8ECF281B2E59BC45000A5748 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		8ECF281D2E59BC4E000A5748 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -720,6 +722,7 @@
 		10138D922E99742600507C44 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				100EA3BD2E9D2BBE004B1EFB /* ShapeStyle+Colors.swift */,
 				10138D932E99743100507C44 /* BrowserInternetInteractor+ResourceMonitorDelegate.swift */,
 			);
 			path = Extensions;
@@ -1020,19 +1023,10 @@
 				8ECF28282E59BDCB000A5748 /* Screens */,
 				8ECF280E2E59BB03000A5748 /* Assets.xcassets */,
 				8ECF28212E59BC80000A5748 /* Theme */,
-				8ECF28102E59BB03000A5748 /* Preview Content */,
 				8E9F1AF12E5C94C30093C76B /* Constants.swift */,
 				8E0384D02E5E4B23001D5E9D /* ViewComponents */,
 			);
 			path = SurfShield;
-			sourceTree = "<group>";
-		};
-		8ECF28102E59BB03000A5748 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				8ECF28112E59BB03000A5748 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		8ECF28182E59BC33000A5748 /* App */ = {
@@ -1052,18 +1046,19 @@
 			isa = PBXGroup;
 			children = (
 				8ECF28242E59BC80000A5748 /* Padding.swift */,
-				8ECF28222E59BC80000A5748 /* Colors */,
+				8ECF28222E59BC80000A5748 /* ThemeColors */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
 		};
-		8ECF28222E59BC80000A5748 /* Colors */ = {
+		8ECF28222E59BC80000A5748 /* ThemeColors */ = {
 			isa = PBXGroup;
 			children = (
+				100EA3BF2E9D2BDE004B1EFB /* ThemeColors.swift */,
 				8ECF28232E59BC80000A5748 /* Colors.xcassets */,
 				8ECF28252E59BC80000A5748 /* Colors.swift */,
 			);
-			path = Colors;
+			path = ThemeColors;
 			sourceTree = "<group>";
 		};
 		8ECF28282E59BDCB000A5748 /* Screens */ = {
@@ -1417,7 +1412,6 @@
 			files = (
 				8ECF28292E59BF64000A5748 /* Colors.xcassets in Resources */,
 				8E7B5E162E61D39B00D5E817 /* common.bin in Resources */,
-				8ECF28122E59BB03000A5748 /* Preview Assets.xcassets in Resources */,
 				8E7B5E222E61D39B00D5E817 /* version.txt in Resources */,
 				8E7B5E1E2E61D39B00D5E817 /* negated.bin in Resources */,
 				8EE142A72E6B7D6300918447 /* domains.txt in Resources */,
@@ -1763,6 +1757,7 @@
 				100EA3B52E9D29E8004B1EFB /* SafariRegexError.swift in Sources */,
 				8EBB25CE2E61C7C700E29966 /* ScriptletParser.swift in Sources */,
 				8EBA84082E5BBA0900206493 /* RulesConverterService.swift in Sources */,
+				100EA3BE2E9D2BBF004B1EFB /* ShapeStyle+Colors.swift in Sources */,
 				8EBB25DC2E61C7E200E29966 /* Logger.swift in Sources */,
 				8ECF281E2E59BC4E000A5748 /* Coordinator.swift in Sources */,
 				8EBB25CA2E61C7C700E29966 /* SimpleRegex.swift in Sources */,
@@ -1779,6 +1774,7 @@
 				8EBB25E02E61C7E200E29966 /* ErrorsCounter.swift in Sources */,
 				8E32FE502E6CE17500E71DD2 /* AppState.swift in Sources */,
 				8E7B5E432E61D6DA00D5E817 /* Compiler.swift in Sources */,
+				100EA3C02E9D2BDF004B1EFB /* ThemeColors.swift in Sources */,
 				8EE142A32E6B737900918447 /* ResourceMonitor.swift in Sources */,
 				8EBEC6572E6C630F005E5AF4 /* UserDefaultsKeys.swift in Sources */,
 				8E9F1AF22E5C94C30093C76B /* Constants.swift in Sources */,
@@ -2387,7 +2383,7 @@
 				CODE_SIGN_ENTITLEMENTS = SurfShield/SurfShield.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SurfShield/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = UVV92HTRTD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2423,7 +2419,7 @@
 				CODE_SIGN_ENTITLEMENTS = SurfShield/SurfShield.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SurfShield/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = UVV92HTRTD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
