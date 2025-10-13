@@ -19,7 +19,7 @@ struct MainAdBlockerView: View {
     var mainContentArea: some View {
         VStack {
             ZStack {
-                BackgroundGradient(isHighlight: screenModel.isEnabled)
+                MainGradient(isHighlight: screenModel.isEnabled)
                     .ignoresSafeArea()
                 
                 FloatingElementsView()

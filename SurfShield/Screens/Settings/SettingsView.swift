@@ -29,7 +29,7 @@ struct SettingsView: View {
             )
             .ignoresSafeArea(.all)
             
-            BackgroundGradient()
+            MainGradient()
                 .ignoresSafeArea(.all)
                 .opacity(0.7)
 

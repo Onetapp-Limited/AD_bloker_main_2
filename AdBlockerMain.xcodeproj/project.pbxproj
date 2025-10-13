@@ -34,6 +34,11 @@
 		100EA3BC2E9D29E8004B1EFB /* SafariRegexError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3B42E9D29E8004B1EFB /* SafariRegexError.swift */; };
 		100EA3BE2E9D2BBF004B1EFB /* ShapeStyle+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3BD2E9D2BBE004B1EFB /* ShapeStyle+Colors.swift */; };
 		100EA3C02E9D2BDF004B1EFB /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3BF2E9D2BDE004B1EFB /* ThemeColors.swift */; };
+		100EA3C52E9D2C51004B1EFB /* HStack+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3C12E9D2C4F004B1EFB /* HStack+.swift */; };
+		100EA3E32E9D2CD7004B1EFB /* LazyHStack+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3DC2E9D2CD6004B1EFB /* LazyHStack+.swift */; };
+		100EA3EF2E9D2D15004B1EFB /* VStack+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3EE2E9D2D15004B1EFB /* VStack+.swift */; };
+		100EA3F12E9D2D41004B1EFB /* LazyVStack+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3F02E9D2D41004B1EFB /* LazyVStack+.swift */; };
+		100EA3F32E9D2D76004B1EFB /* View+Layout.Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3F22E9D2D76004B1EFB /* View+Layout.Padding.swift */; };
 		10138AC52E96BD8600507C44 /* MainAdBlockerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10138AC42E96BD8100507C44 /* MainAdBlockerViewModel.swift */; };
 		10138C262E97DF6F00507C44 /* FloatingElementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10138C252E97DF6F00507C44 /* FloatingElementsView.swift */; };
 		10138C282E97DF9500507C44 /* FlareParticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10138C272E97DF9400507C44 /* FlareParticleView.swift */; };
@@ -44,7 +49,7 @@
 		10138D912E9973AB00507C44 /* BrowserInternetObservables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10138D902E9973AA00507C44 /* BrowserInternetObservables.swift */; };
 		10138D942E99743C00507C44 /* BrowserInternetInteractor+ResourceMonitorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10138D932E99743100507C44 /* BrowserInternetInteractor+ResourceMonitorDelegate.swift */; };
 		8E0384CF2E5E4939001D5E9D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0384CE2E5E4939001D5E9D /* SettingsView.swift */; };
-		8E0384D22E5E4B3F001D5E9D /* BackgroundGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0384D12E5E4B3F001D5E9D /* BackgroundGradient.swift */; };
+		8E0384D22E5E4B3F001D5E9D /* MainGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0384D12E5E4B3F001D5E9D /* MainGradient.swift */; };
 		8E32FE502E6CE17500E71DD2 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E32FE4F2E6CE17500E71DD2 /* AppState.swift */; };
 		8E39339F2E625F70003FDE0A /* blockerList.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E39339E2E625F70003FDE0A /* blockerList.json */; };
 		8E3933A12E625F70003FDE0A /* ContentBlockerRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3933A02E625F70003FDE0A /* ContentBlockerRequestHandler.swift */; };
@@ -490,6 +495,11 @@
 		100EA3B42E9D29E8004B1EFB /* SafariRegexError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariRegexError.swift; sourceTree = "<group>"; };
 		100EA3BD2E9D2BBE004B1EFB /* ShapeStyle+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ShapeStyle+Colors.swift"; sourceTree = "<group>"; };
 		100EA3BF2E9D2BDE004B1EFB /* ThemeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
+		100EA3C12E9D2C4F004B1EFB /* HStack+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HStack+.swift"; sourceTree = "<group>"; };
+		100EA3DC2E9D2CD6004B1EFB /* LazyHStack+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LazyHStack+.swift"; sourceTree = "<group>"; };
+		100EA3EE2E9D2D15004B1EFB /* VStack+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VStack+.swift"; sourceTree = "<group>"; };
+		100EA3F02E9D2D41004B1EFB /* LazyVStack+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LazyVStack+.swift"; sourceTree = "<group>"; };
+		100EA3F22E9D2D76004B1EFB /* View+Layout.Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Layout.Padding.swift"; sourceTree = "<group>"; };
 		10138AC42E96BD8100507C44 /* MainAdBlockerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAdBlockerViewModel.swift; sourceTree = "<group>"; };
 		10138C252E97DF6F00507C44 /* FloatingElementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingElementsView.swift; sourceTree = "<group>"; };
 		10138C272E97DF9400507C44 /* FlareParticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlareParticleView.swift; sourceTree = "<group>"; };
@@ -500,7 +510,7 @@
 		10138D902E9973AA00507C44 /* BrowserInternetObservables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserInternetObservables.swift; sourceTree = "<group>"; };
 		10138D932E99743100507C44 /* BrowserInternetInteractor+ResourceMonitorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrowserInternetInteractor+ResourceMonitorDelegate.swift"; sourceTree = "<group>"; };
 		8E0384CE2E5E4939001D5E9D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		8E0384D12E5E4B3F001D5E9D /* BackgroundGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundGradient.swift; sourceTree = "<group>"; };
+		8E0384D12E5E4B3F001D5E9D /* MainGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGradient.swift; sourceTree = "<group>"; };
 		8E32FE4F2E6CE17500E71DD2 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		8E39339C2E625F70003FDE0A /* banners.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = banners.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E39339E2E625F70003FDE0A /* blockerList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = blockerList.json; sourceTree = "<group>"; };
@@ -683,7 +693,12 @@
 		100EA3952E9D266F004B1EFB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				100EA3DC2E9D2CD6004B1EFB /* LazyHStack+.swift */,
+				100EA3C12E9D2C4F004B1EFB /* HStack+.swift */,
 				100EA3962E9D2681004B1EFB /* Array+chunked.swift */,
+				100EA3EE2E9D2D15004B1EFB /* VStack+.swift */,
+				100EA3F02E9D2D41004B1EFB /* LazyVStack+.swift */,
+				100EA3F22E9D2D76004B1EFB /* View+Layout.Padding.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -731,7 +746,7 @@
 		8E0384D02E5E4B23001D5E9D /* ViewComponents */ = {
 			isa = PBXGroup;
 			children = (
-				8E0384D12E5E4B3F001D5E9D /* BackgroundGradient.swift */,
+				8E0384D12E5E4B3F001D5E9D /* MainGradient.swift */,
 			);
 			path = ViewComponents;
 			sourceTree = "<group>";
@@ -1754,8 +1769,10 @@
 				8E7B5E3E2E61D6C700D5E817 /* SafariCbBuilder.swift in Sources */,
 				8EBB25D82E61C7E200E29966 /* StringExtension.swift in Sources */,
 				8ECF281A2E59BC3F000A5748 /* MainView.swift in Sources */,
+				100EA3EF2E9D2D15004B1EFB /* VStack+.swift in Sources */,
 				100EA3B52E9D29E8004B1EFB /* SafariRegexError.swift in Sources */,
 				8EBB25CE2E61C7C700E29966 /* ScriptletParser.swift in Sources */,
+				100EA3F32E9D2D76004B1EFB /* View+Layout.Padding.swift in Sources */,
 				8EBA84082E5BBA0900206493 /* RulesConverterService.swift in Sources */,
 				100EA3BE2E9D2BBF004B1EFB /* ShapeStyle+Colors.swift in Sources */,
 				8EBB25DC2E61C7E200E29966 /* Logger.swift in Sources */,
@@ -1763,6 +1780,7 @@
 				8EBB25CA2E61C7C700E29966 /* SimpleRegex.swift in Sources */,
 				8EBB25A62E61C7C700E29966 /* NetworkRule.swift in Sources */,
 				100EA3A32E9D276A004B1EFB /* RulesType.swift in Sources */,
+				100EA3E32E9D2CD7004B1EFB /* LazyHStack+.swift in Sources */,
 				8E8FFB402E68159900F20BF0 /* InternetBrowserView.swift in Sources */,
 				8EBB258D2E61C79500E29966 /* ContentBlockerConverter.swift in Sources */,
 				8ECF28262E59BCD4000A5748 /* Colors.swift in Sources */,
@@ -1778,6 +1796,7 @@
 				8EE142A32E6B737900918447 /* ResourceMonitor.swift in Sources */,
 				8EBEC6572E6C630F005E5AF4 /* UserDefaultsKeys.swift in Sources */,
 				8E9F1AF22E5C94C30093C76B /* Constants.swift in Sources */,
+				100EA3C52E9D2C51004B1EFB /* HStack+.swift in Sources */,
 				8E7B5E4F2E61D70700D5E817 /* BlockerEntry.swift in Sources */,
 				8EBEC6632E6CD829005E5AF4 /* OnboardingView.swift in Sources */,
 				8EC73F9A2E69AD1D00EAA93F /* AddressBarView.swift in Sources */,
@@ -1800,7 +1819,7 @@
 				8EBEC6562E6C630F005E5AF4 /* UserDefaultsService.swift in Sources */,
 				10138D8F2E99739700507C44 /* BrowserInternetNavigationDelegate.swift in Sources */,
 				10138C2E2E97E0EB00507C44 /* AnimatedToggleView.swift in Sources */,
-				8E0384D22E5E4B3F001D5E9D /* BackgroundGradient.swift in Sources */,
+				8E0384D22E5E4B3F001D5E9D /* MainGradient.swift in Sources */,
 				8EC73FA02E69EAD100EAA93F /* BrowserInternetInteractor.swift in Sources */,
 				8EDC48292E6F086B00D934F7 /* AppSettings.swift in Sources */,
 				10138D912E9973AB00507C44 /* BrowserInternetObservables.swift in Sources */,
@@ -1809,6 +1828,7 @@
 				10138D942E99743C00507C44 /* BrowserInternetInteractor+ResourceMonitorDelegate.swift in Sources */,
 				100EA39A2E9D26A3004B1EFB /* RulesConverterError.swift in Sources */,
 				10138C262E97DF6F00507C44 /* FloatingElementsView.swift in Sources */,
+				100EA3F12E9D2D41004B1EFB /* LazyVStack+.swift in Sources */,
 				8E7B5DF72E61D0C200D5E817 /* ByteArraySuffixTrie.swift in Sources */,
 				8EBEC6602E6C7D88005E5AF4 /* UserDefaultsObserver.swift in Sources */,
 				8ECF28202E59BC57000A5748 /* Screen.swift in Sources */,

@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct BackgroundGradient: View {
+struct MainGradient: View {
     
     var isHighlight: Bool = false
     
