@@ -1,121 +1,99 @@
 import Foundation
 
-/// Helper for working with scriptlet rules.
 public enum ScriptletParser {
     public static let SCRIPTLET_MASK = "//scriptlet("
-    private static let SCRIPTLET_MASK_LEN = SCRIPTLET_MASK.count
+    private static let scriptletPrefixLength = SCRIPTLET_MASK.count
 
-    /// Returns true if cosmetic rule content is a scriptlet.
     public static func isScriptlet(cosmeticRuleContent: String) -> Bool {
         return cosmeticRuleContent.utf8.starts(with: SCRIPTLET_MASK.utf8)
     }
 
-    /// Parses and validates a scriptlet rule.
-    ///
-    /// - Parameters:
-    ///   - cosmeticRuleContent: Cosmetic rule content, i.e. if rule text is
-    ///     `example.org#%#//scriptlet('name', 'arg)`, it will be
-    ///     `//scriptlet('name', 'arg)`.
-    /// - Returns: scriptlet name and its arguments.
-    /// - Throws:`SyntaxError.invalidRule` if failed to parse.
     public static func parse(cosmeticRuleContent: String) throws -> (name: String, args: [String]) {
         if !isScriptlet(cosmeticRuleContent: cosmeticRuleContent) {
             throw SyntaxError.invalidRule(message: "Invalid scriptlet")
         }
 
-        // Without the scriptlet prefix the string looks like:
-        // "scriptletname", "arg1", "arg2", etc
-        let utf8 = cosmeticRuleContent.utf8
-        let argumentsStrIndex = utf8.index(utf8.startIndex, offsetBy: SCRIPTLET_MASK_LEN)
-        // Do not include the last character as it's a bracket.
-        let argumentsEndIndex = utf8.index(utf8.endIndex, offsetBy: -1)
-        let argumentsStr = cosmeticRuleContent[argumentsStrIndex..<argumentsEndIndex]
+        let contentUtf8 = cosmeticRuleContent.utf8
+        let argumentsStartIndex = contentUtf8.index(contentUtf8.startIndex, offsetBy: scriptletPrefixLength)
+        let argumentsEndIndex = contentUtf8.index(contentUtf8.endIndex, offsetBy: -1)
+        let argumentsSubstring = cosmeticRuleContent[argumentsStartIndex..<argumentsEndIndex]
 
-        // Now we just get an array of these arguments
-        var args: [String] = try ScriptletParser.extractArguments(
-            str: argumentsStr,
+        var extractedArguments: [String] = try ScriptletParser.fetchArguments(
+            argumentSubstring: argumentsSubstring,
             delimiter: Chars.COMMA
         )
 
-        if args.count < 1 || args[0].isEmpty {
+        if extractedArguments.count < 1 || extractedArguments[0].isEmpty {
             throw SyntaxError.invalidRule(message: "Invalid scriptlet params")
         }
 
-        let name = args[0]
-        args.remove(at: 0)
+        let scriptletName = extractedArguments[0]
+        extractedArguments.remove(at: 0)
 
-        return (name, args)
+        return (scriptletName, extractedArguments)
     }
 
-    /// Extracts the scriptlet arguments from the string.
-    ///
-    /// - Parameters:
-    ///    - str: the arguments string (i.e. "'arg1', 'arg2', 'arg3'")
-    ///    - delimiter: the delimiter for arguments.
-    /// - Returns: an array of arguments.
-    /// - Throws: SyntaxError.invalidRule
-    private static func extractArguments(str: Substring, delimiter: UInt8) throws -> [String] {
-        var result: [String] = []
-        var current: [UInt8] = []
-        var iterator = str.utf8.makeIterator()
+    private static func fetchArguments(argumentSubstring: Substring, delimiter: UInt8) throws -> [String] {
+        var finalArguments: [String] = []
+        var currentBytes: [UInt8] = []
+        var byteIterator = argumentSubstring.utf8.makeIterator()
 
-        var inQuotes = false
-        var quoteChar: UInt8 = 0
+        var insideQuotes = false
+        var activeQuoteChar: UInt8 = 0
 
-        while let byte = iterator.next() {
-            switch byte {
-            case delimiter where !inQuotes:
+        while let currentByte = byteIterator.next() {
+            switch currentByte {
+            case delimiter where !insideQuotes:
                 continue
 
             case UInt8(ascii: "\""), UInt8(ascii: "'"):
-                if !inQuotes {
-                    inQuotes = true
-                    quoteChar = byte
-                } else if quoteChar == byte {
-                    inQuotes = false
-                    if let str = String(bytes: current, encoding: .utf8) {
-                        result.append(str)
+                if !insideQuotes {
+                    insideQuotes = true
+                    activeQuoteChar = currentByte
+                } else if activeQuoteChar == currentByte {
+                    insideQuotes = false
+                    if let argumentString = String(bytes: currentBytes, encoding: .utf8) {
+                        finalArguments.append(argumentString)
                     }
-                    current = []
+                    currentBytes = []
                 } else {
-                    current.append(byte)
+                    currentBytes.append(currentByte)
                 }
 
-            case UInt8(ascii: "\\") where inQuotes:
-                guard let next = iterator.next() else {
+            case UInt8(ascii: "\\") where insideQuotes:
+                guard let nextByte = byteIterator.next() else {
                     throw SyntaxError.invalidRule(
                         message: "Invalid escape sequence in matching arguments"
                     )
                 }
 
-                if next == quoteChar || next == UInt8(ascii: "\\") {
-                    current.append(next)
+                if nextByte == activeQuoteChar || nextByte == UInt8(ascii: "\\") {
+                    currentBytes.append(nextByte)
                 } else {
-                    // Keep the backslash and the following char literally
-                    current.append(UInt8(ascii: "\\"))
-                    current.append(next)
+                    currentBytes.append(UInt8(ascii: "\\"))
+                    currentBytes.append(nextByte)
                 }
 
-            case UInt8(ascii: " ") where !inQuotes:
+            case UInt8(ascii: " ") where !insideQuotes:
                 continue
 
             default:
-                if inQuotes {
-                    current.append(byte)
+                if insideQuotes {
+                    currentBytes.append(currentByte)
                 } else {
                     throw SyntaxError.invalidRule(message: "Invalid arguments string")
                 }
             }
         }
 
-        if inQuotes {
+        if insideQuotes {
             throw SyntaxError.invalidRule(message: "Unmatched quotes in scriptlet arguments")
         }
 
-        if !current.isEmpty {
+        if !currentBytes.isEmpty {
             throw SyntaxError.invalidRule(message: "Invalid arguments string")
         }
 
-        return result
+        return finalArguments
     }
 }
