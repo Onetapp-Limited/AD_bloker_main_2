@@ -12,7 +12,7 @@ class BrowserInternetInteractor: BrowserInternetObservables, ObservableObject {
     @Published private(set) var needBackGo: Bool = false
     @Published var resourceAnalys: ResourceAnalysisData?
     
-    private let rulesConverter = RulesConverter()
+    private let rulesConverter = RulesConverterService()
     private var resourceMonitor: ResourceMonitor?
     let userDefaultsObserver = UserDefaultsObserver.shared
     

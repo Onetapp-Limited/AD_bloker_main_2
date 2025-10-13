@@ -10,7 +10,7 @@ class MainAdBlockerViewModel: ObservableObject {
     @Published var isEnabled: Bool = false
     @Published var isProcess: Bool = false
     @Published var waveHeight: CGFloat = 0
-    let rulesConverter = RulesConverter()
+    let rulesConverter = RulesConverterService()
     let userDefaultsInteractor = UserDefaultsService.shared
     
     private var blockingTask: Task<Void, Never>?
