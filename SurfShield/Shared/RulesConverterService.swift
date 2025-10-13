@@ -5,49 +5,49 @@ public class RulesConverterService {
     public static let shared = RulesConverterService()
     
     private let groupID: String = Constants.adblockGroupId
-    private let extensionsBundles: [String] = Constants.BlockExtenesionBundleIds.all
+    private let bundleIdsForExtension: [String] = Constants.BundleAdsBlockerExtenesionIds.allCases.map { $0.rawValue }
     
     internal func getExtensionFileURLWithFallback(forType type: RulesType) -> URL? {
-        return type.filePath
+        return type.getPathToFile
     }
     
     // MARK: - Public
     
     public func saveEmptyRules() async {
-        let emptyRuleArray = [self.createEmptyRule()]
+        let emptyRuleArray = [self.createMinimalBlockRule()]
         
-        guard let emptyRulesJSON = self.convertRulesToJSON(emptyRuleArray) else {
+        guard let emptyRulesJSON = self.serializeRulesToJSON(emptyRuleArray) else {
             return
         }
         
-        await saveEmptyRules(emptyRulesJSON)
-        await self.reloadExtensions(bundles: self.extensionsBundles, maxRetries: self.extensionsBundles.count)
+        await applyEmptyRulesToFile(emptyRulesJSON)
+        await self.reloadExtensions(bundles: self.bundleIdsForExtension, maxRetries: self.bundleIdsForExtension.count)
     }
     
     public func saveConvertedRules(_ convertedRules: [String]) async {
-        await saveConvertedRulesToGroup(convertedRules)
-        await self.reloadExtensions(bundles: self.extensionsBundles, maxRetries: self.extensionsBundles.count)
+        await storeConvertedRulesInGroup(convertedRules)
+        await self.reloadExtensions(bundles: self.bundleIdsForExtension, maxRetries: self.bundleIdsForExtension.count)
     }
     
     public func applyBlockingState(_ isEnabled: Bool) async {
         if isEnabled {
-            await enableContentBlocker()
+            await activateContentBlocker()
         } else {
-            await generateEmptyRules()
+            await buildAndApplyEmptyRules()
         }
     }
     
-    private func enableContentBlocker() async  {
-        if let cachedRules = loadCachedRules() {
-            await saveConvertedRulesToGroup(cachedRules)
-            await self.reloadExtensions(bundles: self.extensionsBundles, maxRetries: self.extensionsBundles.count)
+    private func activateContentBlocker() async  {
+        if let cachedRules = retrieveCachedRules() {
+            await storeConvertedRulesInGroup(cachedRules)
+            await self.reloadExtensions(bundles: self.bundleIdsForExtension, maxRetries: self.bundleIdsForExtension.count)
             return
         }
         
-        await convertAndSaveRules()
+        await initiateRulesConversion()
     }
     
-    private func convertAndSaveRules() async {
+    private func initiateRulesConversion() async {
         guard let rulesPath = Bundle.main.path(forResource: "adblock_rules2", ofType: "txt") else {
             return
         }
@@ -59,69 +59,65 @@ public class RulesConverterService {
                 
         for chunkedRule in chunkedRules {
             let result: ConversionResult = ContentBlockerConverter().convertArray(
-                   rules: chunkedRule,
-                   safariVersion: SafariVersion.autodetect(),
-                   advancedBlocking: true,
-                   maxJsonSizeBytes: nil,
-                   progress: nil
-               )
+                    rules: chunkedRule,
+                    safariVersion: SafariVersion.autodetect(),
+                    advancedBlocking: true,
+                    maxJsonSizeBytes: nil,
+                    progress: nil
+                )
             resultArray.append(result.safariRulesJSON)
         }
         
-        saveRulesToCache(resultArray)
-        await saveConvertedRulesToGroup(resultArray)
-        await self.reloadExtensions(bundles: self.extensionsBundles, maxRetries: self.extensionsBundles.count)
+        cacheGeneratedRules(resultArray)
+        await storeConvertedRulesInGroup(resultArray)
+        await self.reloadExtensions(bundles: self.bundleIdsForExtension, maxRetries: self.bundleIdsForExtension.count)
     }
     
-    private func generateEmptyRules() async {
-        let emptyRuleArray = [self.createEmptyRule()]
+    private func buildAndApplyEmptyRules() async {
+        let emptyRuleArray = [self.createMinimalBlockRule()]
         
-        guard let emptyRulesJSON = self.convertRulesToJSON(emptyRuleArray) else {
+        guard let emptyRulesJSON = self.serializeRulesToJSON(emptyRuleArray) else {
             return
         }
         
-        await saveEmptyRules(emptyRulesJSON)
-        await self.reloadExtensions(bundles: self.extensionsBundles, maxRetries: self.extensionsBundles.count)
+        await applyEmptyRulesToFile(emptyRulesJSON)
+        await self.reloadExtensions(bundles: self.bundleIdsForExtension, maxRetries: self.bundleIdsForExtension.count)
     }
     
-    private func saveEmptyRules(_ emptyRulesJSON: String) async {
+    private func applyEmptyRulesToFile(_ emptyRulesJSON: String) async {
         for ruleType in RulesType.allCases {
-            ruleType.writeRules(emptyRulesJSON, emptyRules: true, groupID: self.groupID)
+            ruleType.setRules(emptyRulesJSON, emptyRules: true, groupID: self.groupID)
         }
     }
     
-    private func saveConvertedRulesToGroup(_ convertedRules: [String]) async {
+    private func storeConvertedRulesInGroup(_ convertedRules: [String]) async {
         for (index, ruleType) in RulesType.allCases.enumerated() {
             if let rules = convertedRules[safe: index] {
-                ruleType.writeRules(rules, emptyRules: false, groupID: groupID)
+                ruleType.setRules(rules, emptyRules: false, groupID: groupID)
             } else {
-                let emptyRuleArray = [createEmptyRule()]
-                if let jsonString = convertRulesToJSON(emptyRuleArray) {
-                    ruleType.writeRules(jsonString, emptyRules: true, groupID: groupID)
+                let emptyRuleArray = [createMinimalBlockRule()]
+                if let jsonString = serializeRulesToJSON(emptyRuleArray) {
+                    ruleType.setRules(jsonString, emptyRules: true, groupID: groupID)
                 }
             }
         }
     }
     
-    private func saveJSONToFile(json: String) {
+    private func saveJSONToTemporaryFile(json: String) {
         do {
             let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
             let fileName = "safari_rules_\(Date().timeIntervalSince1970).json"
             let fileURL = documentsPath.appendingPathComponent(fileName)
             
             try json.write(to: fileURL, atomically: true, encoding: .utf8)
-            
-            print("💾 JSON сохранен в файл: \(fileURL.path)")
-            print("📁 Путь к файлу: \(fileURL.path)")
-            
         } catch {
-            print("❌ Ошибка при сохранении JSON: \(error)")
+            print("\(error)")
         }
     }
     
     // MARK: - Cache
     
-    private func saveRulesToCache(_ rules: [String]) {
+    private func cacheGeneratedRules(_ rules: [String]) {
         let fileManager = FileManager.default
         guard let groupURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier: groupID) else {
             return
@@ -137,7 +133,7 @@ public class RulesConverterService {
         }
     }
     
-    private func loadCachedRules() -> [String]? {
+    private func retrieveCachedRules() -> [String]? {
         let fileManager = FileManager.default
         guard let groupURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier: groupID) else {
             return nil
@@ -158,7 +154,7 @@ public class RulesConverterService {
         }
     }
     
-    private func clearRulesCache() {
+    private func removeRulesCache() {
         let fileManager = FileManager.default
         guard let groupURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier: groupID) else {
             return
@@ -174,10 +170,10 @@ public class RulesConverterService {
             print("\(error)")
         }
     }
- 
-    // MARK: - Private
+
+    // MARK: - Private Utilities
     
-    private func createEmptyRule() -> [String: Any] {
+    private func createMinimalBlockRule() -> [String: Any] {
         return [
             "trigger": [
                 "url-filter": "^https?://never-existing-domain-for-adblocker-disabled\\.com/.*"
@@ -188,7 +184,7 @@ public class RulesConverterService {
         ]
     }
     
-    private func convertRulesToJSON(_ rules: [[String: Any]]) -> String? {
+    private func serializeRulesToJSON(_ rules: [[String: Any]]) -> String? {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: rules, options: .prettyPrinted)
             return String(data: jsonData, encoding: .utf8)
@@ -199,10 +195,10 @@ public class RulesConverterService {
     
     private func reloadExtensions(bundles: [String], maxRetries: Int) async {
         guard !bundles.isEmpty else { return }
-        await reloadSingleExtension(bundle: bundles.first!, maxRetries: 1)
+        await attemptToReloadSingleExtension(bundle: bundles.first!, maxRetries: 1)
     }
     
-    private func reloadSingleExtension(bundle: String, maxRetries: Int) async {
+    private func attemptToReloadSingleExtension(bundle: String, maxRetries: Int) async {
         var attempts = 0
         
         while attempts < maxRetries {
@@ -214,70 +210,5 @@ public class RulesConverterService {
                 print("\(error):")
             }
         }
-    }
-}
-
-/// Тип екстеншена блокировщика
-public enum RulesType: String, Codable, CaseIterable {
-    case adBlock
-    case privacy
-    case banners
-    case trackers
-    case advanced
-    case secure
-    case basic
-    
-    /// Получить URL по каторому находится файл для определенного экстеншна
-    /// - Returns: URL по каторому находится файл
-    internal var filePath: URL? {
-        let fileManager = FileManager.default
-        // Используй App Group вместо Documents
-        guard let groupURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Constants.adblockGroupId) else {
-            return nil
-        }
-        let fileURL = groupURL.appendingPathComponent("\(self.rawValue).json")
-        return fileURL
-    }
-    
-    private var fileName: String {
-        return self.rawValue + ".json"
-    }
-
-    internal func writeRules(_ rules: String, emptyRules: Bool, groupID: String) {
-        guard let filePath = getFilePath(groupID: groupID) else {
-            print("❌ Не удалось получить путь для \(self.rawValue)")
-            return 
-        }
-        let fileManager = FileManager.default
-        
-        do {
-            // Синхронная запись с принудительной синхронизацией
-            try rules.write(to: filePath, atomically: true, encoding: .utf8)
-            
-            // Принудительная синхронизация файловой системы
-            let fileHandle = try FileHandle(forWritingTo: filePath)
-            try fileHandle.synchronize()
-            try fileHandle.close()
-            
-            // Проверяем, что файл действительно создался и имеет правильный размер
-            if fileManager.fileExists(atPath: filePath.path) {
-                let attributes = try? fileManager.attributesOfItem(atPath: filePath.path)
-                let fileSize = attributes?[.size] as? Int64 ?? 0
-                print("✅ \(self.rawValue) успешно сохранен: \(filePath.path) (размер: \(fileSize) байт)")
-            } else {
-                print("❌ \(self.rawValue) файл не найден после записи: \(filePath.path)")
-            }
-        } catch {
-            print("❌ Ошибка записи \(self.rawValue): \(error.localizedDescription)")
-        }
-    }
-    
-    private func getFilePath(groupID: String) -> URL? {
-        let fileManager = FileManager.default
-        guard let groupURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier: groupID) else {
-            return nil
-        }
-        let fileURL = groupURL.appendingPathComponent("\(self.rawValue).json")
-        return fileURL
     }
 }
