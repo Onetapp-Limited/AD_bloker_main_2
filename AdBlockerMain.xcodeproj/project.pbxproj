@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		100EA3972E9D2682004B1EFB /* Array+chunked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3962E9D2681004B1EFB /* Array+chunked.swift */; };
+		100EA39A2E9D26A3004B1EFB /* RulesConverterError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3992E9D26A2004B1EFB /* RulesConverterError.swift */; };
+		100EA39B2E9D2721004B1EFB /* Array+chunked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3962E9D2681004B1EFB /* Array+chunked.swift */; };
+		100EA39C2E9D2721004B1EFB /* Array+chunked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3962E9D2681004B1EFB /* Array+chunked.swift */; };
+		100EA39D2E9D2721004B1EFB /* Array+chunked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3962E9D2681004B1EFB /* Array+chunked.swift */; };
+		100EA39E2E9D2721004B1EFB /* Array+chunked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3962E9D2681004B1EFB /* Array+chunked.swift */; };
+		100EA39F2E9D2721004B1EFB /* Array+chunked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3962E9D2681004B1EFB /* Array+chunked.swift */; };
+		100EA3A02E9D2721004B1EFB /* Array+chunked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3962E9D2681004B1EFB /* Array+chunked.swift */; };
+		100EA3A12E9D2721004B1EFB /* Array+chunked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100EA3962E9D2681004B1EFB /* Array+chunked.swift */; };
 		10138AC52E96BD8600507C44 /* MainAdBlockerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10138AC42E96BD8100507C44 /* MainAdBlockerViewModel.swift */; };
 		10138C262E97DF6F00507C44 /* FloatingElementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10138C252E97DF6F00507C44 /* FloatingElementsView.swift */; };
 		10138C282E97DF9500507C44 /* FlareParticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10138C272E97DF9400507C44 /* FlareParticleView.swift */; };
@@ -466,6 +475,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		100EA3962E9D2681004B1EFB /* Array+chunked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+chunked.swift"; sourceTree = "<group>"; };
+		100EA3992E9D26A2004B1EFB /* RulesConverterError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesConverterError.swift; sourceTree = "<group>"; };
 		10138AC42E96BD8100507C44 /* MainAdBlockerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAdBlockerViewModel.swift; sourceTree = "<group>"; };
 		10138C252E97DF6F00507C44 /* FloatingElementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingElementsView.swift; sourceTree = "<group>"; };
 		10138C272E97DF9400507C44 /* FlareParticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlareParticleView.swift; sourceTree = "<group>"; };
@@ -658,6 +669,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		100EA3952E9D266F004B1EFB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				100EA3962E9D2681004B1EFB /* Array+chunked.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		100EA3982E9D269D004B1EFB /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				100EA3992E9D26A2004B1EFB /* RulesConverterError.swift */,
+			);
+			path = Types;
+			sourceTree = "<group>";
+		};
 		10138C242E97DF6500507C44 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -747,6 +774,8 @@
 			children = (
 				8EBA84072E5BBA0900206493 /* RulesConverterService.swift */,
 				8EBB25802E61C77500E29966 /* ContentConverter */,
+				100EA3952E9D266F004B1EFB /* Extensions */,
+				100EA3982E9D269D004B1EFB /* Types */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -1415,6 +1444,7 @@
 				8E3933B02E625FFF003FDE0A /* ArrayExtension.swift in Sources */,
 				8E3933C42E62601E003FDE0A /* ScriptletParser.swift in Sources */,
 				8E3933AE2E625FFF003FDE0A /* Compiler.swift in Sources */,
+				100EA39D2E9D2721004B1EFB /* Array+chunked.swift in Sources */,
 				8E3933A12E625F70003FDE0A /* ContentBlockerRequestHandler.swift in Sources */,
 				8E3933C02E62601E003FDE0A /* RuleFactory.swift in Sources */,
 				8E3933BD2E626014003FDE0A /* SuffixTrie.swift in Sources */,
@@ -1458,6 +1488,7 @@
 				8E7B5E5D2E61D7B100D5E817 /* SafariRegex.swift in Sources */,
 				8EBB25D92E61C7E200E29966 /* StringExtension.swift in Sources */,
 				8EBB25B32E61C7C700E29966 /* RuleConverter.swift in Sources */,
+				100EA39B2E9D2721004B1EFB /* Array+chunked.swift in Sources */,
 				8E7B5E542E61D70700D5E817 /* BlockerEntryEncoder.swift in Sources */,
 				8EBB25CB2E61C7C700E29966 /* SimpleRegex.swift in Sources */,
 				8E7B5DFC2E61D0C200D5E817 /* SuffixTrie.swift in Sources */,
@@ -1501,6 +1532,7 @@
 				8EC857522E65981500936348 /* ByteArraySuffixTrie.swift in Sources */,
 				8EC58E1E2E67E965008D48EF /* ContentBlockerConverterVersion.swift in Sources */,
 				8EC857212E65980E00936348 /* CosmeticRuleMarker.swift in Sources */,
+				100EA39E2E9D2721004B1EFB /* Array+chunked.swift in Sources */,
 				8EBEA23A2E6440350034A1A9 /* ContentBlockerRequestHandler.swift in Sources */,
 				8EC857382E65981100936348 /* BlockerEntry.swift in Sources */,
 				8EC8572B2E65980E00936348 /* SimpleRegex.swift in Sources */,
@@ -1544,6 +1576,7 @@
 				8EC58DEB2E67E940008D48EF /* CosmeticRule.swift in Sources */,
 				8EC58E162E67E949008D48EF /* SuffixTrie.swift in Sources */,
 				8EC58E1F2E67E965008D48EF /* ContentBlockerConverterVersion.swift in Sources */,
+				100EA3A02E9D2721004B1EFB /* Array+chunked.swift in Sources */,
 				8EC58E052E67E945008D48EF /* CompilationResult.swift in Sources */,
 				8EC58E2B2E67E972008D48EF /* ConversionResult.swift in Sources */,
 				8EC58DED2E67E940008D48EF /* Rule.swift in Sources */,
@@ -1587,6 +1620,7 @@
 				8EC58DF72E67E941008D48EF /* CosmeticRule.swift in Sources */,
 				8EC58E1A2E67E94A008D48EF /* SuffixTrie.swift in Sources */,
 				8EC58E212E67E966008D48EF /* ContentBlockerConverterVersion.swift in Sources */,
+				100EA3A12E9D2721004B1EFB /* Array+chunked.swift in Sources */,
 				8EC58E122E67E946008D48EF /* CompilationResult.swift in Sources */,
 				8EC58E2D2E67E972008D48EF /* ConversionResult.swift in Sources */,
 				8EC58DF92E67E941008D48EF /* Rule.swift in Sources */,
@@ -1630,6 +1664,7 @@
 				8E7B5E5F2E61D7B100D5E817 /* SafariRegex.swift in Sources */,
 				8EBB25DB2E61C7E200E29966 /* StringExtension.swift in Sources */,
 				8EBB25B52E61C7C700E29966 /* RuleConverter.swift in Sources */,
+				100EA39C2E9D2721004B1EFB /* Array+chunked.swift in Sources */,
 				8E7B5E562E61D70700D5E817 /* BlockerEntryEncoder.swift in Sources */,
 				8EBB25CD2E61C7C700E29966 /* SimpleRegex.swift in Sources */,
 				8E7B5DFE2E61D0C200D5E817 /* SuffixTrie.swift in Sources */,
@@ -1673,6 +1708,7 @@
 				8EC857562E65981500936348 /* ByteArraySuffixTrie.swift in Sources */,
 				8EC58E202E67E966008D48EF /* ContentBlockerConverterVersion.swift in Sources */,
 				8EC8572D2E65980E00936348 /* CosmeticRuleMarker.swift in Sources */,
+				100EA39F2E9D2721004B1EFB /* Array+chunked.swift in Sources */,
 				8EC856F32E65966B00936348 /* ContentBlockerRequestHandler.swift in Sources */,
 				8EC857452E65981100936348 /* BlockerEntry.swift in Sources */,
 				8EC857372E65980E00936348 /* SimpleRegex.swift in Sources */,
@@ -1702,6 +1738,7 @@
 				8E7B5E532E61D70700D5E817 /* BlockerEntryEncoder.swift in Sources */,
 				8ECF280D2E59BAFE000A5748 /* MainAdBlockerView.swift in Sources */,
 				8EBB25E42E61C7E200E29966 /* ArrayExtension.swift in Sources */,
+				100EA3972E9D2682004B1EFB /* Array+chunked.swift in Sources */,
 				8E7B5E572E61D70700D5E817 /* BlockerEntryFactory.swift in Sources */,
 				8E7B5E3E2E61D6C700D5E817 /* SafariCbBuilder.swift in Sources */,
 				8EBB25D82E61C7E200E29966 /* StringExtension.swift in Sources */,
@@ -1756,6 +1793,7 @@
 				8EBB25AA2E61C7C700E29966 /* Chars.swift in Sources */,
 				8EBB25A22E61C7C700E29966 /* RuleFactory.swift in Sources */,
 				10138D942E99743C00507C44 /* BrowserInternetInteractor+ResourceMonitorDelegate.swift in Sources */,
+				100EA39A2E9D26A3004B1EFB /* RulesConverterError.swift in Sources */,
 				10138C262E97DF6F00507C44 /* FloatingElementsView.swift in Sources */,
 				8E7B5DF72E61D0C200D5E817 /* ByteArraySuffixTrie.swift in Sources */,
 				8EBEC6602E6C7D88005E5AF4 /* UserDefaultsObserver.swift in Sources */,
