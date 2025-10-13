@@ -1,6 +1,5 @@
 import Foundation
 
-/// Super class for AdGuard rules.
 public class Rule {
     public let ruleText: String
 
@@ -14,93 +13,74 @@ public class Rule {
         self.ruleText = ruleText
     }
 
-    /// Parses domainsStr and populates `permittedDomains` and `restrictedDomains` arrays with
-    /// the lists of domains parsed out.
-    ///
-    /// - Parameters:
-    ///   - domainsStr: String with the list of domains separated by `separator`. If the domain name
-    ///           starts with `~` it will be added to `restrictedDomains`,
-    ///           otherwise to `permittedDomains`.
-    ///   - separator: Separator character for the domains list.
-    ///
-    /// - Throws: `SyntaxError` if the list is invalid.
     func addDomains(domainsStr: String, separator: UInt8) throws {
-        let utf8 = domainsStr.utf8
-        var currentIndex = utf8.startIndex
-        var domainStartIndex = currentIndex
-        var nonASCIIFound = false
-        var restricted = false
+        let domainListUtf8 = domainsStr.utf8
+        var currentPosition = domainListUtf8.startIndex
+        var currentDomainStart = currentPosition
+        var nonASCIIEncountered = false
+        var isDomainRestricted = false
 
-        /// Creates domain string from `current` buffer and adds it to the corresponding list.
-        ///
-        /// - Throws: `SyntaxError` if domain is invalid.
         @inline(__always)
-        func addDomain() throws {
-            if domainStartIndex == currentIndex {
+        func processAndAddDomain() throws {
+            if currentDomainStart == currentPosition {
                 throw SyntaxError.invalidModifier(
                     message: "Empty domain"
                 )
             }
 
-            var domain = String(domainsStr[domainStartIndex..<currentIndex])
+            var domainString = String(domainsStr[currentDomainStart..<currentPosition])
 
-            if domain.utf8.count < 2 {
+            if domainString.utf8.count < 2 {
                 throw SyntaxError.invalidModifier(
-                    message: "Domain is too short: \(domain)"
+                    message: "Domain is too short: \(domainString)"
                 )
             }
 
-            if nonASCIIFound, let encodedDomain = domain.idnaEncoded {
-                domain = encodedDomain
+            if nonASCIIEncountered, let encodedDomain = domainString.idnaEncoded {
+                domainString = encodedDomain
             }
 
-            if domain.utf8.first == Chars.SLASH && domain.utf8.last == Chars.SLASH {
-                // https://github.com/AdguardTeam/SafariConverterLib/issues/53
+            if domainString.utf8.first == Chars.SLASH && domainString.utf8.last == Chars.SLASH {
                 throw SyntaxError.invalidModifier(
                     message: "Using regular expression for domain modifier is not supported"
                 )
             }
 
-            if restricted {
-                restrictedDomains.append(domain)
+            if isDomainRestricted {
+                restrictedDomains.append(domainString)
             } else {
-                permittedDomains.append(domain)
+                permittedDomains.append(domainString)
             }
         }
 
-        while currentIndex < utf8.endIndex {
-            let char = utf8[currentIndex]
+        while currentPosition < domainListUtf8.endIndex {
+            let byte = domainListUtf8[currentPosition]
 
-            switch char {
+            switch byte {
             case separator:
-                try addDomain()
+                try processAndAddDomain()
 
-                // Reset
-                domainStartIndex = utf8.index(after: currentIndex)
-                nonASCIIFound = false
-                restricted = false
+                currentDomainStart = domainListUtf8.index(after: currentPosition)
+                nonASCIIEncountered = false
+                isDomainRestricted = false
             case UInt8(ascii: "~"):
-                // Validate that the previous character was separator
-                if domainStartIndex != currentIndex {
+                if currentDomainStart != currentPosition {
                     throw SyntaxError.invalidModifier(
                         message: "Unexpected tilda character"
                     )
                 }
-                restricted = true
+                isDomainRestricted = true
 
-                // Shift domain start index +1 char.
-                domainStartIndex = utf8.index(after: currentIndex)
+                currentDomainStart = domainListUtf8.index(after: currentPosition)
             default:
-                if char > 127 {
-                    // Record that a non-ASCII character was found in the domain name.
-                    nonASCIIFound = true
+                if byte > 127 {
+                    nonASCIIEncountered = true
                 }
             }
 
-            currentIndex = utf8.index(after: currentIndex)
+            currentPosition = domainListUtf8.index(after: currentPosition)
         }
 
-        // Add the last domain
-        try addDomain()
+        try processAndAddDomain()
     }
 }

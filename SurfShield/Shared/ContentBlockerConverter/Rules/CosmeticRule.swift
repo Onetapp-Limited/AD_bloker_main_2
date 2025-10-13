@@ -1,18 +1,12 @@
 import Foundation
 
-/// Cosmetic rule class.
 public class CosmeticRule: Rule {
-    private static let EXT_CSS_PSEUDO_INDICATOR_HAS = "has"
-    private static let EXT_CSS_PSEUDO_INDICATOR_IS = "is"
+    private static let PSEUDO_HAS_TAG = "has"
+    private static let PSEUDO_IS_TAG = "is"
 
-    /// Pseudo class indicators. They are used to detect if rule is extended or
-    /// not even if rule does not have extended css marker.
-    ///
-    /// For instance, a rule like `##banner:contains(text)` will be considered
-    /// extended CSS rule and it should be interpreted by the extension.
-    private static let EXT_CSS_PSEUDO_INDICATORS = [
-        CosmeticRule.EXT_CSS_PSEUDO_INDICATOR_HAS,
-        CosmeticRule.EXT_CSS_PSEUDO_INDICATOR_IS,
+    private static let EXTENDED_PSEUDO_TAGS = [
+        CosmeticRule.PSEUDO_HAS_TAG,
+        CosmeticRule.PSEUDO_IS_TAG,
         "has-text",
         "contains",
         "matches-css",
@@ -26,87 +20,62 @@ public class CosmeticRule: Rule {
         "matches-property",
     ]
 
-    /// Extended CSS attribute indicator. This is a backwards-compatible way
-    /// of specifying extended CSS rules, i.e. instead of `##banner:has(#id)`
-    /// we can specify `##banner[-ext-has="#id"]`.
-    private static let EXT_CSS_ATTR_INDICATOR = "[-ext-"
+    private static let EXTENDED_ATTR_TOKEN = "[-ext-"
 
-    /// Adblock Plus uses special prefix for their pseudo-classes.
-    ///
-    /// For instance, instead of `##div:contains(smth)` they will have
-    /// something like `##div:-abp-contains(smth)`.
-    private static let EXT_CSS_ABP_PREFIX = "-abp-"
+    private static let ABP_PSEUDO_PREFIX = "-abp-"
 
-    /// Content depends on the rule type.
-    ///
-    /// - CSS selector for element hiding rules or CSS selector + style for CSS injection rules.
-    /// - Script contents for script and scriptlet rules.
     public var content: String = ""
 
-    /// If true, this is an element hiding rule.
     public var isElemhide = false
 
-    // If true, this is CSS injection rule.
     public var isInjectCss = false
 
-    /// If true, this is an extended CSS rule (can be eiter element hiding or CSS injection).
     public var isExtendedCss = false
 
-    /// If true, this is a script rule or scriptlet.
     public var isScript = false
 
-    /// If true, this is a scriptlet rule.
     public var isScriptlet = false
 
-    /// Value of the `$path` modifier.
     public var pathModifier: String?
 
-    /// `$path` value converted to regular expression.
     public var pathRegExpSource: String?
 
-    /// Initializes a cosmetic rule by parsing its properties from the rule text.
-    ///
-    /// - Parameters:
-    ///   - ruleText: AdGuard rule text.
-    ///   - version: Safari version which will use that rule. Depending on the
-    ///              version some features may be available or not.
-    /// - Throws: SyntaxError if any issue with the rule is detected.
     public override init(
         ruleText: String,
         for version: SafariVersion = SafariVersion.autodetect()
     ) throws {
         try super.init(ruleText: ruleText)
 
-        let markerInfo = CosmeticRuleMarker.findCosmeticRuleMarker(ruleText: ruleText)
-        if markerInfo.index == -1 {
+        let markerData = CosmeticRuleMarker.findCosmeticRuleMarker(ruleText: ruleText)
+        if markerData.index == -1 {
             throw SyntaxError.invalidRule(message: "Not a cosmetic rule")
         }
 
-        guard let marker = markerInfo.marker else {
+        guard let markerType = markerData.marker else {
             throw SyntaxError.invalidRule(message: "Invalid cosmetic rule marker")
         }
 
-        let contentIndex = markerInfo.index + marker.rawValue.utf8.count
-        let utfContentIndex = ruleText.utf8.index(ruleText.utf8.startIndex, offsetBy: contentIndex)
-        self.content = String(ruleText[utfContentIndex...])
+        let offsetLength = markerData.index + markerType.rawValue.utf8.count
+        let contentStart = ruleText.utf8.index(ruleText.utf8.startIndex, offsetBy: offsetLength)
+        self.content = String(ruleText[contentStart...])
 
         if self.content.isEmpty {
             throw SyntaxError.invalidRule(message: "Rule content is empty")
         }
 
-        switch marker {
+        switch markerType {
         case .elementHiding,
-            .elementHidingExtCSS,
-            .elementHidingException,
-            .elementHidingExtCSSException:
+             .elementHidingExtCSS,
+             .elementHidingException,
+             .elementHidingExtCSSException:
             self.isElemhide = true
         case .css,
-            .cssExtCSS,
-            .cssException,
-            .cssExtCSSException:
+             .cssExtCSS,
+             .cssException,
+             .cssExtCSSException:
             self.isInjectCss = true
         case .javascript,
-            .javascriptException:
+             .javascriptException:
             self.isScript = true
         default:
             throw SyntaxError.invalidRule(message: "Unsupported rule type")
@@ -118,29 +87,24 @@ public class CosmeticRule: Rule {
             }
         }
 
-        if markerInfo.index > 0 {
-            // This means that the marker is preceded by the list of domains
-            // Now it's a good time to parse them.
-            let markerIndex = ruleText.utf8.index(
+        if markerData.index > 0 {
+            let markerStart = ruleText.utf8.index(
                 ruleText.utf8.startIndex,
-                offsetBy: markerInfo.index
+                offsetBy: markerData.index
             )
-            let domains = String(ruleText[..<markerIndex])
+            let domainList = String(ruleText[..<markerStart])
 
-            // Support for *## for generic rules
-            // https://github.com/AdguardTeam/SafariConverterLib/issues/11
-            if !(domains.utf8.count == 1 && domains.utf8.first == Chars.WILDCARD) {
-                try setCosmeticRuleDomains(domains: domains)
+            if !(domainList.utf8.count == 1 && domainList.utf8.first == Chars.WILDCARD) {
+                try setRuleDomains(domainString: domainList)
             }
         }
 
-        isWhiteList = CosmeticRule.isWhiteList(marker: marker)
-        isExtendedCss = CosmeticRule.isExtCssMarker(marker: marker)
+        isWhiteList = CosmeticRule.checkIsException(marker: markerType)
+        isExtendedCss = CosmeticRule.checkIsExtendedCssMarker(marker: markerType)
 
         if !isExtendedCss
-            && CosmeticRule.hasExtCSSIndicators(content: self.content, version: version)
+            && CosmeticRule.hasExtendedCssSyntax(ruleContent: self.content, version: version)
         {
-            // Additional check if rule is extended css rule by pseudo class indicators.
             isExtendedCss = true
         }
 
@@ -155,68 +119,58 @@ public class CosmeticRule: Rule {
         }
     }
 
-    /// Checks if the rule contains any extended CSS pseudo-class indicators.
-    private static func hasExtCSSIndicators(content: String, version: SafariVersion) -> Bool {
-        // Not enough for even minimal length pseudo.
-        if content.utf8.count < 6 {
+    private static func hasExtendedCssSyntax(ruleContent: String, version: SafariVersion) -> Bool {
+        if ruleContent.utf8.count < 6 {
             return false
         }
 
-        let maxIndex = content.utf8.count - 1
-        var insidePseudo = false
-        var pseudoStartIndex = 0
+        let lastIndex = ruleContent.utf8.count - 1
+        var inPseudoSection = false
+        var pseudoNameStart = 0
 
-        // Going through all characters in the CSS selector and looking for CSS pseudo-classes.
-        for i in 0...maxIndex {
-            let char = content.utf8[safeIndex: i]
+        for index in 0...lastIndex {
+            let currentByte = ruleContent.utf8[safeIndex: index]
 
-            switch char {
+            switch currentByte {
             case Chars.SQUARE_BRACKET_OPEN:
-                if content.utf8.dropFirst(i).starts(with: CosmeticRule.EXT_CSS_ATTR_INDICATOR.utf8)
+                if ruleContent.utf8.dropFirst(index).starts(with: CosmeticRule.EXTENDED_ATTR_TOKEN.utf8)
                 {
                     return true
                 }
             case Chars.COLON:
-                insidePseudo = true
-                pseudoStartIndex = i + 1
+                inPseudoSection = true
+                pseudoNameStart = index + 1
             case Chars.BRACKET_OPEN:
-                if insidePseudo {
-                    insidePseudo = false
-                    let pseudoEndIndex = i - 1
+                if inPseudoSection {
+                    inPseudoSection = false
+                    let pseudoNameEnd = index - 1
 
-                    if pseudoEndIndex > pseudoStartIndex {
-                        let startIndex = content.utf8.index(
-                            content.utf8.startIndex,
-                            offsetBy: pseudoStartIndex
+                    if pseudoNameEnd > pseudoNameStart {
+                        let startIndex = ruleContent.utf8.index(
+                            ruleContent.utf8.startIndex,
+                            offsetBy: pseudoNameStart
                         )
-                        let endIndex = content.utf8.index(
-                            content.utf8.startIndex,
-                            offsetBy: pseudoEndIndex
+                        let endIndex = ruleContent.utf8.index(
+                            ruleContent.utf8.startIndex,
+                            offsetBy: pseudoNameEnd
                         )
 
-                        let pseudo = String(content[startIndex...endIndex])
+                        let pseudoName = String(ruleContent[startIndex...endIndex])
 
-                        // the rule with `##` marker and `:has()` pseudo-class should not be considered as ExtendedCss,
-                        // because `:has()` pseudo-class has native implementation since Safari 16.4
-                        // https://www.webkit.org/blog/13966/webkit-features-in-safari-16-4/
-                        // https://github.com/AdguardTeam/SafariConverterLib/issues/43
-                        if version.isSafari16_4orGreater() && pseudo == EXT_CSS_PSEUDO_INDICATOR_HAS
+                        if version.isSafari16_4orGreater() && pseudoName == PSEUDO_HAS_TAG
                         {
                             continue
                         }
 
-                        // `:is()` pseudo-class has native implementation since Safari 14
-                        if version.isSafari14orGreater() && pseudo == EXT_CSS_PSEUDO_INDICATOR_IS {
+                        if version.isSafari14orGreater() && pseudoName == PSEUDO_IS_TAG {
                             continue
                         }
 
-                        if pseudo.utf8.starts(with: CosmeticRule.EXT_CSS_ABP_PREFIX.utf8) {
-                            // This is an ext-css rule for Adblock Plus.
+                        if pseudoName.utf8.starts(with: CosmeticRule.ABP_PSEUDO_PREFIX.utf8) {
                             return true
                         }
 
-                        if EXT_CSS_PSEUDO_INDICATORS.contains(pseudo) {
-                            // This is a known pseudo class from AdGuard ExtendedCss library.
+                        if EXTENDED_PSEUDO_TAGS.contains(pseudoName) {
                             return true
                         }
                     }
@@ -229,36 +183,33 @@ public class CosmeticRule: Rule {
         return false
     }
 
-    /// Returns true if the rule marker is for an exception rule.
-    private static func isWhiteList(marker: CosmeticRuleMarker) -> Bool {
+    private static func checkIsException(marker: CosmeticRuleMarker) -> Bool {
         switch marker {
         case .elementHidingException,
-            .elementHidingExtCSSException,
-            .cssException,
-            .cssExtCSSException,
-            .javascriptException,
-            .htmlException:
+             .elementHidingExtCSSException,
+             .cssException,
+             .cssExtCSSException,
+             .javascriptException,
+             .htmlException:
             return true
         default:
             return false
         }
     }
 
-    /// Returns true if the rule is an extended CSS rule.
-    private static func isExtCssMarker(marker: CosmeticRuleMarker) -> Bool {
+    private static func checkIsExtendedCssMarker(marker: CosmeticRuleMarker) -> Bool {
         switch marker {
         case .cssExtCSS,
-            .cssExtCSSException,
-            .elementHidingExtCSS,
-            .elementHidingExtCSSException:
+             .cssExtCSSException,
+             .elementHidingExtCSS,
+             .elementHidingExtCSSException:
             return true
         default:
             return false
         }
     }
 
-    /// Parses a single cosmetic option.
-    private func parseOption(name: String, value: String) throws {
+    private func processSingleOption(name: String, value: String) throws {
         switch name {
         case "domain", "from":
             if value.isEmpty {
@@ -276,13 +227,13 @@ public class CosmeticRule: Rule {
                 throw SyntaxError.invalidModifier(message: "Path modifier is nil")
             }
 
-            if let regex = SimpleRegex.extractRegex(pathMod) {
-                pathRegExpSource = regex
+            if let compiledRegex = SimpleRegex.extractRegex(pathMod) {
+                pathRegExpSource = compiledRegex
             } else {
                 pathRegExpSource = try SimpleRegex.createRegexText(pattern: pathMod)
             }
 
-            guard let regExpSource = pathRegExpSource, !regExpSource.isEmpty else {
+            guard let finalRegexSource = pathRegExpSource, !finalRegexSource.isEmpty else {
                 throw SyntaxError.invalidModifier(message: "Empty regular expression for path")
             }
         default:
@@ -290,59 +241,49 @@ public class CosmeticRule: Rule {
         }
     }
 
-    /// Parses cosmetic rule options.
-    ///
-    /// The rule can look like this:
-    /// [$domain=example.com,path=/test.html]example.net##example.org
-    ///
-    /// Learn more about this syntax here.
-    /// https://adguard.com/kb/general/ad-filtering/create-own-filters/#non-basic-rules-modifiers
-    ///
-    /// - Returns: what's left of the domains string or nil if the rule only has cosmetic options.
-    private func parseCosmeticOptions(domains: String) throws -> String? {
-        let startIndex = domains.utf8.index(domains.utf8.startIndex, offsetBy: 2)
-        guard let endIndex = domains.utf8.lastIndex(of: Chars.SQUARE_BRACKET_CLOSE) else {
+    private func extractAndProcessOptions(domainInput: String) throws -> String? {
+        let optionsStart = domainInput.utf8.index(domainInput.utf8.startIndex, offsetBy: 2)
+        guard let optionsEnd = domainInput.utf8.lastIndex(of: Chars.SQUARE_BRACKET_CLOSE) else {
             throw SyntaxError.invalidModifier(message: "Invalid option format")
         }
 
-        if domains.utf8.count < 3 || domains.utf8[safeIndex: 1] != Chars.DOLLAR {
+        if domainInput.utf8.count < 3 || domainInput.utf8[safeIndex: 1] != Chars.DOLLAR {
             throw SyntaxError.invalidModifier(message: "Invalid cosmetic rule modifier")
         }
 
-        let optionsString = String(domains[startIndex..<endIndex])
-        let options = optionsString.split(delimiter: Chars.COMMA, escapeChar: Chars.BACKSLASH)
+        let rawOptions = String(domainInput[optionsStart..<optionsEnd])
+        let splitOptions = rawOptions.split(delimiter: Chars.COMMA, escapeChar: Chars.BACKSLASH)
 
-        for option in options {
-            var optionName = option
+        for optionEntry in splitOptions {
+            var optionName = optionEntry
             var optionValue = ""
 
-            if let valueIndex = option.utf8.firstIndex(of: Chars.EQUALS_SIGN) {
-                optionName = String(option[..<valueIndex])
-                optionValue = String(option[option.utf8.index(after: valueIndex)...])
+            if let equalsIndex = optionEntry.utf8.firstIndex(of: Chars.EQUALS_SIGN) {
+                optionName = String(optionEntry[..<equalsIndex])
+                optionValue = String(optionEntry[optionEntry.utf8.index(after: equalsIndex)...])
             }
 
-            try parseOption(name: optionName, value: optionValue)
+            try processSingleOption(name: optionName, value: optionValue)
         }
 
-        // Parse what's left after the options string.
-        let domainsIndex = domains.index(after: endIndex)
-        if domainsIndex < domains.endIndex {
-            let domainsStr = domains[domainsIndex...]
-            return String(domainsStr)
+        let remainingDomainsIndex = domainInput.index(after: optionsEnd)
+        if remainingDomainsIndex < domainInput.endIndex {
+            let remainingDomains = domainInput[remainingDomainsIndex...]
+            return String(remainingDomains)
         }
 
         return nil
     }
 
-    func setCosmeticRuleDomains(domains: String) throws {
-        if domains.utf8.first == Chars.SQUARE_BRACKET_OPEN {
-            if let remainingDomains = try parseCosmeticOptions(domains: domains),
-                !remainingDomains.isEmpty
+    func setRuleDomains(domainString: String) throws {
+        if domainString.utf8.first == Chars.SQUARE_BRACKET_OPEN {
+            if let leftoverDomains = try extractAndProcessOptions(domainInput: domainString),
+                !leftoverDomains.isEmpty
             {
-                try addDomains(domainsStr: remainingDomains, separator: Chars.COMMA)
+                try addDomains(domainsStr: leftoverDomains, separator: Chars.COMMA)
             }
         } else {
-            try addDomains(domainsStr: domains, separator: Chars.COMMA)
+            try addDomains(domainsStr: domainString, separator: Chars.COMMA)
         }
     }
 }

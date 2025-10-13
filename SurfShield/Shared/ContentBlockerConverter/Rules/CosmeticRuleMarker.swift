@@ -1,120 +1,101 @@
 import Foundation
 
-/// Cosmetic rules marker enumeration
 public enum CosmeticRuleMarker: String, CaseIterable {
     case elementHiding = "##"
     case elementHidingException = "#@#"
     case elementHidingExtCSS = "#?#"
     case elementHidingExtCSSException = "#@?#"
-
     case css = "#$#"
     case cssException = "#@$#"
-
     case cssExtCSS = "#$?#"
     case cssExtCSSException = "#@$?#"
-
     case javascript = "#%#"
     case javascriptException = "#@%#"
-
     case html = "$$"
     case htmlException = "$@$"
 
-    /**
-     * Parses marker from string source
-     */
     public static func findCosmeticRuleMarker(
         ruleText: String
     ) -> (
         index: Int, marker: CosmeticRuleMarker?
     ) {
-        let length = ruleText.utf8.count
-        let maxIndex = length - 2
+        let ruleLength = ruleText.utf8.count
+        let maxSearchIndex = ruleLength - 2
 
-        if maxIndex <= 0 {
+        if maxSearchIndex <= 0 {
             return (-1, nil)
         }
 
-        // This is most likely a network rule as it starts with | or @,
-        // something like ||example.org^ or @@||example.org^, so exit immediately.
-        guard let firstChar = ruleText.utf8.first else {
+        guard let firstByte = ruleText.utf8.first else {
             return (-1, nil)
         }
 
-        if firstChar == Chars.PIPE || firstChar == Chars.AT_CHAR {
+        if firstByte == Chars.PIPE || firstByte == Chars.AT_CHAR {
             return (-1, nil)
         }
 
-        for i in 0...maxIndex {
-            let char = ruleText.utf8[safeIndex: i]
+        for searchPosition in 0...maxSearchIndex {
+            let currentByte = ruleText.utf8[safeIndex: searchPosition]
 
-            switch char {
-            case Chars.HASH:  // #
-                let nextChar = ruleText.utf8[safeIndex: i + 1]
-                let twoAhead = (i + 2 < length) ? ruleText.utf8[safeIndex: i + 2] : nil
-                let threeAhead = (i + 3 < length) ? ruleText.utf8[safeIndex: i + 3] : nil
-                let fourAhead = (i + 4 < length) ? ruleText.utf8[safeIndex: i + 4] : nil
+            switch currentByte {
+            case Chars.HASH:
+                let byteNext = ruleText.utf8[safeIndex: searchPosition + 1]
+                let byteTwo = (searchPosition + 2 < ruleLength) ? ruleText.utf8[safeIndex: searchPosition + 2] : nil
+                let byteThree = (searchPosition + 3 < ruleLength) ? ruleText.utf8[safeIndex: searchPosition + 3] : nil
+                let byteFour = (searchPosition + 4 < ruleLength) ? ruleText.utf8[safeIndex: searchPosition + 4] : nil
 
-                switch nextChar {
-                case Chars.AT_CHAR:  // #@
-                    switch twoAhead {
-                    case Chars.DOLLAR:  // #@$
-                        if threeAhead == Chars.HASH {
-                            // #@$#
-                            return (i, .cssException)
-                        } else if threeAhead == Chars.QUESTION && fourAhead == Chars.HASH {
-                            // #@$?#
-                            return (i, .cssExtCSSException)
+                switch byteNext {
+                case Chars.AT_CHAR:
+                    switch byteTwo {
+                    case Chars.DOLLAR:
+                        if byteThree == Chars.HASH {
+                            return (searchPosition, .cssException)
+                        } else if byteThree == Chars.QUESTION && byteFour == Chars.HASH {
+                            return (searchPosition, .cssExtCSSException)
                         }
-                    case Chars.QUESTION:  // #@?
-                        if threeAhead == Chars.HASH {
-                            // #@?#
-                            return (i, .elementHidingExtCSSException)
+                    case Chars.QUESTION:
+                        if byteThree == Chars.HASH {
+                            return (searchPosition, .elementHidingExtCSSException)
                         }
-                    case Chars.PERCENT:  // #@%
-                        if threeAhead == Chars.HASH {
-                            // #@%#
-                            return (i, .javascriptException)
-                        }
-                    case Chars.HASH:  // #@#
-                        return (i, .elementHidingException)
-                    default: break
-                    }
-                case Chars.DOLLAR:  // #$
-                    switch twoAhead {
-                    case Chars.QUESTION:  // #$?
-                        if threeAhead == Chars.HASH {
-                            // #$?#
-                            return (i, .cssExtCSS)
+                    case Chars.PERCENT:
+                        if byteThree == Chars.HASH {
+                            return (searchPosition, .javascriptException)
                         }
                     case Chars.HASH:
-                        // #$#
-                        return (i, .css)
+                        return (searchPosition, .elementHidingException)
                     default: break
                     }
-                case Chars.QUESTION:  // #?
-                    if twoAhead == Chars.HASH {
-                        // #?#
-                        return (i, .elementHidingExtCSS)
+                case Chars.DOLLAR:
+                    switch byteTwo {
+                    case Chars.QUESTION:
+                        if byteThree == Chars.HASH {
+                            return (searchPosition, .cssExtCSS)
+                        }
+                    case Chars.HASH:
+                        return (searchPosition, .css)
+                    default: break
                     }
-                case Chars.PERCENT:  // #%
-                    if twoAhead == Chars.HASH {
-                        // #%#
-                        return (i, .javascript)
+                case Chars.QUESTION:
+                    if byteTwo == Chars.HASH {
+                        return (searchPosition, .elementHidingExtCSS)
                     }
-                case Chars.HASH:  // ##
-                    return (i, .elementHiding)
+                case Chars.PERCENT:
+                    if byteTwo == Chars.HASH {
+                        return (searchPosition, .javascript)
+                    }
+                case Chars.HASH:
+                    return (searchPosition, .elementHiding)
                 default: break
                 }
 
-            case Chars.DOLLAR:  // $
-                let nextChar = ruleText.utf8[safeIndex: i + 1]
-                let twoAhead = (i + 2 < length) ? ruleText.utf8[safeIndex: i + 2] : nil
+            case Chars.DOLLAR:
+                let byteNext = ruleText.utf8[safeIndex: searchPosition + 1]
+                let byteTwo = (searchPosition + 2 < ruleLength) ? ruleText.utf8[safeIndex: searchPosition + 2] : nil
 
-                if nextChar == Chars.AT_CHAR && twoAhead == Chars.DOLLAR {
-                    // $@$
-                    return (i, .htmlException)
-                } else if nextChar == Chars.DOLLAR {
-                    return (i, .html)
+                if byteNext == Chars.AT_CHAR && byteTwo == Chars.DOLLAR {
+                    return (searchPosition, .htmlException)
+                } else if byteNext == Chars.DOLLAR {
+                    return (searchPosition, .html)
                 }
             default: break
             }
