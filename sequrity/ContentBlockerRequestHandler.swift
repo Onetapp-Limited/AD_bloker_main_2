@@ -4,12 +4,12 @@ import MobileCoreServices
 class ContentBlockerRequestHandler: NSObject, NSExtensionRequestHandling {
 
     func beginRequest(with context: NSExtensionContext) {
-        let rulesURL = RulesConverter().getExtensionFileURLWithFallback(forType: .sequrity)
-        let attachment = NSItemProvider(contentsOf: rulesURL)!
+        let mainURLWithRulles = RulesConverterService().getExtensionFileURLWithFallback(forType: .sequrity)
+        let provider = NSItemProvider(contentsOf: mainURLWithRulles)!
         
-        let item = NSExtensionItem()
-        item.attachments = [attachment]
+        let mainItem = NSExtensionItem()
+        mainItem.attachments = [provider]
         
-        context.completeRequest(returningItems: [item], completionHandler: nil)
+        context.completeRequest(returningItems: [mainItem], completionHandler: nil)
     }
 }

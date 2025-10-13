@@ -951,13 +951,6 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		8EC786B02E5C58C60024A55C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		8EC786D92E5C64D10024A55C /* sequrity */ = {
 			isa = PBXGroup;
 			children = (
@@ -1004,7 +997,6 @@
 				8EC58DC72E67E8A3008D48EF /* secure */,
 				8EC58DD82E67E916008D48EF /* basic */,
 				8ECF28082E59BAFE000A5748 /* Products */,
-				8EC786B02E5C58C60024A55C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
