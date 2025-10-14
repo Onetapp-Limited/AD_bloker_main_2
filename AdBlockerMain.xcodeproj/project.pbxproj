@@ -51,7 +51,13 @@
 		1045EE842E9E7A3D00B81CAD /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1045EE832E9E7A3C00B81CAD /* PrimaryButtonStyle.swift */; };
 		1045EE862E9E7A5300B81CAD /* SecondaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1045EE852E9E7A5300B81CAD /* SecondaryButtonStyle.swift */; };
 		1045EE882E9E7B2400B81CAD /* OnboardingItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1045EE872E9E7B2300B81CAD /* OnboardingItemModel.swift */; };
-		8E0384CF2E5E4939001D5E9D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0384CE2E5E4939001D5E9D /* SettingsView.swift */; };
+		1045EE8D2E9E837A00B81CAD /* StatisticResultsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1045EE8C2E9E837A00B81CAD /* StatisticResultsRow.swift */; };
+		1045EE8F2E9E838700B81CAD /* InfoStatisticRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1045EE8E2E9E838600B81CAD /* InfoStatisticRow.swift */; };
+		1045EE912E9E839400B81CAD /* NewDesignSectionMainCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1045EE902E9E839400B81CAD /* NewDesignSectionMainCard.swift */; };
+		1045EE932E9E83A600B81CAD /* ToggleMainRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1045EE922E9E83A500B81CAD /* ToggleMainRow.swift */; };
+		1045EE952E9E83B400B81CAD /* MainToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1045EE942E9E83B400B81CAD /* MainToggle.swift */; };
+		1045EE972E9E83C100B81CAD /* PrivacyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1045EE962E9E83C000B81CAD /* PrivacyRow.swift */; };
+		8E0384CF2E5E4939001D5E9D /* SettingsMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0384CE2E5E4939001D5E9D /* SettingsMainView.swift */; };
 		8E0384D22E5E4B3F001D5E9D /* MainGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0384D12E5E4B3F001D5E9D /* MainGradient.swift */; };
 		8E32FE502E6CE17500E71DD2 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E32FE4F2E6CE17500E71DD2 /* AppState.swift */; };
 		8E39339F2E625F70003FDE0A /* blockerList.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E39339E2E625F70003FDE0A /* blockerList.json */; };
@@ -416,7 +422,7 @@
 		8EE142A32E6B737900918447 /* ResourceMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE142A12E6B737900918447 /* ResourceMonitor.swift */; };
 		8EE142A72E6B7D6300918447 /* domains.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8EE142A62E6B7D6300918447 /* domains.txt */; };
 		8EE294712E6E120F0060471B /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE294702E6E120F0060471B /* PaywallView.swift */; };
-		8EE69D072E6F0F0F00BA1BF1 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE69D062E6F0F0F00BA1BF1 /* SettingsViewModel.swift */; };
+		8EE69D072E6F0F0F00BA1BF1 /* SettingsMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE69D062E6F0F0F00BA1BF1 /* SettingsMainViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -515,7 +521,13 @@
 		1045EE832E9E7A3C00B81CAD /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		1045EE852E9E7A5300B81CAD /* SecondaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButtonStyle.swift; sourceTree = "<group>"; };
 		1045EE872E9E7B2300B81CAD /* OnboardingItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingItemModel.swift; sourceTree = "<group>"; };
-		8E0384CE2E5E4939001D5E9D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		1045EE8C2E9E837A00B81CAD /* StatisticResultsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticResultsRow.swift; sourceTree = "<group>"; };
+		1045EE8E2E9E838600B81CAD /* InfoStatisticRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoStatisticRow.swift; sourceTree = "<group>"; };
+		1045EE902E9E839400B81CAD /* NewDesignSectionMainCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDesignSectionMainCard.swift; sourceTree = "<group>"; };
+		1045EE922E9E83A500B81CAD /* ToggleMainRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleMainRow.swift; sourceTree = "<group>"; };
+		1045EE942E9E83B400B81CAD /* MainToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainToggle.swift; sourceTree = "<group>"; };
+		1045EE962E9E83C000B81CAD /* PrivacyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyRow.swift; sourceTree = "<group>"; };
+		8E0384CE2E5E4939001D5E9D /* SettingsMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMainView.swift; sourceTree = "<group>"; };
 		8E0384D12E5E4B3F001D5E9D /* MainGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGradient.swift; sourceTree = "<group>"; };
 		8E32FE4F2E6CE17500E71DD2 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		8E39339C2E625F70003FDE0A /* banners.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = banners.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -625,7 +637,7 @@
 		8EE142A12E6B737900918447 /* ResourceMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceMonitor.swift; sourceTree = "<group>"; };
 		8EE142A62E6B7D6300918447 /* domains.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = domains.txt; sourceTree = "<group>"; };
 		8EE294702E6E120F0060471B /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
-		8EE69D062E6F0F0F00BA1BF1 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		8EE69D062E6F0F0F00BA1BF1 /* SettingsMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -764,6 +776,19 @@
 				1045EE872E9E7B2300B81CAD /* OnboardingItemModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1045EE8B2E9E836A00B81CAD /* Subvies */ = {
+			isa = PBXGroup;
+			children = (
+				1045EE962E9E83C000B81CAD /* PrivacyRow.swift */,
+				1045EE942E9E83B400B81CAD /* MainToggle.swift */,
+				1045EE922E9E83A500B81CAD /* ToggleMainRow.swift */,
+				1045EE902E9E839400B81CAD /* NewDesignSectionMainCard.swift */,
+				1045EE8E2E9E838600B81CAD /* InfoStatisticRow.swift */,
+				1045EE8C2E9E837A00B81CAD /* StatisticResultsRow.swift */,
+			);
+			path = Subvies;
 			sourceTree = "<group>";
 		};
 		8E0384D02E5E4B23001D5E9D /* ViewComponents */ = {
@@ -1110,8 +1135,9 @@
 		8EE69D052E6F0F0000BA1BF1 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				8E0384CE2E5E4939001D5E9D /* SettingsView.swift */,
-				8EE69D062E6F0F0F00BA1BF1 /* SettingsViewModel.swift */,
+				1045EE8B2E9E836A00B81CAD /* Subvies */,
+				8E0384CE2E5E4939001D5E9D /* SettingsMainView.swift */,
+				8EE69D062E6F0F0F00BA1BF1 /* SettingsMainViewModel.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1778,6 +1804,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EC73F9C2E69AD4300EAA93F /* WebViewPanel.swift in Sources */,
+				1045EE8F2E9E838700B81CAD /* InfoStatisticRow.swift in Sources */,
 				8E7B5E532E61D70700D5E817 /* BlockerEntryEncoder.swift in Sources */,
 				8ECF280D2E59BAFE000A5748 /* MainAdBlockerView.swift in Sources */,
 				8EBB25E42E61C7E200E29966 /* ArrayExtension.swift in Sources */,
@@ -1793,7 +1820,9 @@
 				8EBA84082E5BBA0900206493 /* RulesConverterService.swift in Sources */,
 				100EA3BE2E9D2BBF004B1EFB /* ShapeStyle+Colors.swift in Sources */,
 				8EBB25DC2E61C7E200E29966 /* Logger.swift in Sources */,
+				1045EE952E9E83B400B81CAD /* MainToggle.swift in Sources */,
 				8ECF281E2E59BC4E000A5748 /* Coordinator.swift in Sources */,
+				1045EE912E9E839400B81CAD /* NewDesignSectionMainCard.swift in Sources */,
 				8EBB25CA2E61C7C700E29966 /* SimpleRegex.swift in Sources */,
 				8EBB25A62E61C7C700E29966 /* NetworkRule.swift in Sources */,
 				100EA3A32E9D276A004B1EFB /* RulesType.swift in Sources */,
@@ -1814,6 +1843,7 @@
 				8EE142A32E6B737900918447 /* ResourceMonitor.swift in Sources */,
 				8EBEC6572E6C630F005E5AF4 /* UserDefaultsKeys.swift in Sources */,
 				8E9F1AF22E5C94C30093C76B /* Constants.swift in Sources */,
+				1045EE932E9E83A600B81CAD /* ToggleMainRow.swift in Sources */,
 				1045EE842E9E7A3D00B81CAD /* PrimaryButtonStyle.swift in Sources */,
 				100EA3C52E9D2C51004B1EFB /* HStack+.swift in Sources */,
 				8E7B5E4F2E61D70700D5E817 /* BlockerEntry.swift in Sources */,
@@ -1822,7 +1852,7 @@
 				8EBB25C62E61C7C700E29966 /* Rule.swift in Sources */,
 				8EBB25892E61C79500E29966 /* ContentBlockerConverterVersion.swift in Sources */,
 				8EBB25AE2E61C7C700E29966 /* NetworkRuleParser.swift in Sources */,
-				8EE69D072E6F0F0F00BA1BF1 /* SettingsViewModel.swift in Sources */,
+				8EE69D072E6F0F0F00BA1BF1 /* SettingsMainViewModel.swift in Sources */,
 				10138AC52E96BD8600507C44 /* MainAdBlockerViewModel.swift in Sources */,
 				8EC73F9E2E69D90900EAA93F /* BrowserNavigationButton.swift in Sources */,
 				8E7B5E482E61D6EE00D5E817 /* CompilationResult.swift in Sources */,
@@ -1832,13 +1862,14 @@
 				8ECF280B2E59BAFE000A5748 /* SurfShieldApp.swift in Sources */,
 				10138C282E97DF9500507C44 /* FlareParticleView.swift in Sources */,
 				8EBB25C22E61C7C700E29966 /* SafariVersion.swift in Sources */,
-				8E0384CF2E5E4939001D5E9D /* SettingsView.swift in Sources */,
+				8E0384CF2E5E4939001D5E9D /* SettingsMainView.swift in Sources */,
 				1045EE862E9E7A5300B81CAD /* SecondaryButtonStyle.swift in Sources */,
 				8EBB25BE2E61C7C700E29966 /* CosmeticRule.swift in Sources */,
 				10138C2C2E97E0D200507C44 /* WaveCircleShape.swift in Sources */,
 				8EBEC6562E6C630F005E5AF4 /* UserDefaultsService.swift in Sources */,
 				10138D8F2E99739700507C44 /* BrowserInternetNavigationDelegate.swift in Sources */,
 				10138C2E2E97E0EB00507C44 /* AnimatedToggleView.swift in Sources */,
+				1045EE8D2E9E837A00B81CAD /* StatisticResultsRow.swift in Sources */,
 				8E0384D22E5E4B3F001D5E9D /* MainGradient.swift in Sources */,
 				8EC73FA02E69EAD100EAA93F /* BrowserInternetInteractor.swift in Sources */,
 				8EDC48292E6F086B00D934F7 /* AppSettings.swift in Sources */,
@@ -1853,6 +1884,7 @@
 				8EBEC6602E6C7D88005E5AF4 /* UserDefaultsObserver.swift in Sources */,
 				8ECF28202E59BC57000A5748 /* Screen.swift in Sources */,
 				8EBB25EC2E61C7E200E29966 /* PrefixMatcher.swift in Sources */,
+				1045EE972E9E83C100B81CAD /* PrivacyRow.swift in Sources */,
 				8EE294712E6E120F0060471B /* PaywallView.swift in Sources */,
 				8EBB25B62E61C7C700E29966 /* SyntaxError.swift in Sources */,
 				8EBB25B22E61C7C700E29966 /* RuleConverter.swift in Sources */,
