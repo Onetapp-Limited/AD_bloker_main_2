@@ -48,6 +48,9 @@
 		10138D8F2E99739700507C44 /* BrowserInternetNavigationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10138D8E2E99739600507C44 /* BrowserInternetNavigationDelegate.swift */; };
 		10138D912E9973AB00507C44 /* BrowserInternetObservables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10138D902E9973AA00507C44 /* BrowserInternetObservables.swift */; };
 		10138D942E99743C00507C44 /* BrowserInternetInteractor+ResourceMonitorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10138D932E99743100507C44 /* BrowserInternetInteractor+ResourceMonitorDelegate.swift */; };
+		1045EE842E9E7A3D00B81CAD /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1045EE832E9E7A3C00B81CAD /* PrimaryButtonStyle.swift */; };
+		1045EE862E9E7A5300B81CAD /* SecondaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1045EE852E9E7A5300B81CAD /* SecondaryButtonStyle.swift */; };
+		1045EE882E9E7B2400B81CAD /* OnboardingItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1045EE872E9E7B2300B81CAD /* OnboardingItemModel.swift */; };
 		8E0384CF2E5E4939001D5E9D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0384CE2E5E4939001D5E9D /* SettingsView.swift */; };
 		8E0384D22E5E4B3F001D5E9D /* MainGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0384D12E5E4B3F001D5E9D /* MainGradient.swift */; };
 		8E32FE502E6CE17500E71DD2 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E32FE4F2E6CE17500E71DD2 /* AppState.swift */; };
@@ -509,6 +512,9 @@
 		10138D8E2E99739600507C44 /* BrowserInternetNavigationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserInternetNavigationDelegate.swift; sourceTree = "<group>"; };
 		10138D902E9973AA00507C44 /* BrowserInternetObservables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserInternetObservables.swift; sourceTree = "<group>"; };
 		10138D932E99743100507C44 /* BrowserInternetInteractor+ResourceMonitorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BrowserInternetInteractor+ResourceMonitorDelegate.swift"; sourceTree = "<group>"; };
+		1045EE832E9E7A3C00B81CAD /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
+		1045EE852E9E7A5300B81CAD /* SecondaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButtonStyle.swift; sourceTree = "<group>"; };
+		1045EE872E9E7B2300B81CAD /* OnboardingItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingItemModel.swift; sourceTree = "<group>"; };
 		8E0384CE2E5E4939001D5E9D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		8E0384D12E5E4B3F001D5E9D /* MainGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGradient.swift; sourceTree = "<group>"; };
 		8E32FE4F2E6CE17500E71DD2 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -743,6 +749,23 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		1045EE892E9E7B5600B81CAD /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				1045EE852E9E7A5300B81CAD /* SecondaryButtonStyle.swift */,
+				1045EE832E9E7A3C00B81CAD /* PrimaryButtonStyle.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		1045EE8A2E9E7B6200B81CAD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1045EE872E9E7B2300B81CAD /* OnboardingItemModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		8E0384D02E5E4B23001D5E9D /* ViewComponents */ = {
 			isa = PBXGroup;
 			children = (
@@ -904,6 +927,8 @@
 		8EBEC6612E6CCEF3005E5AF4 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				1045EE8A2E9E7B6200B81CAD /* Models */,
+				1045EE892E9E7B5600B81CAD /* Subviews */,
 				8EBEC6622E6CD829005E5AF4 /* OnboardingView.swift */,
 			);
 			path = Onboarding;
@@ -1785,9 +1810,11 @@
 				8E32FE502E6CE17500E71DD2 /* AppState.swift in Sources */,
 				8E7B5E432E61D6DA00D5E817 /* Compiler.swift in Sources */,
 				100EA3C02E9D2BDF004B1EFB /* ThemeColors.swift in Sources */,
+				1045EE882E9E7B2400B81CAD /* OnboardingItemModel.swift in Sources */,
 				8EE142A32E6B737900918447 /* ResourceMonitor.swift in Sources */,
 				8EBEC6572E6C630F005E5AF4 /* UserDefaultsKeys.swift in Sources */,
 				8E9F1AF22E5C94C30093C76B /* Constants.swift in Sources */,
+				1045EE842E9E7A3D00B81CAD /* PrimaryButtonStyle.swift in Sources */,
 				100EA3C52E9D2C51004B1EFB /* HStack+.swift in Sources */,
 				8E7B5E4F2E61D70700D5E817 /* BlockerEntry.swift in Sources */,
 				8EBEC6632E6CD829005E5AF4 /* OnboardingView.swift in Sources */,
@@ -1806,6 +1833,7 @@
 				10138C282E97DF9500507C44 /* FlareParticleView.swift in Sources */,
 				8EBB25C22E61C7C700E29966 /* SafariVersion.swift in Sources */,
 				8E0384CF2E5E4939001D5E9D /* SettingsView.swift in Sources */,
+				1045EE862E9E7A5300B81CAD /* SecondaryButtonStyle.swift in Sources */,
 				8EBB25BE2E61C7C700E29966 /* CosmeticRule.swift in Sources */,
 				10138C2C2E97E0D200507C44 /* WaveCircleShape.swift in Sources */,
 				8EBEC6562E6C630F005E5AF4 /* UserDefaultsService.swift in Sources */,
