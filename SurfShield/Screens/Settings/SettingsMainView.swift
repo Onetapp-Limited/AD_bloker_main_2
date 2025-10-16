@@ -343,11 +343,12 @@ struct SettingsMainView: View {
                 
                 HStack {
                     VStack(alignment: .leading, spacing: Layout.Padding.small) {
-                        Text("Client Version 1.0.0")
+                        Text("Client Version: \(Bundle.main.appVersion)")
                             .font(.system(size: 14, weight: .medium))
-                            .foregroundStyle(.tm.title.opacity(0.8))
+                            .foregroundStyle(.tm.title.opacity(0.8)) // Предполагая, что .tm.title — это ваш кастомный Color
                         
-                        Text("Release Build 2025.1")
+                        // Динамический вывод номера сборки
+                        Text("Release Build: \( Bundle.main.appBuild)")
                             .font(.system(size: 12, weight: .regular))
                             .foregroundStyle(.tm.subTitle.opacity(0.6))
                     }
@@ -360,5 +361,14 @@ struct SettingsMainView: View {
                 .padding(.top, Layout.Padding.regular)
             }
         }
+    }
+}
+
+extension Bundle {
+    var appVersion: String {
+        return infoDictionary?["CFBundleShortVersionString"] as? String ?? "N/A"
+    }
+    var appBuild: String {
+        return infoDictionary?["CFBundleVersion"] as? String ?? "N/A"
     }
 }
