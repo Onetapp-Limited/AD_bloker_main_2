@@ -12,7 +12,7 @@ struct MainAdBlockerView: View {
     var body: some View {
         mainContentArea
             .sheet(isPresented: $isShowingSettingsSheet) {
-                 SettingsView()
+                 SettingsMainView()
             }
     }
     
