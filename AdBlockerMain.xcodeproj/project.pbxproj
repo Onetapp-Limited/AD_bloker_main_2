@@ -57,6 +57,10 @@
 		1045EE932E9E83A600B81CAD /* ToggleMainRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1045EE922E9E83A500B81CAD /* ToggleMainRow.swift */; };
 		1045EE952E9E83B400B81CAD /* MainToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1045EE942E9E83B400B81CAD /* MainToggle.swift */; };
 		1045EE972E9E83C100B81CAD /* PrivacyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1045EE962E9E83C000B81CAD /* PrivacyRow.swift */; };
+		1045EEBB2EA26EDD00B81CAD /* PaywallViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1045EEBA2EA26ED900B81CAD /* PaywallViewModel.swift */; };
+		1045EEBD2EA26EF400B81CAD /* PaywallService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1045EEBC2EA26EEE00B81CAD /* PaywallService.swift */; };
+		1045EEC02EA26F0600B81CAD /* ApphudSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 1045EEBF2EA26F0600B81CAD /* ApphudSDK */; };
+		1045F0212EA2702F00B81CAD /* AppsFlyerLib in Frameworks */ = {isa = PBXBuildFile; productRef = 1045F0202EA2702F00B81CAD /* AppsFlyerLib */; };
 		8E0384CF2E5E4939001D5E9D /* SettingsMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0384CE2E5E4939001D5E9D /* SettingsMainView.swift */; };
 		8E0384D22E5E4B3F001D5E9D /* MainGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E0384D12E5E4B3F001D5E9D /* MainGradient.swift */; };
 		8E32FE502E6CE17500E71DD2 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E32FE4F2E6CE17500E71DD2 /* AppState.swift */; };
@@ -527,6 +531,8 @@
 		1045EE922E9E83A500B81CAD /* ToggleMainRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleMainRow.swift; sourceTree = "<group>"; };
 		1045EE942E9E83B400B81CAD /* MainToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainToggle.swift; sourceTree = "<group>"; };
 		1045EE962E9E83C000B81CAD /* PrivacyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyRow.swift; sourceTree = "<group>"; };
+		1045EEBA2EA26ED900B81CAD /* PaywallViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallViewModel.swift; sourceTree = "<group>"; };
+		1045EEBC2EA26EEE00B81CAD /* PaywallService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallService.swift; sourceTree = "<group>"; };
 		8E0384CE2E5E4939001D5E9D /* SettingsMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMainView.swift; sourceTree = "<group>"; };
 		8E0384D12E5E4B3F001D5E9D /* MainGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainGradient.swift; sourceTree = "<group>"; };
 		8E32FE4F2E6CE17500E71DD2 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -702,6 +708,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E7B5E292E61D4B800D5E817 /* Punycode in Frameworks */,
+				1045EEC02EA26F0600B81CAD /* ApphudSDK in Frameworks */,
+				1045F0212EA2702F00B81CAD /* AppsFlyerLib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -789,6 +797,16 @@
 				1045EE8C2E9E837A00B81CAD /* StatisticResultsRow.swift */,
 			);
 			path = Subvies;
+			sourceTree = "<group>";
+		};
+		1045EEB92EA26ED200B81CAD /* PaywallView */ = {
+			isa = PBXGroup;
+			children = (
+				1045EEBC2EA26EEE00B81CAD /* PaywallService.swift */,
+				1045EEBA2EA26ED900B81CAD /* PaywallViewModel.swift */,
+				8EE294702E6E120F0060471B /* PaywallView.swift */,
+			);
+			path = PaywallView;
 			sourceTree = "<group>";
 		};
 		8E0384D02E5E4B23001D5E9D /* ViewComponents */ = {
@@ -1121,13 +1139,13 @@
 		8ECF28282E59BDCB000A5748 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				1045EEB92EA26ED200B81CAD /* PaywallView */,
 				10138C242E97DF6500507C44 /* SubViews */,
 				8EBEC6612E6CCEF3005E5AF4 /* Onboarding */,
 				8ECF280C2E59BAFE000A5748 /* MainAdBlockerView.swift */,
 				10138AC42E96BD8100507C44 /* MainAdBlockerViewModel.swift */,
 				8EE69D052E6F0F0000BA1BF1 /* Settings */,
 				8E8FFB412E68162B00F20BF0 /* InternetBrowser */,
-				8EE294702E6E120F0060471B /* PaywallView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -1308,6 +1326,8 @@
 			name = SurfShield;
 			packageProductDependencies = (
 				8E7B5E282E61D4B800D5E817 /* Punycode */,
+				1045EEBF2EA26F0600B81CAD /* ApphudSDK */,
+				1045F0202EA2702F00B81CAD /* AppsFlyerLib */,
 			);
 			productName = SurfShield;
 			productReference = 8ECF28072E59BAFE000A5748 /* SurfShield.app */;
@@ -1360,6 +1380,8 @@
 			mainGroup = 8ECF27FE2E59BAFE000A5748;
 			packageReferences = (
 				8E7B5E272E61D4B800D5E817 /* XCRemoteSwiftPackageReference "PunycodeSwift" */,
+				1045EEBE2EA26F0600B81CAD /* XCRemoteSwiftPackageReference "ApphudSDK" */,
+				1045F01F2EA2702F00B81CAD /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */,
 			);
 			productRefGroup = 8ECF28082E59BAFE000A5748 /* Products */;
 			projectDirPath = "";
@@ -1805,6 +1827,7 @@
 			files = (
 				8EC73F9C2E69AD4300EAA93F /* WebViewPanel.swift in Sources */,
 				1045EE8F2E9E838700B81CAD /* InfoStatisticRow.swift in Sources */,
+				1045EEBD2EA26EF400B81CAD /* PaywallService.swift in Sources */,
 				8E7B5E532E61D70700D5E817 /* BlockerEntryEncoder.swift in Sources */,
 				8ECF280D2E59BAFE000A5748 /* MainAdBlockerView.swift in Sources */,
 				8EBB25E42E61C7E200E29966 /* ArrayExtension.swift in Sources */,
@@ -1820,6 +1843,7 @@
 				8EBA84082E5BBA0900206493 /* RulesConverterService.swift in Sources */,
 				100EA3BE2E9D2BBF004B1EFB /* ShapeStyle+Colors.swift in Sources */,
 				8EBB25DC2E61C7E200E29966 /* Logger.swift in Sources */,
+				1045EEBB2EA26EDD00B81CAD /* PaywallViewModel.swift in Sources */,
 				1045EE952E9E83B400B81CAD /* MainToggle.swift in Sources */,
 				8ECF281E2E59BC4E000A5748 /* Coordinator.swift in Sources */,
 				1045EE912E9E839400B81CAD /* NewDesignSectionMainCard.swift in Sources */,
@@ -2453,10 +2477,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SurfShield/SurfShield.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = UVV92HTRTD;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -2472,6 +2496,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.adBloker.main.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -2489,10 +2514,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SurfShield/SurfShield.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = UVV92HTRTD;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -2508,6 +2533,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.adBloker.main.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -2605,6 +2631,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1045EEBE2EA26F0600B81CAD /* XCRemoteSwiftPackageReference "ApphudSDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apphud/ApphudSDK";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+		1045F01F2EA2702F00B81CAD /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppsFlyerSDK/AppsFlyerFramework.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.17.7;
+			};
+		};
 		8E7B5E272E61D4B800D5E817 /* XCRemoteSwiftPackageReference "PunycodeSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/gumob/PunycodeSwift.git";
@@ -2616,6 +2658,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1045EEBF2EA26F0600B81CAD /* ApphudSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1045EEBE2EA26F0600B81CAD /* XCRemoteSwiftPackageReference "ApphudSDK" */;
+			productName = ApphudSDK;
+		};
+		1045F0202EA2702F00B81CAD /* AppsFlyerLib */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1045F01F2EA2702F00B81CAD /* XCRemoteSwiftPackageReference "AppsFlyerFramework" */;
+			productName = AppsFlyerLib;
+		};
 		8E7B5E282E61D4B800D5E817 /* Punycode */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8E7B5E272E61D4B800D5E817 /* XCRemoteSwiftPackageReference "PunycodeSwift" */;

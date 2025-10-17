@@ -12,7 +12,8 @@ enum UserDefaultsKeys: String, CaseIterable {
     case adBlockerEnabled = "adBlockerEnabled"
     case webViewBlockedStatistics = "webViewBlockedStatistics"
     case onboardingCompleted = "onboardingCompleted"
-    
+    case isPaywallFirstTimeShown = "isPaywallFirstTimeShown"
+
     // Settings keys
     case basicBlock = "basicBlock"
     case blockAds = "blockAds"

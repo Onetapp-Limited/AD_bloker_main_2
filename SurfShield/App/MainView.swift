@@ -31,11 +31,11 @@ struct MainView: View {
                     coordinator.build(screen: screen)
                 }
                 .onAppear {
-                    if appState.isFirstLoad {
+                    if !appState.isPaywallFirstTimeShown {
                         coordinator.fullScreenCover(to: .paywall)
+                        appState.setPayWallShown()
                     }
                 }
         }
-
     }
 }

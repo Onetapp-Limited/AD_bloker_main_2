@@ -5,7 +5,9 @@ final class AppState: ObservableObject {
     private let userDefaultsService = UserDefaultsService.shared
     
     @Published var viewState: AppViewState
-    var isFirstLoad: Bool = false
+    var isPaywallFirstTimeShown: Bool {
+        userDefaultsService.load(Bool.self, forKey: .isPaywallFirstTimeShown) ?? false
+    }
     
     enum AppViewState {
         case onboarding
@@ -17,6 +19,9 @@ final class AppState: ObservableObject {
         self.viewState = isOnboardingShown ? .main : .onboarding
     }
     
+    func setPayWallShown() {
+        userDefaultsService.save(true, forKey: .isPaywallFirstTimeShown)
+    }
     
     public func onboardingCompleted() {
         userDefaultsService.save(true, forKey: .onboardingCompleted)

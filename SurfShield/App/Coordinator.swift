@@ -5,6 +5,8 @@ final class Coordinator: ObservableObject {
     @Published var mainPath = NavigationPath()
     @Published var presentedScreen: Screen? = nil
     
+    @State private var isPaywallPresented: Bool = false
+
     func fullScreenCover(to screen: Screen) {
         presentedScreen = screen
     }
@@ -20,7 +22,7 @@ final class Coordinator: ObservableObject {
     @ViewBuilder func build(screen: Screen) -> some View {
         switch screen {
         case .paywall:
-            PaywallView()
+            PaywallView(isPresented: $isPaywallPresented)
         }
     }
 }
