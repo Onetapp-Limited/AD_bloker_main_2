@@ -31,34 +31,33 @@ struct PaywallView: View {
                 
                 VStack(spacing: 8) {
                     Text("100% FREE FOR 3 DAYS")
-                        .font(.system(size: 24, weight: .bold))
-                        .foregroundColor(.tm.title) // primary -> title
+                        .font(.system(size: 18, weight: .bold))
+                        .foregroundColor(.tm.accentSecondary)
                     
                     Text("ZERO FEE WITH RISK FREE")
-                        .font(.system(size: 24, weight: .bold))
-                        .foregroundColor(.tm.title.opacity(0.8)) // primary -> title
+                        .font(.system(size: 18, weight: .bold))
+                        .foregroundColor(.tm.accentSecondary.opacity(0.8))
                         .multilineTextAlignment(.center)
                     
                     Text("NO EXTRA COST")
-                        .font(.system(size: 24, weight: .bold))
-                        .foregroundColor(.tm.title.opacity(0.6)) // primary -> title
+                        .font(.system(size: 18, weight: .bold))
+                        .foregroundColor(.tm.accentSecondary.opacity(0.6))
                         .multilineTextAlignment(.center)
                 }
                 .padding(.top, 20)
                 
                 Text("Try 3 days free, after \(viewModel.weekPrice)/week\nCancel anytime")
-                    .font(.system(size: 16, weight: .bold))
-                    .foregroundColor(.tm.subTitle.opacity(0.4)) // secondaryText -> subTitle
+                    .font(.system(size: 14, weight: .bold))
+                    .foregroundColor(.tm.title.opacity(0.4)) // secondaryText -> subTitle
                     .multilineTextAlignment(.center)
-                    .padding(.top, 40)
-
-                Spacer()
+                    .padding(.top, 20)
                 
                 PaywallContinueButton(action: {
                     viewModel.continueTapped(with: .weekly)
                 })
                 .padding(.horizontal, 20)
-                
+                .padding(.top, 10)
+
                 PaywallBottomLinksView(isPresented: $isPresented, viewModel: viewModel)
                     .padding(.vertical, 10)
             }
@@ -89,21 +88,21 @@ struct PaywallHeaderView: View {
         VStack(spacing: 8) {
             Text("Premium Free")
                 .font(.system(size: 40, weight: .semibold))
-                .foregroundColor(Color.tm.title) // primary -> title
+                .foregroundColor(Color.tm.accentSecondary)
             
             Text("for 3 days")
                 .font(.system(size: 40, weight: .semibold))
-                .foregroundColor(.tm.title) // primary -> title
+                .foregroundColor(.tm.title)
         }
     }
 }
 
-struct PaywallIconsBlockView: View { // ВОССТАНОВЛЕНО
+struct PaywallIconsBlockView: View {
     var body: some View {
         HStack(spacing: 20) {
-            IconWithText(imageName: "PayWallImege1", text: "16.4 Gb")
-            IconWithText(imageName: "PayWallImege2", text: "2.5 Gb")
-            IconWithText(imageName: "PayWallImege3", text: "0.2 Gb")
+            IconWithText(imageName: "PayWallImege1", text: "Remove\nadvertising")
+            IconWithText(imageName: "PayWallImege2", text: "Block\ntracking")
+            IconWithText(imageName: "PayWallImege3", text: "Stop\nmining")
         }
     }
 }
@@ -113,7 +112,7 @@ struct IconWithText: View {
     let text: String
     
     var iconSize: CGFloat {
-        return 100
+        return 72
     }
             
     var body: some View {
@@ -122,35 +121,33 @@ struct IconWithText: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: iconSize, height: iconSize)
-                .foregroundColor(Color.tm.accent) // iconPrimary -> accent
+                .foregroundColor(Color.tm.accent)
             
             Text(text)
                 .font(.system(size: 16, weight: .semibold))
-                .foregroundColor(Color.tm.title) // primaryText -> title
+                .lineLimit(2)
+                .multilineTextAlignment(.center)
+                .foregroundColor(Color.tm.title)
+                .fixedSize(horizontal: false, vertical: true)
         }
+        .padding(.horizontal, 20)
     }
 }
 
-struct PaywallFeaturesTagView: View { // ВОССТАНОВЛЕНО
+struct PaywallFeaturesTagView: View {
     let features = [
-        "Secret folder for your media & contacts",
-        "Internet speed check",
-        "Ad-free",
-        "Fast cleanup. More space",
-        "Complete info about your phone"
+        "Enjoy a fast and safe Internet experience",
+        "Get rid of intrusive floating videos, pop-up newsletters, and other distracting ads",
+        "Don't let advertisers track you online",
+        "Speed up image loading and reduce mobile data transfer expenses"
     ]
     
     var body: some View {
         VStack(spacing: 10) {
             FeatureTagView(text: features[0])
-            
-            HStack(spacing: 10) {
-                FeatureTagView(text: features[1])
-                FeatureTagView(text: features[2])
-            }
-            
+            FeatureTagView(text: features[1])
+            FeatureTagView(text: features[2])
             FeatureTagView(text: features[3])
-            FeatureTagView(text: features[4])
         }
     }
 }
@@ -159,13 +156,27 @@ private struct FeatureTagView: View {
     let text: String
     
     var body: some View {
-        Text(text)
-            .font(.system(size: 16, weight: .semibold))
-            .padding(.horizontal, 10)
-            .padding(.vertical, 4)
-            .background(Color.tm.accentSecondary.opacity(0.1)) // secondary -> accentSecondary
-            .cornerRadius(8)
-            .foregroundColor(Color.tm.accentSecondary) // secondary -> accentSecondary
+        HStack {
+            Text(text)
+                .font(.system(size: 12, weight: .semibold))
+                .padding(.horizontal, 10)
+                .padding(.vertical, 4)
+                .lineLimit(2) // Указываем, что нужно 2 строки
+                .multilineTextAlignment(.leading) // Выравнивание для многострочного текста
+                // Этот модификатор заставит Text занять необходимую высоту (для 2 строк),
+                // но не даст ему занять всю доступную ширину.
+                .fixedSize(horizontal: false, vertical: true)
+                .foregroundColor(Color.tm.title)
+            
+            Spacer() // Разделяет текст и галочку
+            
+            Text("✓")
+                .font(.system(size: 16, weight: .semibold))
+                .padding(.horizontal, 10)
+                .padding(.vertical, 4)
+                .cornerRadius(8)
+                .foregroundColor(Color.tm.accentSecondary)
+        }
     }
 }
 
@@ -175,12 +186,18 @@ struct PaywallContinueButton: View {
     var body: some View {
         Button(action: action) {
             Text("Continue")
-                .font(.system(size: 17, weight: .semibold))
-                .foregroundColor(Color.tm.background) // white -> background
+                .font(.system(size: 20, weight: .semibold))
+                .foregroundColor(Color.tm.title)
                 .frame(maxWidth: .infinity)
-                .frame(height: 50)
-                .background(Color.tm.accent) // primary -> accent
-                .cornerRadius(8)
+                .frame(height: 60)
+                .background(
+                    LinearGradient(
+                        gradient: Gradient(colors: [Color.tm.accent, Color.tm.accentSecondary]),
+                        startPoint: .leading, // You can choose .top, .leading, etc.
+                        endPoint: .trailing     // You can choose .bottom, .trailing, etc.
+                    )
+                )
+                .cornerRadius(15)
         }
     }
 }
