@@ -50,6 +50,7 @@ final class ApphudPurchaseService {
     private var availableProducts: [ApphudProduct] = []
 
     var hasActiveSubscription: Bool {
+//        true // todo test111
         Apphud.hasActiveSubscription()
     }
     

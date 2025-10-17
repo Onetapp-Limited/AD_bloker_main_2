@@ -3,7 +3,8 @@ import SwiftUI
 struct MainView: View {
     @StateObject var coordinator = Coordinator()
     @StateObject var appState = AppState()
-    
+    @State private var isPaywallPresented: Bool = false
+
     var body: some View {
         content
             .environmentObject(appState)
@@ -32,9 +33,14 @@ struct MainView: View {
                 }
                 .onAppear {
                     if !appState.isPaywallFirstTimeShown {
-                        coordinator.fullScreenCover(to: .paywall)
-                        appState.setPayWallShown()
+                        isPaywallPresented = true
                     }
+                }
+                .fullScreenCover(isPresented: $isPaywallPresented) {
+                    PaywallView(isPresented: $isPaywallPresented)
+                        .onDisappear {
+                            appState.setPayWallShown()
+                        }
                 }
         }
     }

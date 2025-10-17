@@ -2,17 +2,18 @@ import SwiftUI
 import Combine
 import SafariServices
 
-/**
- Основной экран для управления функцией оптимизации контента.
- */
 struct MainAdBlockerView: View {
     @StateObject private var screenModel = MainAdBlockerViewModel()
     @State private var isShowingSettingsSheet: Bool = false
-    
+    @State private var isPaywallPresented: Bool = false
+
     var body: some View {
         mainContentArea
             .sheet(isPresented: $isShowingSettingsSheet) {
                  SettingsMainView()
+            }
+            .fullScreenCover(isPresented: $isPaywallPresented) {
+                PaywallView(isPresented: $isPaywallPresented)
             }
     }
     
@@ -87,9 +88,13 @@ struct MainAdBlockerView: View {
             circleRotationAngle: screenModel.circleRotation,
             uniqueAnimationID: screenModel.animationID,
             onActivationTap: {
-                let generator = UIImpactFeedbackGenerator(style: .heavy)
-                generator.impactOccurred()
-                screenModel.toggleBlocking()
+                if ApphudPurchaseService.shared.hasActiveSubscription {
+                    let generator = UIImpactFeedbackGenerator(style: .heavy)
+                    generator.impactOccurred()
+                    screenModel.toggleBlocking()
+                } else {
+                    isPaywallPresented = true
+                }
             }
         )
     }
